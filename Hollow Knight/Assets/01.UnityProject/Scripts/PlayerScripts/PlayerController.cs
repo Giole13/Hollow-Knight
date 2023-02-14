@@ -4,39 +4,44 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float _JumpForce = 0f;
-    private float _MoveForce = 0f;
-    private float _JumpLimit = 0f;
+    private float jumpForce = 0f;
+    private float moveForce = 0f;
+    private float jumpLimit = 0f;
 
 
-    private bool _JumpAllow = false;
+    private bool jumpAllow = false;
 
-    private float _MaxJumpPosition = 0f;
+    private float maxJumpPosition = 0f;
 
-    private float _PlayerXMoveFloatValue = 0f;
+    private float playerXMoveFloatValue = 0f;
 
 
-
+    private bool slashAllow = false;
 
     private bool _RightMove = false;
     private bool _LeftMove = false;
 
-    Rigidbody2D _PlayerRigidBody = default;
+    Rigidbody2D playerRigidBody = default;
 
-
+    GameObject slashEffect = default;
 
     // 기본적으로 꺼져 있음
     private void Awake()
     {
-        gameObject.SetActive(false);
 
         // 인스턴스 초기화
-        _PlayerRigidBody = GetComponent<Rigidbody2D>();
+        playerRigidBody = GetComponent<Rigidbody2D>();
+        slashEffect = gameObject.FindChildObj("SlashEffect");
 
         // 변수 초기화
-        _JumpForce = 7f;
-        _MoveForce = 4f;
-        _JumpLimit = 2f;
+        jumpForce = 7f;
+        moveForce = 4f;
+        jumpLimit = 2f;
+        slashAllow = false;
+
+        // 오브젝트 비활성화
+        gameObject.SetActive(false);
+        slashEffect.SetActive(false);
     }
 
 
@@ -47,26 +52,29 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 1f);
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 1f);
 
-        Debug.DrawRay(transform.position, Vector2.right);
+        //Debug.DrawRay(transform.position, Vector2.right);
 
-        if (hit.collider == null)
-        {
-            Debug.Log("전방에 레이 격발!");
-            Debug.DrawRay(transform.position, Vector2.right, Color.red);
-        }
-        else
-        {
-            Debug.Log("전방에 레이 미 격발!");
-            Debug.DrawRay(transform.position, Vector2.right, Color.green);
-        }
+        //if (hit.collider == null)
+        //{
+        //    Debug.Log("전방에 레이 격발!");
+        //    Debug.DrawRay(transform.position, Vector2.right, Color.red);
+        //}
+        //else
+        //{
+        //    Debug.Log("전방에 레이 미 격발!");
+        //    Debug.DrawRay(transform.position, Vector2.right, Color.green);
+        //}
 
 
 
         PlayerJump();
 
         PlayerXMove();
+
+        PlayerAttack();
+
     }
 
     private void FixedUpdate()
@@ -86,9 +94,10 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    // 플레이어 이동 동작
     private void PlayerXMove()
     {
-        _PlayerXMoveFloatValue = Input.GetAxis("Horizontal");
+        playerXMoveFloatValue = Input.GetAxis("Horizontal");
 
         // 양쪽 키 입력시
         if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
@@ -96,16 +105,18 @@ public class PlayerController : MonoBehaviour
             /* Do nothing */
         }
         // 오른쪽 방향 입력
-        else if (0f < _PlayerXMoveFloatValue)
+        else if (0f < playerXMoveFloatValue)
         {
             //transform.position += new Vector3(_MoveForce, 0f, 0f) * Time.deltaTime;
-            transform.position += new Vector3(_MoveForce, 0f, 0f) * Time.deltaTime;
+            transform.position += new Vector3(moveForce, 0f, 0f) * Time.deltaTime;
+            gameObject.transform.localScale = new Vector3(-1f, 1f,1f);
 
         }
         // 왼쪽 방향 입력
-        else if (0f > _PlayerXMoveFloatValue)
+        else if (0f > playerXMoveFloatValue)
         {
-            transform.position += new Vector3(_MoveForce * -1, 0f, 0f) * Time.deltaTime;
+            transform.position += new Vector3(moveForce * -1, 0f, 0f) * Time.deltaTime;
+            gameObject.transform.localScale = new Vector3(1f, 1f,1f);
         }
 
 
@@ -133,34 +144,35 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // 플레이어 점프 동작
     private void PlayerJump()
     {
 
         if (Input.GetKeyUp(KeyCode.Z))
         {
-            _PlayerRigidBody.velocity = Vector2.zero;
-            _JumpAllow = false;
+            playerRigidBody.velocity = Vector2.zero;
+            jumpAllow = false;
             Debug.Log("점프키 땠다!!");
         }
 
-        if (_JumpAllow)
+        if (jumpAllow)
         {
-            if (Input.GetButton("Jump") && _JumpAllow)
+            if (Input.GetButton("Jump") && jumpAllow)
             {
                 //transform.position += new Vector3(0f, _JumpForce, 0f) * Time.deltaTime;
-                _PlayerRigidBody.velocity = new Vector2(0f, _JumpForce);
+                playerRigidBody.velocity = new Vector2(0f, jumpForce);
             }
 
-            if (_MaxJumpPosition < transform.position.y)
+            if (maxJumpPosition < transform.position.y)
             {
-                _PlayerRigidBody.velocity = Vector2.zero;
-                _JumpAllow = false;
+                playerRigidBody.velocity = Vector2.zero;
+                jumpAllow = false;
                 Debug.Log("천장에 닿았다!");
             }
         }
-        else if (!_JumpAllow)
+        else if (!jumpAllow)
         {
-            _PlayerRigidBody.velocity = new Vector2(0f, -_JumpForce);
+            playerRigidBody.velocity = new Vector2(0f, -jumpForce);
         }
 
 
@@ -172,6 +184,30 @@ public class PlayerController : MonoBehaviour
         //{
         //    Debug.Log("점프키 해제!");
         //}
+
+    }
+
+    // 플레이어 공격 동작
+    private void PlayerAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            slashAllow = true;
+        }
+
+
+        if (slashAllow)
+        {
+            slashAllow = false;
+            StartCoroutine(PlayerAttackCoroutine());
+        }
+    }
+
+    IEnumerator PlayerAttackCoroutine()
+    {
+        slashEffect.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        slashEffect.SetActive(false);
 
     }
 
@@ -187,14 +223,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             // 땅에 닿았을 때
-            _JumpAllow = true;
+            jumpAllow = true;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         // 땅에서 점프, 튀어 나갈 때
-        _MaxJumpPosition = transform.position.y + _JumpLimit;
+        maxJumpPosition = transform.position.y + jumpLimit;
     }
 
 }
