@@ -8,6 +8,8 @@ public class Level1 : MonoBehaviour
     private GameObject Level2 = default;
 
 
+    
+
     // Ω√¿€«“ ∂ß ∏ ¿ª ≤®µŒ±‚
     private void Awake()
     {
