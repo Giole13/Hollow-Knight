@@ -56,7 +56,7 @@ public static partial class GioleFunc
     #region Valid Func
     public static bool IsValid<T>(this T component_)
     {
-        bool isValid = component_.Equals(null) != null;
+        bool isValid = component_?.Equals(null) != null;
         return isValid;
     }
     #endregion      // Vaild Func
