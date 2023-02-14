@@ -1,2 +1,9 @@
-# Hollow-Knight
-Imitation Hollow Knight Game
+# HollowKnight
+Imitation HollowKnight Game
+
+2023-02-09 / v0.0.0 / 게임 기획 단계
+2023-02-10 / v0.0.0 / 필수 요소 에니메이션 스프라이트 빨간선 없애주는 작업
+2023-02-13 / v0.0.1 / 맵 간 이동 시스템 구현, State Pattern R&D 예정, 타이틀 추가
+2023-02-13 / v0.0.2 / 플레이어 이동 시스템 구현중, 타일맵 -> 타일에 끼여서 매끄러운 움직임 구현이 힘듬 (개선 필요)
+
+
