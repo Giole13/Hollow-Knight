@@ -61,9 +61,10 @@ public class PlayerController : MonoBehaviour
         PlayerMoveAndJumpBehavior();
 
         PlayerSlashBehavior();
+
     }
 
-    // 플레이어 이동, 점프 함수
+    // 플레이어 이동, 점프 함수 -> Complation
     private void PlayerMoveAndJumpBehavior()
     {
         // 땅과의 체크를 위해서 만든 로직
@@ -80,12 +81,14 @@ public class PlayerController : MonoBehaviour
         }
 
 
+
+        // { 점프 로직
         // 땅에 닿아있고 키를 누를 때 작동 -> 처음 한번 눌렀을 때 플레이어에게 가속도 고정
         if (isGrounded == true && Input.GetKeyDown(KeyCode.Z))
         {
             isJumping = true;
             jumpTimeCounter = jumpTime; // 점프 시간 초기화
-            rb.velocity = Vector2.up * jumpForce;
+            //rb.velocity = Vector2.up * jumpForce;
         }
 
         // 땅에 닿아있고 키가 눌리고 이을 때 작동 -> 누른 만큼만 가속도 고정
@@ -108,10 +111,11 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = false;
         }
+        // } 점프 로직
     }
 
 
-    // 플레이어 공격 함수
+    // 플레이어 공격 함수 -> Dev
     private void PlayerSlashBehavior()
     {
         if (Input.GetKeyDown(KeyCode.X))
@@ -121,6 +125,7 @@ public class PlayerController : MonoBehaviour
 
         if (slashAllow)
         {
+
             slashAllow = false;
             StartCoroutine(PlayerAttackCoroutine());
         }
@@ -132,4 +137,16 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         slashEffect.SetActive(false);
     }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // 플레이어가 무언가와 부딧혔을때
+        if (collision.transform.tag.Equals("Monster"))
+        {
+            Debug.Log("[PlayerController] 온콜리젼 2D : 으악! 맞았다");
+        }
+    }
+
+
 }

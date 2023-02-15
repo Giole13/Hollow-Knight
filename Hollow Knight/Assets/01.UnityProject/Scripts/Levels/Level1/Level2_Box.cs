@@ -15,7 +15,7 @@ public class Level2_Box : MonoBehaviour
     // 다음 맵으로 이동하는 박스를 만났을 때
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.transform.localPosition = 
+        collision.gameObject.transform.position = 
             _Level2.gameObject.FindChildObj("Level1_Box").transform.position + 
             new Vector3(2f, 0f, 0f);
         transform.parent.gameObject.SetActive(false);

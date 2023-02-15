@@ -18,8 +18,8 @@ public class PlayerController_LAGACY : MonoBehaviour
 
     private bool slashAllow = false;
 
-    private bool _RightMove = false;
-    private bool _LeftMove = false;
+    //private bool _RightMove = false;
+    //private bool _LeftMove = false;
 
     Rigidbody2D playerRigidBody = default;
 
