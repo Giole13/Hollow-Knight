@@ -36,7 +36,7 @@ public class MenuButtonManager : MonoBehaviour
     // 게임시작 버튼을 누르면 메뉴창을 닫고 게임시작
     public void OnClickStartGame()
     {
-        Debug.Log("게임 시작이요!");
+        Debug.Log("[MunewButtonManager] OnClickStartGame : 게임 시작이요!");
         gameObject.SetActive(false);
 
         _CurrentLevel.SetActive(true);

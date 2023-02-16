@@ -6,9 +6,16 @@ using UnityEngine;
 
 public class Level2 : MonoBehaviour
 {
+    
+
+
     private void Awake()
     {
+        // 인스턴스 초기화
         gameObject.SetActive(false);
+        
+
+        
     }
 
 

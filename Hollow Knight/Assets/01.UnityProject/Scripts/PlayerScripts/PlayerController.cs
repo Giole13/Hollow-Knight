@@ -28,15 +28,17 @@ public class PlayerController : MonoBehaviour
 
     private bool slashAllow = false;
 
-
+    private Animator playerAni;
     void Start()
     {
-
         // 인스턴스 초기화
         rb = GetComponent<Rigidbody2D>();
         feetPos = gameObject.FindChildObj("FeetPos").GetComponent<Transform>();
         whatIsGround = LayerMask.GetMask("Ground");
         slashEffect = gameObject.FindChildObj("SlashEffect");
+        playerAni = gameObject.FindChildObj("Body").GetComponent<Animator>();
+
+
 
         // 변수 초기화
         speed = 7f;
@@ -54,6 +56,15 @@ public class PlayerController : MonoBehaviour
         // X축 이동방향 로직
         moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+
+        if(moveInput != 0f)
+        {
+            playerAni.SetBool("Run", true);
+        }
+        else
+        {
+            playerAni.SetBool("Run", false);
+        }
     }
 
     private void Update()

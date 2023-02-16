@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Level1 : MonoBehaviour
 {
-    // 해당 맵에서 관련있는 다음 맵을 미리 선언
-    private GameObject Level2 = default;
-
-
-    
 
     // 시작할 때 맵을 꺼두기
     private void Awake()
     {
         gameObject.SetActive(false);
-        Level2 = GioleFunc.GetRootObj("Level2");
     }
 
+
+    private void OnEnable()
+    {
+        foreach(Transform obj_ in transform)
+        {
+            obj_.gameObject.SetActive(true);
+        }
+    }
 
     void Start()
     {

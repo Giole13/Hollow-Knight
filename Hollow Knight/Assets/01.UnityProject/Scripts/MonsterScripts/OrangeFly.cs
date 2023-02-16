@@ -4,137 +4,102 @@ using UnityEngine;
 
 public class OrangeFly : MonoBehaviour
 {
-    private Rigidbody2D rb = default;
 
-    private bool die = false;
 
     [SerializeField]
-    private bool debugMode = false;
+    private float radius;
 
-    [Header("View Config")]
-    [Range(0f, 360f)]
-    [SerializeField] private float horizontalViewAngle = 0f;    // 시야각
-    [SerializeField] private float viewRadius = 1f;             // 기즈모 원의 크기 -> 탐색할 거리  
-    [Range(-180f, 180f)]
-    [SerializeField] private float viewRotateZ = 0f;        // 회전각
+    [SerializeField]
+    private bool isPlayerinCircle = false;
 
 
-    [SerializeField] private LayerMask viewTargetMask;      // 적 레이어 -> 플레이어
-    [SerializeField] private LayerMask viewObstacleMask;    // 장애물 레이어
+    public LayerMask playerLayer;
+    public LayerMask obstaclesLayer;
 
-    private List<Collider2D> hitedTargetContainer = new List<Collider2D>();
+    public float speed;
 
-    private float horizontalViewHalfAngle = 0f;     // 시야각에서 정확히 가운데 라인
+    private Rigidbody2D rb;
+    private Collider2D playerCd;
 
-
-    // 입력한 -180~180의 값을 Up Vector 기준 Local Direction으로 변환시켜줌.
-    // 회전각이 매개변수임   
-    private Vector3 AngleToDirZ(float angleInDegree)
+    void OnEnable()
     {
-        float radian = (angleInDegree - transform.eulerAngles.z) * Mathf.Deg2Rad;
-        
-        return new Vector3(Mathf.Sin(radian), Mathf.Cos(radian), 0f);
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (debugMode)
-        {
-            horizontalViewHalfAngle = horizontalViewAngle * 0.5f;
-
-            Vector3 originPos = transform.position;     // 내 위치
-
-            Gizmos.DrawWireSphere(originPos, viewRadius);   // 기즈모의 원을 그려주는 함수
-
-            // 오른쪽 광선 방향
-            Vector3 horizontalRightDir = AngleToDirZ(-horizontalViewHalfAngle + viewRotateZ);
-            // 왼쪽 광선 방향
-            Vector3 horizontalLeftDir = AngleToDirZ(horizontalViewHalfAngle + viewRotateZ);
-            // 가운데 광선 방향
-            Vector3 lookDir = AngleToDirZ(viewRotateZ);
-
-            Debug.DrawRay(originPos, horizontalLeftDir * viewRadius, Color.cyan);   // 왼쪽 라인
-            Debug.DrawRay(originPos, lookDir * viewRadius, Color.green);            // 정 가운데
-            Debug.DrawRay(originPos, horizontalRightDir * viewRadius, Color.cyan);  // 오른쪽 라인
-
-            FindViewTargets();
-        }
-    }
-
-
-    public Collider2D[] FindViewTargets()
-    {
-        hitedTargetContainer.Clear();
-
-        Vector2 originPos = transform.position;
-        Collider2D[] hitedTargets = Physics2D.OverlapCircleAll(originPos, viewRadius, viewTargetMask);
-
-        foreach (Collider2D hitedTarget in hitedTargets)
-        {
-            Vector2 targetPos = hitedTarget.transform.position;
-            Vector2 dir = (targetPos - originPos).normalized;
-            Vector2 lookDir = AngleToDirZ(viewRotateZ);
-
-            // float angle = Vector3.Angle(lookDir, dir)
-            // 아래 두 줄은 위의 코드와 동일하게 동작함. 내부 구현도 동일
-            float dot = Vector2.Dot(lookDir, dir);
-            float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-
-            if (angle <= horizontalViewHalfAngle)
-            {
-                RaycastHit2D rayHitedTarget = Physics2D.Raycast(originPos, dir, viewRadius, viewObstacleMask);
-                if (rayHitedTarget)
-                {
-                    if (debugMode)
-                        Debug.DrawLine(originPos, rayHitedTarget.point, Color.yellow);
-                }
-                else
-                {
-                    hitedTargetContainer.Add(hitedTarget);
-
-                    if (debugMode)
-                        Debug.DrawLine(originPos, targetPos, Color.red);
-                }
-            }
-        }
-
-        if (hitedTargetContainer.Count > 0)
-            return hitedTargetContainer.ToArray();
-        else
-            return null;
-    }
-
-
-
-
-
-    private void Awake()
-    {
-        horizontalViewHalfAngle = horizontalViewAngle * 0.5f; // 시야각에서 가운데 라인
-    }
-
-    void Start()
-    {
+        // 인스턴스 초기화
         rb = GetComponent<Rigidbody2D>();
-        //rb.velocity = Vector2.up * 1.2f;
-        //StartCoroutine(Flying());
+
+        // 코루틴 실행
+        StartCoroutine(PlayerTrace());
+
+        if (speed == 0f)
+        {
+            speed = 1f;
+        }
 
     }
 
-    // Update is called once per frames
+    // Update is called once per frame
     void Update()
     {
-        //Debug.Log(transform.eulerAngles.z);
-
 
     }
 
-    IEnumerator Flying()
+    // 기즈모 그려주는 함수
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireSphere(transform.position, radius);
+    //}
+
+    // 플레이어 추격하는 함수
+    IEnumerator PlayerTrace()
     {
-        while (die == false)
+        while (true)
         {
-            rb.velocity = Vector2.up * 1.2f;
-            yield return new WaitForSeconds(0.3f);
+            // 플레이어가 원 안에 들어왔다면 true
+            if (Physics2D.OverlapCircle(transform.position, radius, playerLayer))
+            {
+                PlayerDirCheckTargetting();
+            }
+            //else
+            //{
+            //    Debug.Log("[PlayerTrace] else: 아무것오 안들어왔어요!");
+            //}
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    // 플레이어에게 레이캐스트를 쏴서 플레이어 정보를 알아오고 추격하는 함수
+    private void PlayerDirCheckTargetting()
+    {
+        // 플레이어 레이어 걸러서 정보 저장
+        Collider2D[] hitTargetCollider2DInfo = 
+            Physics2D.OverlapCircleAll(transform.position, radius, playerLayer);
+
+        // 정보를 꺼내오는 로직
+        foreach(Collider2D targetInfo in hitTargetCollider2DInfo)
+        {
+            // 레이 쏠 방향
+            Vector2 dir_ = (targetInfo.transform.position - transform.position);
+             
+            // 레이 사거리
+            float distance_ = (transform.position - targetInfo.transform.position).magnitude;
+
+            // 맞은 친구 데이터 저장
+            RaycastHit2D hitData = Physics2D.Raycast(transform.position, dir_, radius, playerLayer+obstaclesLayer);
+
+            if(hitData == false)
+            {
+                /* DO nothing */
+            }
+            // 광선을 쐈는데 맞았다면 비교해서 플레이어라면?
+            else if (hitData.collider.Equals(targetInfo))
+            {
+                //Debug.DrawRay(transform.position, dir_, Color.red);
+                rb.velocity = dir_.normalized * speed;
+            }
+            else // 아니라면?
+            {
+                //Debug.DrawRay(transform.position, dir_, Color.green);
+                rb.velocity = Vector2.zero;
+            }
         }
     }
 }
