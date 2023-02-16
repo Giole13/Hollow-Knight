@@ -14,11 +14,11 @@ public static partial class GioleData
     public const string TAG_NAME_PLAYERATTACK = "PlayerAttack";
     public const string TAG_NAME_PLAYERBODY = "Player";
     public const string TAG_NAME_MONSTER = "Monster";
-    
+
 }
 
-public enum PuzzleType
+public enum PlayerViewDir
 {
-    NONE = -1,
-    PUZZLE_BIG_TRIANGLE
+    UP, DOWN, LEFT, RIGHT
+
 }       // PuzzleType

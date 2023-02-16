@@ -6,7 +6,9 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float moveInput;
+    private float xInput;
+    private float yInput;
+
 
     public float speed;
     public float jumpForce;
@@ -29,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private bool slashAllow = false;
 
     private Animator playerAni;
+
+    PlayerViewDir playerView;
     void Start()
     {
         // 인스턴스 초기화
@@ -38,7 +42,7 @@ public class PlayerController : MonoBehaviour
         slashEffect = gameObject.FindChildObj("SlashEffect");
         playerAni = gameObject.FindChildObj("Body").GetComponent<Animator>();
 
-
+        playerView = PlayerViewDir.RIGHT;
 
         // 변수 초기화
         speed = 7f;
@@ -50,14 +54,42 @@ public class PlayerController : MonoBehaviour
         slashEffect.SetActive(false);
     }
 
-    
+
     private void FixedUpdate()
     {
-        // X축 이동방향 로직
-        moveInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        InputKeyValue();
+    }
 
-        if(moveInput != 0f)
+    private void Update()
+    {
+        PlayerMoveAndJumpBehavior();
+
+        PlayerSlashwork();
+
+    }
+
+    private void InputKeyValue()
+    {
+        // X축 이동방향 로직
+        yInput = Input.GetAxis("Vertical");
+        xInput = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
+
+        // 위 키를 누를경우
+        if (0 < yInput)
+        {
+            playerView = PlayerViewDir.UP;
+            //Debug.Log("[PlayerController] PlayerSlashwork : 위로 공격!");
+        }
+        // 아래 키를 누를경우
+        else if (0 > yInput)
+        {
+            playerView = PlayerViewDir.DOWN;
+            //Debug.Log("[PlayerController] PlayerSlashwork : 아래로 공격!");
+        }
+
+
+        if (xInput != 0f)
         {
             playerAni.SetBool("Run", true);
         }
@@ -67,14 +99,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        PlayerMoveAndJumpBehavior();
-
-        PlayerSlashBehavior();
-
-    }
-
     // 플레이어 이동, 점프 함수 -> Complation
     private void PlayerMoveAndJumpBehavior()
     {
@@ -82,15 +106,18 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
         // 만약 X축이 양수나 음수면 스프라이트 회전
-        if (moveInput > 0)
+        if (xInput > 0)
         {
+            // 오른쪽
             transform.localScale = new Vector3(-1f, 1f, 1f);
+            playerView = PlayerViewDir.RIGHT;
         }
-        else if (moveInput < 0)
+        else if (xInput < 0)
         {
+            // 왼쪽
             transform.localScale = new Vector3(1f, 1f, 1f);
+            playerView = PlayerViewDir.LEFT;
         }
-
 
 
         // { 점프 로직
@@ -127,16 +154,48 @@ public class PlayerController : MonoBehaviour
 
 
     // 플레이어 공격 함수 -> Dev
-    private void PlayerSlashBehavior()
+    private void PlayerSlashwork()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        switch (playerView)
         {
-            slashAllow = true;
+            case PlayerViewDir.UP:
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    Debug.Log("[PlayerController] PlayerSlashwork : 위로 공격!");
+                }
+                break;
+            case PlayerViewDir.DOWN:
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    slashAllow = true;
+                    Debug.Log("[PlayerController] PlayerSlashwork : 아래로 공격!");
+                }
+                break;
+            case PlayerViewDir.LEFT:
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    slashAllow = true;
+                }
+                break;
+            case PlayerViewDir.RIGHT:
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    slashAllow = true;
+                }
+                break;
         }
+
+        //else if (Input.GetKeyDown(KeyCode.X) && Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    Debug.Log("[PlayerController] PlayerSlashwork : 위로 공격!");
+        //}
+        //else if (Input.GetKeyDown(KeyCode.X) && Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    Debug.Log("[PlayerController] PlayerSlashwork : 아래로 공격!");
+        //}
 
         if (slashAllow)
         {
-
             slashAllow = false;
             StartCoroutine(PlayerAttackCoroutine());
         }
@@ -148,6 +207,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         slashEffect.SetActive(false);
     }
+
 
 
     private void OnCollisionEnter2D(Collision2D collision)
