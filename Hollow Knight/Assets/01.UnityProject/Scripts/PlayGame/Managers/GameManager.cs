@@ -10,14 +10,16 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // 플레이어 초기화
+        // 인스턴스 초기화
         _PlayerObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_PLAYER);
-
+        
+        _PlayerObj.SetActive(false);
 
         if (_DebugMode)
         {
             GioleFunc.GetRootObj("Title_Main_Menu").FindChildObj("MenuCanvas").
                 GetComponent<MenuButtonManager>().OnClickStartGame();
+            
         }
     }
 

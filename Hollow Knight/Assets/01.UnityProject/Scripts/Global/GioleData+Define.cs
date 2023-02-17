@@ -19,6 +19,6 @@ public static partial class GioleData
 
 public enum PlayerViewDir
 {
-    UP, DOWN, LEFT, RIGHT
+    UP, DOWN, IDLE
 
 }       // PuzzleType

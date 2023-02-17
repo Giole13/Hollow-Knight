@@ -31,7 +31,11 @@ public class MenuButtonManager : MonoBehaviour
         
     }
 
-
+    // 게임종료 버튼을 누르면 게임 종료
+    public void OnClickExitGame()
+    {
+        GioleFunc.QuitThisGame();
+    }
 
     // 게임시작 버튼을 누르면 메뉴창을 닫고 게임시작
     public void OnClickStartGame()
