@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
             playerView = PlayerViewDir.DOWN;
             Debug.Log("[PlayerController] PlayerSlashwork : 아래로 공격!");
         }
-        else if ( 0 == yInput)
+        else if (0 == yInput)
         {
             playerView = PlayerViewDir.IDLE;
         }
@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator TimeDelay()
     {
-        
+
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(0.5f);
         Time.timeScale = 1f;

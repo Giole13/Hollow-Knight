@@ -1,4 +1,3 @@
-using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +19,7 @@ public class MenuButtonManager : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
 
@@ -28,19 +27,19 @@ public class MenuButtonManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
-    // °ÔÀÓÁ¾·á ¹öÆ°À» ´©¸£¸é °ÔÀÓ Á¾·á
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void OnClickExitGame()
     {
         GioleFunc.QuitThisGame();
     }
 
-    // °ÔÀÓ½ÃÀÛ ¹öÆ°À» ´©¸£¸é ¸Þ´ºÃ¢À» ´Ý°í °ÔÀÓ½ÃÀÛ
+    // ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½Ã¢ï¿½ï¿½ ï¿½Ý°ï¿½ ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½
     public void OnClickStartGame()
     {
-        Debug.Log("[MunewButtonManager] OnClickStartGame : °ÔÀÓ ½ÃÀÛÀÌ¿ä!");
+        Debug.Log("[MunewButtonManager] OnClickStartGame : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¿ï¿½!");
         gameObject.SetActive(false);
 
         _CurrentLevel.SetActive(true);
