@@ -9,20 +9,21 @@ public class DoorController : MonoBehaviour
 
     public bool reverse = false;
 
-    private const float WAITTIME = 0.02f;
+    private const float ARRIVALTIME = 0.5f;
+    private const float LERPDISTANCE = 1f;
 
     private void Awake()
     {
-        // ÀÎ½ºÅÏ½º ÃÊ±âÈ­
+        // ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½Ê±ï¿½È­
         //l2LDoor = GioleFunc.GetRootObj("Level2").FindChildObj("L2LDoor");
 
 
 
-        // ÀÎ½ºÅÏ½º ¼³Á¤
+        // ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
 
-    // ´ÙÀ½ ¸ÊÀ¸·Î ÀÌµ¿ÇÏ´Â ¹Ú½º¸¦ ¸¸³µÀ» ¶§
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag.Equals(GioleData.TAG_NAME_PLAYERBODY))
@@ -45,38 +46,44 @@ public class DoorController : MonoBehaviour
     {
         bool finish = true;
         float distance = 0f;
+        Rigidbody2D rb_ = player_.GetComponent<Rigidbody2D>();
+        PlayerController playerScript_ = player_.GetComponent<PlayerController>();
+        playerScript_.enabled = false;
         if (reverse == false)
         {
-            //player_.transform.position = nextDoor.transform.position;
-            while (finish)
-            {
-                player_.transform.position = Vector2.Lerp(
-                    new Vector2(nextDoor.transform.position.x + 1f, player_.transform.position.y),
-                    new Vector2(nextDoor.transform.position.x + 3f, player_.transform.position.y),
-                    distance);
-                //player_.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.right;
-                distance += WAITTIME;
-                yield return new WaitForSecondsRealtime(WAITTIME);
+            player_.transform.position = new Vector2(nextDoor.transform.position.x + 1f, nextDoor.transform.position.y);
 
-                if (1 < distance) finish = false;
-            }
+            // player_.transform.position = Vector2.Lerp(
+            //     new Vector2(nextDoor.transform.position.x + 1f, player_.transform.position.y),
+            //     new Vector2(nextDoor.transform.position.x + 3f, player_.transform.position.y),
+            //     distance);
+
+            //player_.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.right;
+
+            // distance += LERPDISTANCE;
+            yield return new WaitForSecondsRealtime(ARRIVALTIME);
+            rb_.velocity = Vector2.right * 7f;
+            // if (1 < distance) finish = false;
+
+
         }
         else if (reverse == true)
         {
             //player_.transform.position = nextDoor.transform.position;
-            while (finish)
-            {
-                player_.transform.position = Vector2.Lerp(
-                new Vector2(nextDoor.transform.position.x - 1f, player_.transform.position.y),
-                new Vector2(nextDoor.transform.position.x + -3f, player_.transform.position.y),
-                distance);
-                //player_.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.right;
-                distance += WAITTIME;
-                yield return new WaitForSecondsRealtime(WAITTIME);
 
-                if (1 < distance) finish = false;
-            }
+            // player_.transform.position = Vector2.Lerp(
+            // new Vector2(nextDoor.transform.position.x - 1f, player_.transform.position.y),
+            // new Vector2(nextDoor.transform.position.x + -3f, player_.transform.position.y),
+            // distance);
+            //player_.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.right;
+            // distance += LERPDISTANCE;
+            // if (1 < distance) finish = false;
+
+            player_.transform.position = new Vector2(nextDoor.transform.position.x - 1f, nextDoor.transform.position.y);
+            rb_.velocity = Vector2.left * 7f;
+            yield return new WaitForSecondsRealtime(ARRIVALTIME);
         }
+        playerScript_.enabled = true;
         transform.parent.gameObject.SetActive(false);
     }
 }

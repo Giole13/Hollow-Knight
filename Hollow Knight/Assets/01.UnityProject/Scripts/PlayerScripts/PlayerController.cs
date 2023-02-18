@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     PlayerViewDir playerView;
     void Start()
     {
-        // 인스턴스 초기화
+        // ?ν???? ???\
         rb = GetComponent<Rigidbody2D>();
         feetPos = gameObject.FindChildObj("FeetPos").GetComponent<Transform>();
         whatIsGround = LayerMask.GetMask("Ground");
@@ -43,13 +43,13 @@ public class PlayerController : MonoBehaviour
         playerAni = gameObject.FindChildObj("Body").GetComponent<Animator>();
 
 
-        // 변수 초기화
+        // ???? ????
         speed = 7f;
         jumpForce = 13f;
         checkRadius = 0.3f;
         jumpTime = 0.3f;
 
-        // 인스턴스 설정
+        // ?ν???? ????
         slashEffect.SetActive(false);
     }
 
@@ -69,22 +69,22 @@ public class PlayerController : MonoBehaviour
 
     private void InputKeyValue()
     {
-        // X축 이동방향 로직
+        // X?? ??????? ????
         yInput = Input.GetAxis("Vertical");
         xInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
 
-        //위 키를 누를경우
+        //?? ??? ???????
         if (0 < yInput)
         {
             playerView = PlayerViewDir.UP;
-            Debug.Log("[PlayerController] PlayerSlashwork : 위로 공격!");
+            Debug.Log("[PlayerController] PlayerSlashwork : ???? ????!");
         }
-        //아래 키를 누를경우
+        //??? ??? ???????
         else if (0 > yInput)
         {
             playerView = PlayerViewDir.DOWN;
-            Debug.Log("[PlayerController] PlayerSlashwork : 아래로 공격!");
+            Debug.Log("[PlayerController] PlayerSlashwork : ????? ????!");
         }
         else if (0 == yInput)
         {
@@ -102,35 +102,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 플레이어 이동, 점프 함수 -> Complation
+    // ?÷???? ???, ???? ??? -> Complation
     private void PlayerMoveAndJumpBehavior()
     {
-        // 땅과의 체크를 위해서 만든 로직
+        // ?????? ???? ????? ???? ????
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
-        // 만약 X축이 양수나 음수면 스프라이트 회전
+        // ???? X???? ????? ?????? ????????? ???
         if (xInput > 0)
         {
-            // 오른쪽
+            // ??????
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         else if (xInput < 0)
         {
-            // 왼쪽
+            // ????
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
 
-        // { 점프 로직
-        // 땅에 닿아있고 키를 누를 때 작동 -> 처음 한번 눌렀을 때 플레이어에게 가속도 고정
+        // { ???? ????
+        // ???? ?????? ??? ???? ?? ??? -> ??? ??? ?????? ?? ?÷?????? ????? ????
         if (isGrounded == true && Input.GetKeyDown(KeyCode.Z))
         {
             isJumping = true;
-            jumpTimeCounter = jumpTime; // 점프 시간 초기화
+            jumpTimeCounter = jumpTime; // ???? ?ð? ????
             //rb.velocity = Vector2.up * jumpForce;
         }
 
-        // 땅에 닿아있고 키가 눌리고 이을 때 작동 -> 누른 만큼만 가속도 고정
+        // ???? ?????? ??? ?????? ???? ?? ??? -> ???? ????? ????? ????
         if (isJumping == true && Input.GetKey(KeyCode.Z))
         {
             if (jumpTimeCounter > 0)
@@ -140,21 +140,21 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                // 설정시간만큼 점프하면 점핑 false
+                // ?????ð???? ??????? ???? false
                 isJumping = false;
             }
         }
 
-        // 키를 땠을 때 발동 -> 2단 점프를 막는 로직
+        // ??? ???? ?? ??? -> 2?? ?????? ???? ????
         if (Input.GetKeyUp(KeyCode.Z))
         {
             isJumping = false;
         }
-        // } 점프 로직
+        // } ???? ????
     }
 
 
-    // 플레이어 공격 함수 -> Dev
+    // ?÷???? ???? ??? -> Dev
     private void PlayerSlashwork()
     {
         //switch (playerView)
@@ -163,7 +163,7 @@ public class PlayerController : MonoBehaviour
         //        if (Input.GetKeyDown(KeyCode.X))
         //        {
         //            playerView = PlayerViewDir.UP;
-        //            Debug.Log("[PlayerController] PlayerSlashwork : 위로 공격!");
+        //            Debug.Log("[PlayerController] PlayerSlashwork : ???? ????!");
         //        }
         //        if (Input.GetKeyUp(KeyCode.X))
         //        {
@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
         //        if (Input.GetKeyDown(KeyCode.X))
         //        {
         //            playerView = PlayerViewDir.DOWN;
-        //            Debug.Log("[PlayerController] PlayerSlashwork : 아래로 공격!");
+        //            Debug.Log("[PlayerController] PlayerSlashwork : ????? ????!");
         //        }
         //        if (Input.GetKeyUp(KeyCode.X))
         //        {
@@ -192,11 +192,11 @@ public class PlayerController : MonoBehaviour
 
         //else if (Input.GetKeyDown(KeyCode.X) && Input.GetKeyDown(KeyCode.UpArrow))
         //{
-        //    Debug.Log("[PlayerController] PlayerSlashwork : 위로 공격!");
+        //    Debug.Log("[PlayerController] PlayerSlashwork : ???? ????!");
         //}
         //else if (Input.GetKeyDown(KeyCode.X) && Input.GetKeyDown(KeyCode.DownArrow))
         //{
-        //    Debug.Log("[PlayerController] PlayerSlashwork : 아래로 공격!");
+        //    Debug.Log("[PlayerController] PlayerSlashwork : ????? ????!");
         //}
 
         if (slashAllow)
@@ -234,16 +234,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 플레이어가 무언가와 부딧혔을때
+        // ?÷???? ????? ?ε???????
         if (collision.transform.tag.Equals("Monster"))
         {
             UIObjsManger ui_ = GioleFunc.GetRootObj("UIObjs").GetComponent<UIObjsManger>();
             ui_.DamageHpIcon();
 
-            Debug.Log("[PlayerController] 온콜리젼 2D : 으악! 맞았다");
+            Debug.Log("[PlayerController] ??????? 2D : ????! ?¾??");
             //StartCoroutine(TimeDelay());
         }
     }
+
 
     IEnumerator TimeDelay()
     {
