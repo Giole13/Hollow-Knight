@@ -10,7 +10,7 @@ public class OrangeFly : MonoBehaviour
     private float radius;
 
     [SerializeField]
-    private bool isPlayerinCircle = false;
+    // private bool isPlayerinCircle = false;
 
 
     public LayerMask playerLayer;
@@ -23,10 +23,10 @@ public class OrangeFly : MonoBehaviour
 
     void OnEnable()
     {
-        // ÀÎ½ºÅÏ½º ÃÊ±âÈ­
+        // ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½Ê±ï¿½È­
         rb = GetComponent<Rigidbody2D>();
 
-        // ÄÚ·çÆ¾ ½ÇÇà
+        // ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(PlayerTrace());
 
         if (speed == 0f)
@@ -42,60 +42,60 @@ public class OrangeFly : MonoBehaviour
 
     }
 
-    // ±âÁî¸ð ±×·ÁÁÖ´Â ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
     //private void OnDrawGizmos()
     //{
     //    Gizmos.DrawWireSphere(transform.position, radius);
     //}
 
-    // ÇÃ·¹ÀÌ¾î Ãß°ÝÇÏ´Â ÇÔ¼ö
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ß°ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     IEnumerator PlayerTrace()
     {
         while (true)
         {
-            // ÇÃ·¹ÀÌ¾î°¡ ¿ø ¾È¿¡ µé¾î¿Ô´Ù¸é true
+            // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½Ô´Ù¸ï¿½ true
             if (Physics2D.OverlapCircle(transform.position, radius, playerLayer))
             {
                 PlayerDirCheckTargetting();
             }
             //else
             //{
-            //    Debug.Log("[PlayerTrace] else: ¾Æ¹«°Í¿À ¾Èµé¾î¿Ô¾î¿ä!");
+            //    Debug.Log("[PlayerTrace] else: ï¿½Æ¹ï¿½ï¿½Í¿ï¿½ ï¿½Èµï¿½ï¿½Ô¾ï¿½ï¿½!");
             //}
             yield return new WaitForSeconds(0.2f);
         }
     }
 
-    // ÇÃ·¹ÀÌ¾î¿¡°Ô ·¹ÀÌÄ³½ºÆ®¸¦ ½÷¼­ ÇÃ·¹ÀÌ¾î Á¤º¸¸¦ ¾Ë¾Æ¿À°í Ãß°ÝÇÏ´Â ÇÔ¼ö
+    // ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾Æ¿ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     private void PlayerDirCheckTargetting()
     {
-        // ÇÃ·¹ÀÌ¾î ·¹ÀÌ¾î °É·¯¼­ Á¤º¸ ÀúÀå
-        Collider2D[] hitTargetCollider2DInfo = 
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½É·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Collider2D[] hitTargetCollider2DInfo =
             Physics2D.OverlapCircleAll(transform.position, radius, playerLayer);
 
-        // Á¤º¸¸¦ ²¨³»¿À´Â ·ÎÁ÷
-        foreach(Collider2D targetInfo in hitTargetCollider2DInfo)
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        foreach (Collider2D targetInfo in hitTargetCollider2DInfo)
         {
-            // ·¹ÀÌ ½ò ¹æÇâ
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Vector2 dir_ = (targetInfo.transform.position - transform.position);
-             
-            // ·¹ÀÌ »ç°Å¸®
+
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½
             float distance_ = (transform.position - targetInfo.transform.position).magnitude;
 
-            // ¸ÂÀº Ä£±¸ µ¥ÀÌÅÍ ÀúÀå
-            RaycastHit2D hitData = Physics2D.Raycast(transform.position, dir_, radius, playerLayer+obstaclesLayer);
+            // ï¿½ï¿½ï¿½ï¿½ Ä£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            RaycastHit2D hitData = Physics2D.Raycast(transform.position, dir_, radius, playerLayer + obstaclesLayer);
 
-            if(hitData == false)
+            if (hitData == false)
             {
                 /* DO nothing */
             }
-            // ±¤¼±À» ½ú´Âµ¥ ¸Â¾Ò´Ù¸é ºñ±³ÇØ¼­ ÇÃ·¹ÀÌ¾î¶ó¸é?
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Âµï¿½ ï¿½Â¾Ò´Ù¸ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½?
             else if (hitData.collider.Equals(targetInfo))
             {
                 //Debug.DrawRay(transform.position, dir_, Color.red);
                 rb.velocity = dir_.normalized * speed;
             }
-            else // ¾Æ´Ï¶ó¸é?
+            else // ï¿½Æ´Ï¶ï¿½ï¿½?
             {
                 //Debug.DrawRay(transform.position, dir_, Color.green);
                 rb.velocity = Vector2.zero;

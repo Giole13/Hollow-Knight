@@ -44,8 +44,6 @@ public class DoorController : MonoBehaviour
 
     IEnumerator MovePlayer(Collider2D player_)
     {
-        bool finish = true;
-        float distance = 0f;
         Rigidbody2D rb_ = player_.GetComponent<Rigidbody2D>();
         PlayerController playerScript_ = player_.GetComponent<PlayerController>();
         playerScript_.enabled = false;

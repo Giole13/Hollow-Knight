@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 86f6e7cc5a34c594e85736a9d21a3d14
+guid: a2b1290487b478241b16a3f7c85241bd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -113,23 +113,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: knight_walk_0
+      name: knight_jump_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2edceb5daf7f23842acd4a91026ea2f0
-      internalID: 1169584282
+      spriteID: 3a1a71779350fe1459cd8a90b8d44ac4
+      internalID: 1405074140
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_walk_1
+      name: knight_jump_1
       rect:
         serializedVersion: 2
         x: 142
@@ -164,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d01b8764df5744843b4c27bbba129205
-      internalID: -1391537888
+      spriteID: 506eaba44ad0f824f90c7e3546907a64
+      internalID: 1718947138
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_walk_2
+      name: knight_jump_2
       rect:
         serializedVersion: 2
         x: 284
@@ -185,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 222150dde58497d43870e4f6ada42576
-      internalID: 1777545585
+      spriteID: 9969e4f99d9b806458454f7b062fcec3
+      internalID: -211912779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_walk_3
+      name: knight_jump_3
       rect:
         serializedVersion: 2
         x: 426
@@ -206,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb96cb83216b02b48bd67bce9d692be2
-      internalID: -514870492
+      spriteID: 71d1dca7701cdf44b83c07475a991cd8
+      internalID: 922733806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_walk_4
+      name: knight_jump_4
       rect:
         serializedVersion: 2
         x: 568
@@ -227,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3504c4bbb8405034a9ae792dc0e7f53b
-      internalID: 1535941010
+      spriteID: abe1e6699db19e24f9bc02ae1b329339
+      internalID: -1543682495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_walk_5
+      name: knight_jump_5
       rect:
         serializedVersion: 2
         x: 710
@@ -248,14 +236,119 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69b3f0188ded34443b49d04d3cc0f1f2
-      internalID: -928984230
+      spriteID: 7ce426d96096bbf4cb87f04ad726ccfa
+      internalID: -857994756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_walk_6
+      name: knight_jump_6
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 133
+        width: 142
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bd54893ab5fded4c8cfe18996a250f7
+      internalID: -1916978238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump_7
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 133
+        width: 142
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bc44a84effef4146a24f1e5cd794be7
+      internalID: -377715829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump_8
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 133
+        width: 142
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd89ae8d5fb0e264f85b9d7f25b10da9
+      internalID: -2005936165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump_9
+      rect:
+        serializedVersion: 2
+        x: 1278
+        y: 133
+        width: 142
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c41cf7cdf007a5459f9be8a7f9a9e0b
+      internalID: -731200661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump_10
+      rect:
+        serializedVersion: 2
+        x: 1420
+        y: 133
+        width: 142
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 602bd1d58a9c5504f8d6b4f92548dfc3
+      internalID: 425170559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump_11
       rect:
         serializedVersion: 2
         x: 0
@@ -269,14 +362,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2341430ba19982948b0123c8fc3300fa
-      internalID: 1420370183
+      spriteID: 761d0b1148d55624386cf843ede53cc2
+      internalID: 562523310
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_walk_7
+      name: knight_jump_12
       rect:
         serializedVersion: 2
         x: 142
@@ -290,14 +383,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0d69080b9e6db243a1e182cd1db262f
-      internalID: 535958911
+      spriteID: 5be276926b1645441a4963300c6cb584
+      internalID: -1532066574
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_walk_8
+      name: knight_jump_13
       rect:
         serializedVersion: 2
         x: 284
@@ -311,14 +404,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bda3c84c3d9fc94faa170656e7af049
-      internalID: -595444431
+      spriteID: e2204e7133de84444970c84579679488
+      internalID: 411169702
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_walk_9
+      name: knight_jump_14
       rect:
         serializedVersion: 2
         x: 426
@@ -332,14 +425,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c4065c0e63e2f247a4b27f17a4f923d
-      internalID: 302833657
+      spriteID: df390ac30a735a84b9771c16812d8cee
+      internalID: -1838576194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_walk_10
+      name: knight_jump_15
       rect:
         serializedVersion: 2
         x: 568
@@ -353,14 +446,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bfdd0d86480d0c419459ea5714ad301
-      internalID: 1607714049
+      spriteID: 8359a31933e908f4385638f3b791e69b
+      internalID: 1206175879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_walk_11
+      name: knight_jump_16
       rect:
         serializedVersion: 2
         x: 710
@@ -374,8 +467,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4656adc40943bf5449900f8738ae8424
-      internalID: -1388109789
+      spriteID: ce628605d10279a49849f280f2b85091
+      internalID: -300690117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump_17
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 0
+        width: 142
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffc1b157f6815c54395b0c492a4d5407
+      internalID: 1485676241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump_18
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 0
+        width: 142
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 140db5e176ac2994a8444ecb61f80900
+      internalID: 190815262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump_19
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 0
+        width: 142
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 348b838e390bc07489be28f6d57f0acf
+      internalID: -881635823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump_20
+      rect:
+        serializedVersion: 2
+        x: 1278
+        y: 0
+        width: 142
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4df16608a96748439447169bfd85803
+      internalID: 1754621811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump_21
+      rect:
+        serializedVersion: 2
+        x: 1420
+        y: 0
+        width: 142
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fc49eb949cecfd458b14ce6e7be8366
+      internalID: 1830917401
       vertices: []
       indices: 
       edges: []
@@ -391,18 +589,28 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      knight_walk_1: -1391537888
-      knight_walk_11: -1388109789
-      knight_walk_10: 1607714049
-      knight_walk_4: 1535941010
-      knight_walk_3: -514870492
-      knight_walk_8: -595444431
-      knight_walk_6: 1420370183
-      knight_walk_0: 1169584282
-      knight_walk_7: 535958911
-      knight_walk_9: 302833657
-      knight_walk_2: 1777545585
-      knight_walk_5: -928984230
+      knight_jump_12: -1532066574
+      knight_jump_1: 1718947138
+      knight_jump_13: 411169702
+      knight_jump_6: -1916978238
+      knight_jump_5: -857994756
+      knight_jump_8: -2005936165
+      knight_jump_0: 1405074140
+      knight_jump_14: -1838576194
+      knight_jump_16: -300690117
+      knight_jump_11: 562523310
+      knight_jump_21: 1830917401
+      knight_jump_19: -881635823
+      knight_jump_15: 1206175879
+      knight_jump_3: 922733806
+      knight_jump_2: -211912779
+      knight_jump_4: -1543682495
+      knight_jump_7: -377715829
+      knight_jump_9: -731200661
+      knight_jump_17: 1485676241
+      knight_jump_20: 1754621811
+      knight_jump_10: 425170559
+      knight_jump_18: 190815262
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

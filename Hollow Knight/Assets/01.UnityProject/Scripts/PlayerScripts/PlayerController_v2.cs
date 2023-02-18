@@ -5,10 +5,10 @@ using UnityEngine.UIElements;
 
 public class PlayerController_v2 : MonoBehaviour
 {
-    /* State ÆÐÅÏÀ» ÀÌ¿ëÇØ¼­ ¸¸µç PlayerControlloer_V2 ½ºÅ©¸³Æ®
+    /* State ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ PlayerControlloer_V2 ï¿½ï¿½Å©ï¿½ï¿½Æ®
      * 
-     * Idle »óÅÂ : ¿À¸¥ÂÊ, ¿ÞÂÊÀ» ¸¶Áö¸·¿¡ ´©¸¥ ½ÃÁ¡À» PlayerView ·Î ÃÊ±âÈ­ÇÑ´Ù.
-     * UP »óÅÂ : PlayerView °¡ UP ÀÎ »óÅÂÀÌ´Ù. -> ÀÌ »óÅÂ¿¡¼­
+     * Idle ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PlayerView ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ñ´ï¿½.
+     * UP ï¿½ï¿½ï¿½ï¿½ : PlayerView ï¿½ï¿½ UP ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½. -> ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½
      * 
      */
 
@@ -35,7 +35,7 @@ public class PlayerController_v2 : MonoBehaviour
 
     private GameObject slashEffect = default;
 
-    private bool slashAllow = false;
+    // private bool slashAllow = false;
 
     private Animator playerAni;
 
@@ -43,7 +43,7 @@ public class PlayerController_v2 : MonoBehaviour
 
     PlayerState nowPS;
 
-    //! ÇÃ·¹ÀÌ¾î »óÅÂ¸¦ ¹Ù²ãÁÖ´Â ÇÁ·ÎÆÛÆ¼
+    //! ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ù²ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼
     public PlayerState PSHanDle
     {
         get
@@ -71,7 +71,7 @@ public class PlayerController_v2 : MonoBehaviour
 
     void Start()
     {
-        // ÀÎ½ºÅÏ½º ÃÊ±âÈ­
+        // ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½Ê±ï¿½È­
         rb = GetComponent<Rigidbody2D>();
         feetPos = gameObject.FindChildObj("FeetPos").GetComponent<Transform>();
         whatIsGround = LayerMask.GetMask("Ground");
@@ -81,14 +81,14 @@ public class PlayerController_v2 : MonoBehaviour
         nowPS = new IdleState();
 
 
-        // º¯¼ö ÃÊ±âÈ­
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         speed = 7f;
         jumpForce = 10f;
         checkRadius = 0.3f;
         jumpTime = 0.3f;
 
 
-        // ÀÎ½ºÅÏ½º ¼³Á¤
+        // ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½
         slashEffect.SetActive(false);
     }
 
@@ -110,22 +110,22 @@ public class PlayerController_v2 : MonoBehaviour
 
     private void InputKeyValue()
     {
-        // XÃà ÀÌµ¿¹æÇâ ·ÎÁ÷
+        // Xï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         yInput = Input.GetAxis("Vertical");
         xInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
 
-        // À§ Å°¸¦ ´©¸¦°æ¿ì
+        // ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (0 < yInput)
         {
             playerView = PlayerViewDir.UP;
-            //Debug.Log("[PlayerController] PlayerSlashwork : À§·Î °ø°Ý!");
+            //Debug.Log("[PlayerController] PlayerSlashwork : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
         }
-        // ¾Æ·¡ Å°¸¦ ´©¸¦°æ¿ì
+        // ï¿½Æ·ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         else if (0 > yInput)
         {
             playerView = PlayerViewDir.DOWN;
-            //Debug.Log("[PlayerController] PlayerSlashwork : ¾Æ·¡·Î °ø°Ý!");
+            //Debug.Log("[PlayerController] PlayerSlashwork : ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
         }
 
 
@@ -139,35 +139,35 @@ public class PlayerController_v2 : MonoBehaviour
         }
     }
 
-    // ÇÃ·¹ÀÌ¾î ÀÌµ¿, Á¡ÇÁ ÇÔ¼ö -> Complation
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ìµï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ -> Complation
     private void PlayerMoveAndJumpBehavior()
     {
-        // ¶¥°úÀÇ Ã¼Å©¸¦ À§ÇØ¼­ ¸¸µç ·ÎÁ÷
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
-        // ¸¸¾à XÃàÀÌ ¾ç¼ö³ª À½¼ö¸é ½ºÇÁ¶óÀÌÆ® È¸Àü
+        // ï¿½ï¿½ï¿½ï¿½ Xï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® È¸ï¿½ï¿½
         if (xInput > 0)
         {
-            // ¿À¸¥ÂÊ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         else if (xInput < 0)
         {
-            // ¿ÞÂÊ
+            // ï¿½ï¿½ï¿½ï¿½
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
 
-        // { Á¡ÇÁ ·ÎÁ÷
-        // ¶¥¿¡ ´ê¾ÆÀÖ°í Å°¸¦ ´©¸¦ ¶§ ÀÛµ¿ -> Ã³À½ ÇÑ¹ø ´­·¶À» ¶§ ÇÃ·¹ÀÌ¾î¿¡°Ô °¡¼Óµµ °íÁ¤
+        // { ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö°ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ûµï¿½ -> Ã³ï¿½ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isGrounded == true && Input.GetKeyDown(KeyCode.Z))
         {
             isJumping = true;
-            jumpTimeCounter = jumpTime; // Á¡ÇÁ ½Ã°£ ÃÊ±âÈ­
+            jumpTimeCounter = jumpTime; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Ê±ï¿½È­
             //rb.velocity = Vector2.up * jumpForce;
         }
 
-        // ¶¥¿¡ ´ê¾ÆÀÖ°í Å°°¡ ´­¸®°í ÀÌÀ» ¶§ ÀÛµ¿ -> ´©¸¥ ¸¸Å­¸¸ °¡¼Óµµ °íÁ¤
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö°ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ûµï¿½ -> ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­ï¿½ï¿½ ï¿½ï¿½ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isJumping == true && Input.GetKey(KeyCode.Z))
         {
             if (jumpTimeCounter > 0)
@@ -177,32 +177,32 @@ public class PlayerController_v2 : MonoBehaviour
             }
             else
             {
-                // ¼³Á¤½Ã°£¸¸Å­ Á¡ÇÁÇÏ¸é Á¡ÇÎ false
+                // ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ false
                 isJumping = false;
             }
         }
 
-        // Å°¸¦ ¶®À» ¶§ ¹ßµ¿ -> 2´Ü Á¡ÇÁ¸¦ ¸·´Â ·ÎÁ÷
+        // Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ßµï¿½ -> 2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyUp(KeyCode.Z))
         {
 
             isJumping = false;
         }
-        // } Á¡ÇÁ ·ÎÁ÷
+        // } ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
 
-    // ÇÃ·¹ÀÌ¾î °ø°Ý ÇÔ¼ö -> Dev
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ -> Dev
     private void PlayerSlashwork()
     {
 
         //else if (Input.GetKeyDown(KeyCode.X) && Input.GetKeyDown(KeyCode.UpArrow))
         //{
-        //    Debug.Log("[PlayerController] PlayerSlashwork : À§·Î °ø°Ý!");
+        //    Debug.Log("[PlayerController] PlayerSlashwork : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
         //}
         //else if (Input.GetKeyDown(KeyCode.X) && Input.GetKeyDown(KeyCode.DownArrow))
         //{
-        //    Debug.Log("[PlayerController] PlayerSlashwork : ¾Æ·¡·Î °ø°Ý!");
+        //    Debug.Log("[PlayerController] PlayerSlashwork : ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
         //}
 
         //if (slashAllow)
@@ -247,13 +247,13 @@ public class PlayerController_v2 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ÇÃ·¹ÀÌ¾î°¡ ¹«¾ð°¡¿Í ºÎµ÷ÇûÀ»¶§
+        // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ð°¡¿ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (collision.transform.tag.Equals("Monster"))
         {
             UIObjsManger ui_ = GioleFunc.GetRootObj("UIObjs").GetComponent<UIObjsManger>();
             ui_.DamageHpIcon();
 
-            Debug.Log("[PlayerController] ¿ÂÄÝ¸®Á¯ 2D : À¸¾Ç! ¸Â¾Ò´Ù");
+            Debug.Log("[PlayerController] ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½ï¿½ 2D : ï¿½ï¿½ï¿½ï¿½! ï¿½Â¾Ò´ï¿½");
         }
     }
 

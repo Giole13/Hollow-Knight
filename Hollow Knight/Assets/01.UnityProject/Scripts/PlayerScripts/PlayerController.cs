@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private float jumpTimeCounter;
     private bool isJumping;
+    private bool enEnemy = default;
 
     public float jumpTime;
 
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         checkRadius = 0.3f;
         jumpTime = 0.3f;
         slashAllow = true;
+        enEnemy = true;
 
         // ?¥í???? ????
         slashEffect.SetActive(false);
@@ -109,6 +111,16 @@ public class PlayerController : MonoBehaviour
         // ?????? ???? ????? ???? ????
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
+        if (isGrounded)
+        {
+            playerAni.SetBool("Jump", false);
+            playerAni.SetBool("Jump_Down", false);
+        }
+        else if (!isGrounded)
+        {
+            playerAni.SetBool("Jump", true);
+        }
+
         // ???? X???? ????? ?????? ????????? ???
         if (xInput > 0)
         {
@@ -146,9 +158,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (0 > rb.velocity.y)
+        {
+            playerAni.SetBool("Jump", false);
+            playerAni.SetBool("Jump_Down", true);
+        }
+
         // ??? ???? ?? ??? -> 2?? ?????? ???? ????
         if (Input.GetKeyUp(KeyCode.Z))
         {
+
+
             isJumping = false;
         }
         // } ???? ????
@@ -235,23 +255,25 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // ?¡À???? ????? ?¥å???????
-        if (collision.transform.tag.Equals("Monster"))
+        if (collision.transform.tag.Equals("Monster") && enEnemy)
         {
             UIObjsManger ui_ = GioleFunc.GetRootObj("UIObjs").GetComponent<UIObjsManger>();
             ui_.DamageHpIcon();
 
             Debug.Log("[PlayerController] ??????? 2D : ????! ?¨ú??");
-            //StartCoroutine(TimeDelay());
+            StartCoroutine(TimeDelay());
         }
     }
 
 
     IEnumerator TimeDelay()
     {
-
+        enEnemy = false;
         Time.timeScale = 0f;
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.3f);
         Time.timeScale = 1f;
+        yield return new WaitForSeconds(2f);
+        enEnemy = true;
     }
 
 }
