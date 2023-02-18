@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject slashEffect = default;
 
-    private bool slashAllow = false;
+    private bool slashAllow;
 
     private Animator playerAni;
 
@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         jumpForce = 13f;
         checkRadius = 0.3f;
         jumpTime = 0.3f;
+        slashAllow = true;
 
         // ?¥í???? ????
         slashEffect.SetActive(false);
@@ -185,9 +186,10 @@ public class PlayerController : MonoBehaviour
         //        break;
         //}
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && slashAllow)
         {
-            slashAllow = true;
+            StartCoroutine(PlayerAttackCoroutine());
+
         }
 
         //else if (Input.GetKeyDown(KeyCode.X) && Input.GetKeyDown(KeyCode.UpArrow))
@@ -199,15 +201,12 @@ public class PlayerController : MonoBehaviour
         //    Debug.Log("[PlayerController] PlayerSlashwork : ????? ????!");
         //}
 
-        if (slashAllow)
-        {
-            slashAllow = false;
-            StartCoroutine(PlayerAttackCoroutine());
-        }
+
     }
 
     IEnumerator PlayerAttackCoroutine()
     {
+        slashAllow = false;
         slashEffect.SetActive(true);
         switch (playerView)
         {
@@ -225,6 +224,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         yield return new WaitForSeconds(0.5f);
+        slashAllow = true;
         slashEffect.SetActive(false);
     }
 
