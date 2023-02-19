@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     PlayerViewDir playerView;
     void Start()
     {
-        // ?¥í???? ???\
+        // iniyislize instance
         rb = GetComponent<Rigidbody2D>();
         feetPos = gameObject.FindChildObj("FeetPos").GetComponent<Transform>();
         whatIsGround = LayerMask.GetMask("Ground");
@@ -44,15 +44,15 @@ public class PlayerController : MonoBehaviour
         playerAni = gameObject.FindChildObj("Body").GetComponent<Animator>();
 
 
-        // ???? ????
+        // initialize variable
         speed = 7f;
         jumpForce = 13f;
-        checkRadius = 0.3f;
+        checkRadius = 0.2f;
         jumpTime = 0.3f;
         slashAllow = true;
         enEnemy = true;
 
-        // ?¥í???? ????
+        // instance Setting
         slashEffect.SetActive(false);
     }
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     private void InputKeyValue()
     {
-        // X?? ??????? ????
+        // init variable
         yInput = Input.GetAxis("Vertical");
         xInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
@@ -81,13 +81,11 @@ public class PlayerController : MonoBehaviour
         if (0 < yInput)
         {
             playerView = PlayerViewDir.UP;
-            Debug.Log("[PlayerController] PlayerSlashwork : ???? ????!");
         }
         //??? ??? ???????
         else if (0 > yInput)
         {
             playerView = PlayerViewDir.DOWN;
-            Debug.Log("[PlayerController] PlayerSlashwork : ????? ????!");
         }
         else if (0 == yInput)
         {
@@ -95,7 +93,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (xInput != 0f)
+        if (xInput != 0f && isGrounded)
         {
             playerAni.SetBool("Run", true);
         }
@@ -140,7 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = true;
             jumpTimeCounter = jumpTime; // ???? ?©£? ????
-            //rb.velocity = Vector2.up * jumpForce;
+            rb.velocity = Vector2.up * jumpForce;
         }
 
         // ???? ?????? ??? ?????? ???? ?? ??? -> ???? ????? ????? ????
@@ -160,6 +158,10 @@ public class PlayerController : MonoBehaviour
 
         if (0 > rb.velocity.y)
         {
+            if (isGrounded)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0f);
+            }
             playerAni.SetBool("Jump", false);
             playerAni.SetBool("Jump_Down", true);
         }
@@ -212,6 +214,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        if (!slashAllow)
+        {
+
+        }
+
         //else if (Input.GetKeyDown(KeyCode.X) && Input.GetKeyDown(KeyCode.UpArrow))
         //{
         //    Debug.Log("[PlayerController] PlayerSlashwork : ???? ????!");
@@ -260,7 +267,6 @@ public class PlayerController : MonoBehaviour
             UIObjsManger ui_ = GioleFunc.GetRootObj("UIObjs").GetComponent<UIObjsManger>();
             ui_.DamageHpIcon();
 
-            Debug.Log("[PlayerController] ??????? 2D : ????! ?¨ú??");
             StartCoroutine(TimeDelay());
         }
     }
