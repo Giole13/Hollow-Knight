@@ -33,9 +33,19 @@ public class PlayerController : MonoBehaviour
 
     private Animator playerAni;
 
-    PlayerViewDir playerView;
+    public PlayerViewDir playerView;
+
+    public void PlayerVeloCityStop()
+    {
+        rb.velocity = Vector3.zero;
+        playerAni.SetBool("Run", false);
+
+    }
+
+
     void Start()
     {
+        
         // iniyislize instance
         rb = GetComponent<Rigidbody2D>();
         feetPos = gameObject.FindChildObj("FeetPos").GetComponent<Transform>();
@@ -75,7 +85,16 @@ public class PlayerController : MonoBehaviour
         // init variable
         yInput = Input.GetAxis("Vertical");
         xInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
+
+        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            xInput = 0f;
+        }
+        else
+        {
+            rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
+        }
 
         //?? ??? ???????
         if (0 < yInput)
@@ -113,10 +132,12 @@ public class PlayerController : MonoBehaviour
         {
             playerAni.SetBool("Jump", false);
             playerAni.SetBool("Jump_Down", false);
+            playerAni.SetBool("Ground", true);
         }
         else if (!isGrounded)
         {
             playerAni.SetBool("Jump", true);
+            playerAni.SetBool("Ground", false);
         }
 
         // ???? X???? ????? ?????? ????????? ???
@@ -156,14 +177,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (0 > rb.velocity.y)
+        if (-1 > rb.velocity.y)
         {
             if (isGrounded)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0f);
+                //rb.velocity = new Vector2(rb.velocity.x, 0f);
             }
             playerAni.SetBool("Jump", false);
             playerAni.SetBool("Jump_Down", true);
+        }
+
+
+        // 하강속도 제한
+        if(-15f > rb.velocity.y)
+        {
+            rb.velocity = Vector2.down * 15f;
         }
 
         // ??? ???? ?? ??? -> 2?? ?????? ???? ????
@@ -180,33 +208,7 @@ public class PlayerController : MonoBehaviour
     // ?÷???? ???? ??? -> Dev
     private void PlayerSlashwork()
     {
-        //switch (playerView)
-        //{
-        //    case PlayerViewDir.UP:
-        //        if (Input.GetKeyDown(KeyCode.X))
-        //        {
-        //            playerView = PlayerViewDir.UP;
-        //            Debug.Log("[PlayerController] PlayerSlashwork : ???? ????!");
-        //        }
-        //        if (Input.GetKeyUp(KeyCode.X))
-        //        {
-        //            playerView = PlayerViewDir.IDLE;
-        //        }
-        //        break;
-        //    case PlayerViewDir.DOWN:
-        //        if (Input.GetKeyDown(KeyCode.X))
-        //        {
-        //            playerView = PlayerViewDir.DOWN;
-        //            Debug.Log("[PlayerController] PlayerSlashwork : ????? ????!");
-        //        }
-        //        if (Input.GetKeyUp(KeyCode.X))
-        //        {
-        //            playerView = PlayerViewDir.IDLE;
-        //        }
-        //        break;
-        //    default:
-        //        break;
-        //}
+       
 
         if (Input.GetKeyDown(KeyCode.X) && slashAllow)
         {
@@ -218,15 +220,6 @@ public class PlayerController : MonoBehaviour
         {
 
         }
-
-        //else if (Input.GetKeyDown(KeyCode.X) && Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    Debug.Log("[PlayerController] PlayerSlashwork : ???? ????!");
-        //}
-        //else if (Input.GetKeyDown(KeyCode.X) && Input.GetKeyDown(KeyCode.DownArrow))
-        //{
-        //    Debug.Log("[PlayerController] PlayerSlashwork : ????? ????!");
-        //}
 
 
     }
@@ -257,11 +250,11 @@ public class PlayerController : MonoBehaviour
 
 
 
-
+    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ?÷???? ????? ?ε???????
+        // 몬스터와 만난다면
         if (collision.transform.tag.Equals("Monster") && enEnemy)
         {
             UIObjsManger ui_ = GioleFunc.GetRootObj("UIObjs").GetComponent<UIObjsManger>();

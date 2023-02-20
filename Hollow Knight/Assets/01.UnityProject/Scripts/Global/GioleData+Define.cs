@@ -19,6 +19,12 @@ public static partial class GioleData
 
 public enum PlayerViewDir
 {
-    UP, DOWN, IDLE
+    UP, DOWN, LEFT, RIGHT, IDLE
 
-}       // PuzzleType
+}       // PlayerVieDir
+
+public enum HornetPattern
+{
+    IDLE,
+    MOVE, BACKSTEP, JUMPMOVE, JUMPSPHERE, DASH, JUMPDASH, THROW, DEATH
+}

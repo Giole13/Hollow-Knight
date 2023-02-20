@@ -14,10 +14,10 @@ public class Level1 : MonoBehaviour
 
     private void OnEnable()
     {
-        foreach(Transform obj_ in transform)
-        {
-            obj_.gameObject.SetActive(true);
-        }
+        //foreach(Transform obj_ in transform)
+        //{
+        //    obj_.gameObject.SetActive(true);
+        //}
     }
 
 }
