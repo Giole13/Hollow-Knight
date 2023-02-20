@@ -9,6 +9,8 @@ public class Hornet : MonoBehaviour
 
     private Rigidbody2D playerRb = default;
     private Rigidbody2D rb = default;
+    private Rigidbody2D neilRb = default;
+
 
     private Transform feetPos = default;
 
@@ -34,7 +36,7 @@ public class Hornet : MonoBehaviour
         feetPos = gameObject.FindChildObj("FeetPos").transform;
         whatIsGround = LayerMask.GetMask("Ground");
         hornetPT = HornetPattern.IDLE;
-
+        neilRb = gameObject.FindChildObj("Neil").GetComponent<Rigidbody2D>();
 
         // Init Var
         speed = 7f;
@@ -43,6 +45,7 @@ public class Hornet : MonoBehaviour
 
         // Instance Setting
         gameObject.SetActive(false);
+        neilRb.gameObject.SetActive(false);
     }
 
 
@@ -99,6 +102,15 @@ public class Hornet : MonoBehaviour
             case HornetPattern.JUMPMOVE:
                 StartCoroutine(JumpMove());
                 break;
+            case HornetPattern.JUMPSPHERE:
+                StartCoroutine(JumpSphere());
+                break;
+            case HornetPattern.DASH:
+                StartCoroutine(Dash());
+                break;
+            case HornetPattern.JUMPDASH:
+                StartCoroutine(JumpDash());
+                break;
 
         }
         RandomPT();
@@ -106,7 +118,8 @@ public class Hornet : MonoBehaviour
 
     private void RandomPT()
     {
-        int i = Random.Range(1, 3 + 1);
+        // 패턴의 가짓수 만큼 숫자 추가
+        int i = Random.Range(1, 6 + 1);
         hornetPT = (HornetPattern)i;
     }
 
@@ -157,7 +170,7 @@ public class Hornet : MonoBehaviour
         while (!isGrounded)
         {
             yield return new WaitForSeconds(0.5f);
-            if(isGrounded) break;
+            if (isGrounded) break;
         }
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(1f);
@@ -168,13 +181,90 @@ public class Hornet : MonoBehaviour
     // 공중에서 360도 범위 공격
     IEnumerator JumpSphere()
     {
+        int i = Random.Range(0, 1 + 1);
+        switch (i)
+        {
+            case 0:
+                rb.velocity = Vector2.right * speed;
+                rb.velocity += Vector2.up * jumpForce;
+                break;
+            case 1:
+                rb.velocity = Vector2.left * speed;
+                rb.velocity += Vector2.up * jumpForce;
+                break;
+        }
 
+        yield return new WaitForSeconds(1f);
+
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(2f);
+        rb.bodyType = RigidbodyType2D.Dynamic;
+
+        while (!isGrounded)
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (isGrounded) break;
+        }
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1f);
+        Actting();
+    }
+
+    // 대쉬 패턴
+    IEnumerator Dash()
+    {
+
+        rb.velocity = new Vector2((playerRb.position.x - rb.position.x), 0f).normalized * speed * 2f;
+            
+        yield return new WaitForSeconds(0.5f);
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1f);
+        Actting();
+    }
+
+    // 점프후 플레이어에게 돌진
+    IEnumerator JumpDash()
+    {
+        int i = Random.Range(0, 1 + 1);
+        switch (i)
+        {
+            case 0:
+                rb.velocity = Vector2.right * speed;
+                rb.velocity += Vector2.up * jumpForce;
+                yield return new WaitForSeconds(1f);
+                rb.velocity = playerRb.position - rb.position;
+                break;
+            case 1:
+                rb.velocity = Vector2.left * speed;
+                rb.velocity += Vector2.up * jumpForce;
+                yield return new WaitForSeconds(1f);
+                rb.velocity = playerRb.position - rb.position;
+                break;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        while (!isGrounded)
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (isGrounded) break;
+        }
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1f);
+        Actting();
     }
 
 
+    // 창 던지기
+    IEnumerator Throw()
+    {
+        neilRb.gameObject.SetActive(true);
+        neilRb.velocity = Vector2.Lerp()
 
 
 
+
+    }
 
     //private void ChangePT()
     //{
