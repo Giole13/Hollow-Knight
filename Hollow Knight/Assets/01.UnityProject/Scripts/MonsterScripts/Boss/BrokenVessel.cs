@@ -12,6 +12,7 @@ public class BrokenVessel : MonoBehaviour
     private LayerMask whatIsGround = default;
 
     private GameObject neilObj = default;
+    private GameObject shpere = default;
 
     private Rigidbody2D playerRb = default;
     private Rigidbody2D rb = default;
@@ -22,7 +23,7 @@ public class BrokenVessel : MonoBehaviour
     private float speed;
     private float checkRadius = default;
 
-
+    private bool xCheck = false;
 
 
     private BrokenVesselPattoern brokenPT;
@@ -36,7 +37,6 @@ public class BrokenVessel : MonoBehaviour
         feetPos = gameObject.FindChildObj("FeetPos").transform;
         neilObj = gameObject.FindChildObj("Neil");
 
-
         // Init Var
         speed = 7f;
         jumpForce = 15f;
@@ -45,6 +45,7 @@ public class BrokenVessel : MonoBehaviour
 
 
         // Instance Setting
+        gameObject.SetActive(false);
         neilObj.SetActive(false);
 
         // Script Setting
@@ -56,6 +57,17 @@ public class BrokenVessel : MonoBehaviour
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+        if (xCheck)
+        {
+            /* Do nothing */
+        }
+        else if (!xCheck)
+        {
+            if( 0 < -rb.position.x + playerRb.position.x && -rb.position.x + playerRb.position.x < 1)
+            {
+                xCheck= true;
+            }
+        }
     }
 
     private void OnEnable()
@@ -64,7 +76,7 @@ public class BrokenVessel : MonoBehaviour
         //hnState = new HNIdleState(this);
         //hnState.Action(this);
         Actting();
-        Debug.Log("[BrokenVessel] OnEnable : 부 . 서 . 진 . 그 . 릇 등장!");
+        //Debug.Log("[BrokenVessel] OnEnable : 부 . 서 . 진 . 그 . 릇 등장!");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -112,25 +124,9 @@ public class BrokenVessel : MonoBehaviour
             case BrokenVesselPattoern.JUMPDOWN:
                 StartCoroutine(JumpDown());
                 break;
-                //case HornetPattern.BACKSTEP:
-                //    StartCoroutine(BackStep());
-                //    break;
-                //case HornetPattern.JUMPMOVE:
-                //    StartCoroutine(JumpMove());
-                //    break;
-                //case HornetPattern.JUMPSPHERE:
-                //    StartCoroutine(JumpSphere());
-                //    break;
-                //case HornetPattern.DASH:
-                //    StartCoroutine(Dash());
-                //    break;
-                //case HornetPattern.JUMPDASH:
-                //    StartCoroutine(JumpDash());
-                //    break;
-                //case HornetPattern.THROW:
-                //    StartCoroutine(Throw());
-                //    break;
-
+            case BrokenVesselPattoern.FIRESPHERE:
+                StartCoroutine(FireShpere());
+                break;
         }
         RandomPT();
     }
@@ -160,10 +156,7 @@ public class BrokenVessel : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.2f);
-            if (isGrounded)
-            {
-                break;
-            }
+            if (isGrounded) break;
         }
         Actting();
     }
@@ -178,7 +171,7 @@ public class BrokenVessel : MonoBehaviour
 
     IEnumerator GroundDash()
     {
-        Debug.Log("[BrokenVessel] GroundDash : Ground!! dash!!");
+
         Vector2 dir = new Vector2((playerRb.position.x - rb.position.x), rb.position.y);
         rb.velocity = dir;
 
@@ -186,42 +179,59 @@ public class BrokenVessel : MonoBehaviour
         Actting();
     }
 
+    // 점프 후 대쉬공격
     IEnumerator JumpDash()
     {
         rb.velocity = Vector2.up * 10f;
         yield return new WaitForSeconds(0.5f);
         Vector2 dir = new Vector2((playerRb.position.x - rb.position.x), rb.position.y);
+        rb.bodyType = RigidbodyType2D.Kinematic;
         rb.velocity = dir;
         yield return new WaitForSeconds(0.5f);
+        rb.velocity = Vector2.down * 10f;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            if (isGrounded) break;
+        }
         Actting();
     }
 
+
+    // 점프 후 플레이어를 향해 아래공격 및 구체 발사
     IEnumerator JumpDown()
     {
-        float xpos = (playerRb.position - rb.position).x / 2f;
+        Debug.Log("[BrokenVessel] JumpDown : Active");
+
+        xCheck = false;
+        float xpos = (playerRb.position - rb.position).x;
         float ypos = 13f;
         rb.velocity = new Vector2(xpos, ypos);
 
         while (true)
         {
             yield return new WaitForSeconds(0.2f);
-            if (rb.position.x == playerRb.position.x)
+            if (xCheck)
             {
+                Debug.Log("[BrokenVessel] JumpDown : Jump!! Down!");
                 rb.velocity = Vector2.down * 10f;
                 break;
             }
-            else if (isGrounded)
-            {
-                break;
-            }
         }
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            if (isGrounded) break;
+        }
+        xCheck = false;
         Actting();
     }
 
     // 멈춰서 구체 발사
-    //IEnumerator FireShpere()
-    //{
-
-    //}
+    IEnumerator FireShpere()
+    {
+        yield return new WaitForSeconds(3f);
+    }
 
 }

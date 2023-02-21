@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CaterpillarsWhite : MonoBehaviour
+public class CaterpillarsWhite : MonsterClass
 {
     // ÇÏ¾á»ö ¾Ö¹ú·¹ ½ºÅ©¸³Æ®
 

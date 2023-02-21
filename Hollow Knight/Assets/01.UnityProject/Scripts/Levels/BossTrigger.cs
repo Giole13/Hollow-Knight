@@ -16,7 +16,6 @@ public class BossTrigger : MonoBehaviour
     {
         bossDoor = transform.parent.gameObject.FindChildObj("BossDoor");
         bossDoor.SetActive(false);
-        bossObj.SetActive(false);
     }
 
 
@@ -33,8 +32,7 @@ public class BossTrigger : MonoBehaviour
         {
             bossDoor.SetActive(true);
             // 박스 콜라이더 꺼주기
-            BoxCollider2D box2D = GetComponent<BoxCollider2D>();
-            box2D.enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
             StartCoroutine(BossAppearance());
         }
     }

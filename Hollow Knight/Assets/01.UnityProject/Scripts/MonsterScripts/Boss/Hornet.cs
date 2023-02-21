@@ -72,11 +72,6 @@ public class Hornet : MonoBehaviour
 
     private void OnDisable()
     {
-        Die();
-    }
-
-    private void Die()
-    {
         BossTrigger bt = transform.parent.gameObject.FindChildObj("BossTrigger").GetComponent<BossTrigger>();
         bt.BossKill();
     }

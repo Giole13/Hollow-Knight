@@ -27,14 +27,6 @@ public class UIObjsManger : MonoBehaviour
 
     }
 
-
-    void Update()
-    {
-
-    }
-
-
-
     /// <summary>
     /// 플레이어의 체력을 만드는 함수
     /// </summary>
@@ -63,6 +55,12 @@ public class UIObjsManger : MonoBehaviour
         Animator hp_Ani_ = hp_.transform.GetComponent<Animator>();
         hp_Ani_.SetBool("Damage", true);
     }
+
+
+
+
+
+
 
 
 }

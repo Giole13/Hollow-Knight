@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
+
         // iniyislize instance
         rb = GetComponent<Rigidbody2D>();
         feetPos = gameObject.FindChildObj("FeetPos").GetComponent<Transform>();
@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
 
         // 하강속도 제한
-        if(-15f > rb.velocity.y)
+        if (-15f > rb.velocity.y)
         {
             rb.velocity = Vector2.down * 15f;
         }
@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
     // ?÷???? ???? ??? -> Dev
     private void PlayerSlashwork()
     {
-       
+
 
         if (Input.GetKeyDown(KeyCode.X) && slashAllow)
         {
@@ -250,7 +250,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -263,24 +263,27 @@ public class PlayerController : MonoBehaviour
 
     public void Damage()
     {
-            UIObjsManger ui_ = GioleFunc.GetRootObj("UIObjs").GetComponent<UIObjsManger>();
-            ui_.DamageHpIcon();
+        UIObjsManger ui_ = GioleFunc.GetRootObj("UIObjs").GetComponent<UIObjsManger>();
+        ui_.DamageHpIcon();
 
-            StartCoroutine(TimeDelay());
+        StartCoroutine(TimeDelay());
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //// 몬스터와 만난다면
-        //if (collision.transform.tag.Equals("Monster") && enEnemy)
-        //{
-        //    UIObjsManger ui_ = GioleFunc.GetRootObj("UIObjs").GetComponent<UIObjsManger>();
-        //    ui_.DamageHpIcon();
+        if (collision.transform.tag.Equals("Coin"))
+        {
 
-        //    StartCoroutine(TimeDelay());
-        //}
+            collision.gameObject.SetActive(false);
+        }
     }
+
+    private void CoinUp()
+    {
+
+    }
+
 
     IEnumerator TimeDelay()
     {
