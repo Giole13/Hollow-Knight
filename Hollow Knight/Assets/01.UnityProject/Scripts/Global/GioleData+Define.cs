@@ -26,5 +26,14 @@ public enum PlayerViewDir
 public enum HornetPattern
 {
     IDLE,
-    MOVE, BACKSTEP, JUMPMOVE, JUMPSPHERE, DASH, JUMPDASH, THROW, DEATH
+    MOVE, BACKSTEP, JUMPMOVE, JUMPSPHERE, DASH, JUMPDASH, THROW, REST,
+    DEATH
+}
+
+
+public enum BrokenVesselPattoern
+{
+    IDLE,
+    MOVE, JUMP, SWINGNEIL , GROUNDDASH ,JUMPDASH, JUMPDOWN , FIRESPHERE, REST,
+    DEATH
 }

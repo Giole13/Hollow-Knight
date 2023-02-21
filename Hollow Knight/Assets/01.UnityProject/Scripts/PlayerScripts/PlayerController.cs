@@ -257,13 +257,30 @@ public class PlayerController : MonoBehaviour
         // 몬스터와 만난다면
         if (collision.transform.tag.Equals("Monster") && enEnemy)
         {
+            Damage();
+        }
+    }
+
+    public void Damage()
+    {
             UIObjsManger ui_ = GioleFunc.GetRootObj("UIObjs").GetComponent<UIObjsManger>();
             ui_.DamageHpIcon();
 
             StartCoroutine(TimeDelay());
-        }
+
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //// 몬스터와 만난다면
+        //if (collision.transform.tag.Equals("Monster") && enEnemy)
+        //{
+        //    UIObjsManger ui_ = GioleFunc.GetRootObj("UIObjs").GetComponent<UIObjsManger>();
+        //    ui_.DamageHpIcon();
+
+        //    StartCoroutine(TimeDelay());
+        //}
+    }
 
     IEnumerator TimeDelay()
     {
