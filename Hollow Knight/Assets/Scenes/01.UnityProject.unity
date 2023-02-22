@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 28016155}
   - component: {fileID: 28016153}
   - component: {fileID: 28016156}
+  - component: {fileID: 28016157}
   m_Layer: 11
   m_Name: Ball
   m_TagString: PlayerAttack
@@ -567,6 +568,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.66, y: 1.16}
   m_EdgeRadius: 0
+--- !u!114 &28016157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28016151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb26b3d7fb95af4408018b06a73c0d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &153428980
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,15 @@ public class DoorController : MonoBehaviour
     private const float ARRIVALTIME = 0.5f;
     private const float LERPDISTANCE = 1f;
 
+
+    private void Awake()
+    {
+        this.gameObject.layer = 7;
+    }
+
+
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag.Equals(GioleData.TAG_NAME_PLAYERBODY))

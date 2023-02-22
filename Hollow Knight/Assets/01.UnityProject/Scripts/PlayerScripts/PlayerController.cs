@@ -44,11 +44,12 @@ public class PlayerController : MonoBehaviour
 
     public PlayerViewDir PlayerViewHorizontal
     {
-        get
-        {
-            return playerViewHorizontal;
-        }
+        get { return playerViewHorizontal; }
     }
+
+
+    
+
 
     public void PlayerVeloCityStop()
     {
@@ -160,6 +161,7 @@ public class PlayerController : MonoBehaviour
         skillCool = true;
     }
 
+    // Player Input Key
     private void InputKeyValue()
     {
         // init variable
@@ -370,7 +372,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("[PlayerController] OntriggerEnter2D : Hit 2D!");
         switch (collision.transform.tag)
         {
             case GioleData.TAG_NAME_MONSTER:        // Attack Monster
@@ -399,6 +400,16 @@ public class PlayerController : MonoBehaviour
     public void PlayerSitChair(bool setAni_)
     {
         playerAni.SetBool("Sit", setAni_);
+        if (setAni_)
+        {
+            //  + y0.2 , rb.Type = Kenetic
+            rb.position += Vector2.up * 0.2f;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+        else if (!setAni_)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+        }
     }
 
 
