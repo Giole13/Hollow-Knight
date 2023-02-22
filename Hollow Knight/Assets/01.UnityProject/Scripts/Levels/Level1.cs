@@ -12,12 +12,12 @@ public class Level1 : MonoBehaviour
     }
 
 
+    
     private void OnEnable()
     {
-        //foreach(Transform obj_ in transform)
-        //{
-        //    obj_.gameObject.SetActive(true);
-        //}
+
+        // 켜질 때마다 모든레벨에 있는 모든 코인들을 꺼준다.
+        SingletonManager.Instance.AllCoinSet(false);
     }
 
 }

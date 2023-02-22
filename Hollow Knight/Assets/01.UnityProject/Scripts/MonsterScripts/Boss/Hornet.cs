@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hornet : MonoBehaviour
+public class Hornet : MonsterClass
 {
     private LayerMask whatIsGround = default;
 

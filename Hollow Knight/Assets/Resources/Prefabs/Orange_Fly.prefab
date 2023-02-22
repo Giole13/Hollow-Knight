@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106c2669002c83b4294ed4df37fca98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinNum: 5
+  maxhp: 50
+  currentHp: 0
   radius: 5
-  isPlayerinCircle: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 512

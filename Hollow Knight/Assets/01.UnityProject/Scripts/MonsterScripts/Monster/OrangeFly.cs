@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrangeFly : MonoBehaviour
+public class OrangeFly : MonsterClass
 {
 
 
@@ -36,19 +36,9 @@ public class OrangeFly : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
+  
 
-    // ����� �׷��ִ� �Լ�
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawWireSphere(transform.position, radius);
-    //}
-
-    // �÷��̾� �߰��ϴ� �Լ�
     IEnumerator PlayerTrace()
     {
         while (true)

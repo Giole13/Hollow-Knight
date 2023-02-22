@@ -14,6 +14,8 @@ public static partial class GioleData
     public const string TAG_NAME_PLAYERATTACK = "PlayerAttack";
     public const string TAG_NAME_PLAYERBODY = "Player";
     public const string TAG_NAME_MONSTER = "Monster";
+    public const string TAG_NAME_COIN = "Coin";
+
 
 }
 
@@ -36,4 +38,9 @@ public enum BrokenVesselPattoern
     IDLE,
     MOVE, JUMP, SWINGNEIL , GROUNDDASH ,JUMPDASH, JUMPDOWN , FIRESPHERE, REST,
     DEATH
+}
+
+public enum MonsterState
+{
+    ALIVE, DEAD
 }

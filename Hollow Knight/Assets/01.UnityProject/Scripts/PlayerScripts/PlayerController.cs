@@ -8,12 +8,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float xInput;
     private float yInput;
-
+    private UIObjsManger uIObjsScript = default;
 
     public float speed;
     public float jumpForce;
 
-
+    [SerializeField]
     private bool isGrounded;
 
     private Transform feetPos;
@@ -23,17 +23,32 @@ public class PlayerController : MonoBehaviour
 
     private float jumpTimeCounter;
     private bool isJumping;
-    private bool enEnemy = default;
+    private bool enEnemy;
+    private bool skillCool;
+    private int attackPower;
+    private int jumpCount;
 
     public float jumpTime;
 
     private GameObject slashEffect = default;
+    private GameObject ballEffect = default;
+    private GameObject playerbody = default;
 
     private bool slashAllow;
 
     private Animator playerAni;
 
-    public PlayerViewDir playerView;
+    private PlayerViewDir playerViewVertical;
+    private PlayerViewDir playerViewHorizontal;
+
+
+    public PlayerViewDir PlayerViewHorizontal
+    {
+        get
+        {
+            return playerViewHorizontal;
+        }
+    }
 
     public void PlayerVeloCityStop()
     {
@@ -41,7 +56,6 @@ public class PlayerController : MonoBehaviour
         playerAni.SetBool("Run", false);
 
     }
-
 
     void Start()
     {
@@ -52,24 +66,31 @@ public class PlayerController : MonoBehaviour
         whatIsGround = LayerMask.GetMask("Ground");
         slashEffect = gameObject.FindChildObj("SlashEffect");
         playerAni = gameObject.FindChildObj("Body").GetComponent<Animator>();
-
+        uIObjsScript = GioleFunc.GetRootObj("UIObjs").GetComponent<UIObjsManger>();
+        ballEffect = gameObject.FindChildObj("Ball");
+        playerbody = gameObject.FindChildObj("Body");
 
         // initialize variable
         speed = 7f;
-        jumpForce = 13f;
+        jumpForce = 10f;
         checkRadius = 0.2f;
         jumpTime = 0.3f;
         slashAllow = true;
         enEnemy = true;
+        attackPower = 10;
+        skillCool = true;
+
 
         // instance Setting
         slashEffect.SetActive(false);
+        ballEffect.SetActive(false);
     }
 
 
     private void FixedUpdate()
     {
         InputKeyValue();
+
     }
 
     private void Update()
@@ -78,6 +99,64 @@ public class PlayerController : MonoBehaviour
 
         PlayerSlashwork();
 
+        SkillActive();
+    }
+
+    private void SkillActive()
+    {
+        if (Input.GetKeyDown(KeyCode.C) && skillCool)
+        {
+            StartCoroutine(Dash());
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) && skillCool)
+        {
+            StartCoroutine(BallFire());
+        }
+
+    }
+
+
+    IEnumerator BallFire()
+    {
+        skillCool = false;
+        ballEffect.SetActive(true);
+        ballEffect.transform.position = transform.position;
+        switch (playerViewHorizontal)
+        {
+            case PlayerViewDir.RIGHT:
+                ballEffect.transform.GetComponent<Rigidbody2D>().velocity = Vector3.right * 10f;
+                ballEffect.transform.localScale = new Vector3(1f, 1f, 1f);
+                break;
+            case PlayerViewDir.LEFT:
+                ballEffect.transform.GetComponent<Rigidbody2D>().velocity = Vector3.left * 10f;
+                ballEffect.transform.localScale = new Vector3(-1f, 1f, 1f);
+                break;
+        }
+        yield return new WaitForSeconds(1f);
+        ballEffect.SetActive(false);
+        skillCool = true;
+    }
+
+    IEnumerator Dash()
+    {
+        skillCool = false;
+        switch (playerViewHorizontal)
+        {
+            case PlayerViewDir.RIGHT:
+                rb.velocity = Vector2.right * 10;
+                break;
+            case PlayerViewDir.LEFT:
+                rb.velocity = Vector2.left * 10;
+                break;
+        }
+        rb.gravityScale = 0f;
+        enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        enabled = true;
+        rb.gravityScale = 5f;
+        rb.velocity = Vector2.zero;
+        skillCool = true;
     }
 
     private void InputKeyValue()
@@ -96,19 +175,17 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
         }
 
-        //?? ??? ???????
         if (0 < yInput)
         {
-            playerView = PlayerViewDir.UP;
+            playerViewVertical = PlayerViewDir.UP;
         }
-        //??? ??? ???????
         else if (0 > yInput)
         {
-            playerView = PlayerViewDir.DOWN;
+            playerViewVertical = PlayerViewDir.DOWN;
         }
         else if (0 == yInput)
         {
-            playerView = PlayerViewDir.IDLE;
+            playerViewVertical = PlayerViewDir.IDLE;
         }
 
 
@@ -122,14 +199,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // ?¡À???? ???, ???? ??? -> Complation
+    // Playe Move, Jump Fun
     private void PlayerMoveAndJumpBehavior()
     {
-        // ?????? ???? ????? ???? ????
+
+        // Grounded Check
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
         if (isGrounded)
         {
+            // Init JumpCount
+            jumpCount = 2;
             playerAni.SetBool("Jump", false);
             playerAni.SetBool("Jump_Down", false);
             playerAni.SetBool("Ground", true);
@@ -140,30 +220,33 @@ public class PlayerController : MonoBehaviour
             playerAni.SetBool("Ground", false);
         }
 
-        // ???? X???? ????? ?????? ????????? ???
+
+        // Player Right
         if (xInput > 0)
         {
-            // ??????
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            playerbody.transform.localScale = new Vector3(-1f, 1f, 1f);
+            playerViewHorizontal = PlayerViewDir.RIGHT;
         }
+        // Player Left
         else if (xInput < 0)
         {
-            // ????
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            playerbody.transform.localScale = new Vector3(1f, 1f, 1f);
+            playerViewHorizontal = PlayerViewDir.LEFT;
         }
 
 
-        // { ???? ????
-        // ???? ?????? ??? ???? ?? ??? -> ??? ??? ?????? ?? ?¡À?????? ????? ????
-        if (isGrounded == true && Input.GetKeyDown(KeyCode.Z))
+
+        // GroundJump and Second Jump
+        if ((isGrounded == true || jumpCount == 1) && Input.GetKeyDown(KeyCode.Z))
         {
+            //// Subtract JumpCount
+            //--jumpCount;
             isJumping = true;
-            jumpTimeCounter = jumpTime; // ???? ?©£? ????
+            jumpTimeCounter = jumpTime;
             rb.velocity = Vector2.up * jumpForce;
         }
 
-        // ???? ?????? ??? ?????? ???? ?? ??? -> ???? ????? ????? ????
-        if (isJumping == true && Input.GetKey(KeyCode.Z))
+        if ((isJumping == true || jumpCount == 1) && Input.GetKey(KeyCode.Z))
         {
             if (jumpTimeCounter > 0)
             {
@@ -172,8 +255,11 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                // ?????©£???? ??????? ???? false
-                isJumping = false;
+                if (jumpCount == 0)
+                {
+                    isJumping = false;
+
+                }
             }
         }
 
@@ -194,61 +280,71 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector2.down * 15f;
         }
 
-        // ??? ???? ?? ??? -> 2?? ?????? ???? ????
+        // Jump key up
         if (Input.GetKeyUp(KeyCode.Z))
         {
-
-
-            isJumping = false;
+            --jumpCount;
+            if (jumpCount == 0)
+            {
+                isJumping = false;
+            }
         }
-        // } ???? ????
     }
 
 
-    // ?¡À???? ???? ??? -> Dev
+    // Player Attack Fun -> Dev
     private void PlayerSlashwork()
     {
-
-
         if (Input.GetKeyDown(KeyCode.X) && slashAllow)
         {
-            StartCoroutine(PlayerAttackCoroutine());
-
+            StartCoroutine(PlayerAttackCoroutine(slashEffect, 0.5f));
         }
-
-        if (!slashAllow)
-        {
-
-        }
-
-
     }
 
-    IEnumerator PlayerAttackCoroutine()
+
+    // Player Attack IEnumerator
+    IEnumerator PlayerAttackCoroutine(GameObject obj_, float setTime)
     {
         slashAllow = false;
-        slashEffect.SetActive(true);
-        switch (playerView)
+        obj_.SetActive(true);
+        switch (playerViewVertical)
         {
             case PlayerViewDir.UP:
-                slashEffect.transform.localPosition = new Vector3(0f, 1.5f, 0f);
-                slashEffect.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+                obj_.transform.localPosition = new Vector3(0f, 1.5f, 0f);
+                obj_.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+                obj_.transform.localScale = new Vector3(1f, 1f, 1f);
                 break;
             case PlayerViewDir.DOWN:
-                slashEffect.transform.localPosition = new Vector3(0f, -1.5f, 0f);
-                slashEffect.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+                obj_.transform.localPosition = new Vector3(0f, -1.5f, 0f);
+                obj_.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+                obj_.transform.localScale = new Vector3(1f, 1f, 1f);
                 break;
             case PlayerViewDir.IDLE:
-                slashEffect.transform.localPosition = new Vector3(-1.5f, 0f, 0f);
-                slashEffect.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+                VerticalIdleAttack(obj_);
                 break;
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(setTime);
         slashAllow = true;
-        slashEffect.SetActive(false);
+        obj_.SetActive(false);
     }
 
 
+    private void VerticalIdleAttack(GameObject obj_)
+    {
+        switch (playerViewHorizontal)
+        {
+            case PlayerViewDir.LEFT:
+                obj_.transform.localPosition = new Vector3(-1.5f, 0f, 0f);
+                obj_.transform.localScale = new Vector3(1f, 1f, 1f);
+                obj_.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+                break;
+            case PlayerViewDir.RIGHT:
+                obj_.transform.localPosition = new Vector3(1.5f, 0f, 0f);
+                obj_.transform.localScale = new Vector3(-1f, 1f, 1f);
+                obj_.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+                break;
+        }
+    }
 
 
 
@@ -270,21 +366,23 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag.Equals("Coin"))
+        switch (collision.transform.tag)
         {
+            case GioleData.TAG_NAME_MONSTER:        // Attack Monster
+                collision.gameObject.GetComponent<MonsterClass>().HitMonster(attackPower);
+                break;
+            case GioleData.TAG_NAME_COIN:
+                uIObjsScript.CoinNumPlus("Small");
+                collision.gameObject.SetActive(false);
+                break;
 
-            collision.gameObject.SetActive(false);
         }
     }
 
-    private void CoinUp()
-    {
-
-    }
-
-
+    // Player Hit TimeDlay
     IEnumerator TimeDelay()
     {
         enEnemy = false;
@@ -294,5 +392,14 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         enEnemy = true;
     }
+
+
+    public void PlayerSitChair(bool setAni_)
+    {
+        playerAni.SetBool("Sit", setAni_);
+    }
+
+
+
 
 }

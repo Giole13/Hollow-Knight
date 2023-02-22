@@ -7,10 +7,6 @@ public class BossTrigger : MonoBehaviour
     private GameObject bossDoor = default;
     public GameObject bossObj = default;
 
-    void Start()
-    {
-    }
-
 
     private void OnEnable()
     {

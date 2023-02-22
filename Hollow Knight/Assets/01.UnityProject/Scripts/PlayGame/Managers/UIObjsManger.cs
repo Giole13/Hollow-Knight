@@ -7,20 +7,22 @@ public class UIObjsManger : MonoBehaviour
     // UI 의 전체를 담당하는 UIManager 스크립트
 
     private GameObject originalHp = default;
+    private GameObject coinNumObj = default;
 
     private Stack<GameObject> hpStack = default;
 
-    
+    private int coinInt = 0;
 
     void Start()
     {
-        
+        coinNumObj = gameObject.FindChildObj("CoinNum");
+
         hpStack = new Stack<GameObject>();
 
         originalHp = gameObject.FindChildObj("PlayerHp_");
         originalHp.SetActive(false);
 
-        for(int x = 1; x <= 5; x++)
+        for (int x = 1; x <= 5; x++)
         {
             MakeHpIcon(x);
         }
@@ -57,6 +59,33 @@ public class UIObjsManger : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 코인을 획득하면 코인수량이 올라가는 함수
+    /// </summary>
+    /// <param name="coinName">코인 이름
+    /// Small, Middle, Big
+    /// </param>
+    public void CoinNumPlus(string coinName)
+    {
+        int i = 1;
+        switch (coinName)
+        {
+            case "Small":
+                i = 1;
+                break;
+            case "Middle":
+                i = 5;
+                break;
+            case "Big":
+                i = 15;
+                break;
+            default:
+                break;
+        }
+        coinInt += i;
+
+        coinNumObj.SetTmpText($"{coinInt}");
+    }
 
 
 

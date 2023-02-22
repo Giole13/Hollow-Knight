@@ -39,14 +39,23 @@ public class CaterpillarsWhite : MonsterClass
         moveDir = -1f;
         transform.position = transform.parent.gameObject.FindChildObj("Caterpillars_White_StartPos").
             transform.position;
+
+        // 몬스터 상태 변경
+        //monState = MonsterState.ALIVE;
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        //CheckCliff();
-    }
+    //private void Update()
+    //{
+    //    //if(monState == MonsterState.DEAD)
+    //    //{
+    //    //SingletonManager.Instance.CoinPop(transform.position, 2);
+
+    //    //}
+    //}
+
+
+    
 
 
     IEnumerator MonsterMove()

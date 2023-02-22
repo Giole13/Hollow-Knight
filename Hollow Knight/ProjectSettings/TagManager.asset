@@ -20,7 +20,7 @@ TagManager:
   - Monster
   - Player
   - Coin
-  - 
+  - PlayerAttack
   - 
   - 
   - 
@@ -42,8 +42,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 3095581561
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FrontGround
+    uniqueID: 319471041
     locked: 0
   - name: UI
     uniqueID: 518193937
