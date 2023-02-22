@@ -64,7 +64,9 @@ public class CoinManager : MonoBehaviour
     IEnumerator CoinVelocity(Rigidbody2D coinRB_)
     {
         int i = Random.Range(-2, 2);
-        coinRB.velocity = Vector2.up * 5f + Vector2.right * i;
+        float i2 = Random.Range(0f, 1f);
+        int i3 = Random.Range(3, 6);
+        coinRB.velocity = Vector2.up * (i3+i2) + Vector2.right * (i + i2);
         yield return new WaitForSeconds(0.1f);
         coinRB.velocity = Vector2.zero;
         yield return null;

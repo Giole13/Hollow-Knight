@@ -18,27 +18,31 @@ public class Chair : MonoBehaviour
         //}
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.transform.tag.Equals(GioleData.TAG_NAME_PLAYERBODY))
-    //    {
-    //        PlayerController playerScript = collision.GetComponent<PlayerController>();
-    //        StartCoroutine(PlayerSit(playerScript));
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if (collision.transform.tag.Equals(GioleData.TAG_NAME_PLAYERBODY))
+        //{
+        //    PlayerController playerScript = collision.GetComponent<PlayerController>();
+        //    StartCoroutine(PlayerSit(playerScript));
+        //}
+        Debug.Log("[Chair] PlayerSit : Enter!!");
+    }
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.transform.tag.Equals(GioleData.TAG_NAME_PLAYERBODY))
-    //    {
-    //        //PlayerController playerScript = collision.GetComponent<PlayerController>();
-    //        //StopCoroutine(PlayerSit(playerScript));
-    //    }
-    //}
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //if (collision.transform.tag.Equals(GioleData.TAG_NAME_PLAYERBODY))
+        //{
+        //    //PlayerController playerScript = collision.GetComponent<PlayerController>();
+        //    //StopCoroutine(PlayerSit(playerScript));
+        //}
+        Debug.Log("[Chair] PlayerSit : Exit!!");
+    }
 
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        Debug.Log("[Chair] PlayerSit : Stay!!");
+
         bool sitSetBool = false;
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
         {

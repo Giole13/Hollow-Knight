@@ -133,6 +133,7 @@ public class PlayerController : MonoBehaviour
                 ballEffect.transform.localScale = new Vector3(-1f, 1f, 1f);
                 break;
         }
+
         yield return new WaitForSeconds(1f);
         ballEffect.SetActive(false);
         skillCool = true;
@@ -350,7 +351,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 몬스터와 만난다면
+        // Hit Player
         if (collision.transform.tag.Equals("Monster") && enEnemy)
         {
             Damage();
@@ -369,6 +370,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("[PlayerController] OntriggerEnter2D : Hit 2D!");
         switch (collision.transform.tag)
         {
             case GioleData.TAG_NAME_MONSTER:        // Attack Monster
