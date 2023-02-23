@@ -6,6 +6,7 @@ using UnityEngine;
 public class Select : MonoBehaviour
 {
     public GameObject[] slotObjText;        // 슬릇의 정보 Text 오브젝트
+    public GameObject[] removeSaveData;
 
     private bool[] saveFileArray = new bool[4];
 
@@ -17,7 +18,7 @@ public class Select : MonoBehaviour
     }
 
 
-    private void Start()
+    private void OnEnable()
     {
         for (int i = 0; i < 4; ++i)
         {
@@ -34,10 +35,12 @@ public class Select : MonoBehaviour
             else
             {
                 slotObjText[i].SetTmpText($"\t    새 게임");
+                removeSaveData[i].SetActive(false);
             }
             DataManager.Instance.DataNewInit();
         }
     }
+
 
     // 슬롯이 3개인데 어떻게 알맞게 불러오는가?
     public void Slot(int number)
@@ -58,6 +61,15 @@ public class Select : MonoBehaviour
             Create();
         }
     }
+
+    public void RemoveData(int number)
+    {
+        DataManager.Instance.nowSlot = number;
+        DataManager.Instance.RemoveData();
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
+    }
+
 
     public void Create()
     {

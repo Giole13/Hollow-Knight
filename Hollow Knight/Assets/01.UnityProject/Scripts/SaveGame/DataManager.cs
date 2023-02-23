@@ -72,4 +72,10 @@ public class DataManager : GioleSingletone<DataManager>
         nowSlot = -1;
         nowPlayer = new PlayerData();
     }
+    
+    // 데이터 삭제
+    public void RemoveData()
+    {
+        File.Delete(path + nowSlot.ToString());
+    }
 }

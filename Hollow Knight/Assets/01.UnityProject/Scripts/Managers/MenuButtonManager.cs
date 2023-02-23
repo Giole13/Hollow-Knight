@@ -8,6 +8,7 @@ public class MenuButtonManager : MonoBehaviour
     private GameObject currentLevel = default;
     private GameObject gameStartSelectSave = default;
     private GameObject mainMenu = default;
+    private GameObject titleObj = default;
 
     private void Awake()
     {
@@ -17,7 +18,7 @@ public class MenuButtonManager : MonoBehaviour
         currentLevel = GioleFunc.GetRootObj("Level1");
         gameStartSelectSave = gameObject.FindChildObj("GameStart_SelectSave");
         mainMenu = gameObject.FindChildObj("MainMenu");
-
+        titleObj = GioleFunc.GetRootObj("Title_Main_Menu");
 
         // Setting Instance
         gameStartSelectSave.SetActive(false);
@@ -25,17 +26,18 @@ public class MenuButtonManager : MonoBehaviour
     }
 
 
-    // QuitGame
+    // Quit Game
     public void OnClickExitGame()
     {
         GioleFunc.QuitThisGame();
     }
 
-    // StartGame
+    // Start Game To Load
     public void OnClickLoadGame()
     {
         // 메인 메뉴를 꺼주기
         gameObject.transform.parent.gameObject.SetActive(false);
+        titleObj.SetActive(false);
 
         // 불러온 데이터를 적용시키기
         currentLevel = DataManager.Instance.nowPlayer.levelObj;
@@ -44,19 +46,17 @@ public class MenuButtonManager : MonoBehaviour
         currentLevel.SetActive(true);
         gameManager.ActivePlayer(DataManager.Instance.nowPlayer.playerObj);
 
-
-
-
     }
 
+    // 새로운 게임을 만들었을 때
     public void OnClickNewGame()
     {
-        // 새로운 게임을 만들었을 때
+        // 메인 메뉴 꺼주기
+        gameObject.transform.parent.gameObject.SetActive(false);
+        titleObj.SetActive(false);
         // ProtoTypeDev : 시작시 레벨 1과 플레이어를 켜주는 로직
         currentLevel.SetActive(true);
         gameManager.ActivePlayer();
-        
-
     }
 
 
