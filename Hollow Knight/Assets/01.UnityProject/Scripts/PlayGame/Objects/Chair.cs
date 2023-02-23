@@ -11,7 +11,7 @@ public class Chair : MonoBehaviour
 
     private void Awake()
     {
-        // Set
+        // Set Layer
         this.gameObject.layer = 7;
     }
 
@@ -60,10 +60,9 @@ public class Chair : MonoBehaviour
     IEnumerator GetUpChair()
     {
         setSitAni = true;
-        yield return new WaitForSeconds(1f);
-        playerCTR.enabled = true;
         playerCTR.PlayerSitChair(false);
-
+        yield return new WaitForSeconds(0.5f);
+        playerCTR.enabled = true;
     }
 
     //private void OnTriggerStay2D(Collider2D collision)
@@ -90,36 +89,36 @@ public class Chair : MonoBehaviour
 
 
 
-    IEnumerator PlayerSit(PlayerController playerSC)
-    {
-        //while (roopSit)
-        //{
-        while (true)
-        {
-            yield return new WaitForSeconds(0.2f);
-            if (setSitAni)
-            {
-                setSitAni = false;
-                //playerSC.PlayerSitChair(true);
-                //playerSC.enabled = false;
-                Debug.Log("[Chair] PlayerSit : I'm Sited");
-                break;
-            }
-        }
+    //IEnumerator PlayerSit(PlayerController playerSC)
+    //{
+    //    //while (roopSit)
+    //    //{
+    //    while (true)
+    //    {
+    //        yield return new WaitForSeconds(0.2f);
+    //        if (setSitAni)
+    //        {
+    //            setSitAni = false;
+    //            //playerSC.PlayerSitChair(true);
+    //            //playerSC.enabled = false;
+    //            Debug.Log("[Chair] PlayerSit : I'm Sited");
+    //            break;
+    //        }
+    //    }
 
-        while (true)
-        {
-            yield return new WaitForSeconds(0.2f);
-            if (setSitAni)
-            {
-                setSitAni = false;
-                Debug.Log("[Chair] PlayerSit : I'm not Sited");
-                //playerSC.PlayerSitChair(false);
-                //playerSC.enabled = true;
-                break;
-            }
+    //    while (true)
+    //    {
+    //        yield return new WaitForSeconds(0.2f);
+    //        if (setSitAni)
+    //        {
+    //            setSitAni = false;
+    //            Debug.Log("[Chair] PlayerSit : I'm not Sited");
+    //            //playerSC.PlayerSitChair(false);
+    //            //playerSC.enabled = true;
+    //            break;
+    //        }
 
-        }
-        //}
-    }
+    //    }
+    //    //}
+    //}
 }

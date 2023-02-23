@@ -21,6 +21,8 @@ public class PlayerBallController : MonoBehaviour
             case GioleData.TAG_NAME_MONSTER:        // Attack Monster
                 collision.gameObject.GetComponent<MonsterClass>().HitMonster(30);
                 break;
+            default:
+                break;
         }
     }
 
