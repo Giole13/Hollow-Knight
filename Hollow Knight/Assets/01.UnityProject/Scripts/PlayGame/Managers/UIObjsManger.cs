@@ -87,7 +87,10 @@ public class UIObjsManger : MonoBehaviour
         coinNumObj.SetTmpText($"{coinInt}");
     }
 
-
+    public int GetCoin()
+    {
+        return coinInt;
+    }
 
 
 

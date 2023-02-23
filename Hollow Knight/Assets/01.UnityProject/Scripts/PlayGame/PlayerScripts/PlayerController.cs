@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -424,5 +425,10 @@ public class PlayerController : MonoBehaviour
         playerAni.SetBool("PickUp", setAni_);
     }
 
+
+    public int GetPlayerPresentCoin()
+    {
+        return uIObjsScript.GetCoin();
+    }
 
 }   // PlayerContorller()

@@ -7,6 +7,9 @@ public class Chair : MonoBehaviour
     private bool setSitAni = true;
     private bool roopSit = false;
 
+    public string thisareaName;
+
+
     PlayerController playerCTR = default;
 
     private void Awake()
@@ -41,12 +44,13 @@ public class Chair : MonoBehaviour
         if (roopSit && Input.GetKeyDown(KeyCode.UpArrow))
         {
             playerCTR.PlayerVeloCityStop();
-            // Sit Active
+            // Sit Active, Save Data
             if (setSitAni)
             {
                 setSitAni = false;
                 playerCTR.PlayerSitChair(true);
                 playerCTR.enabled = false;
+                SaveData();
             }
             // Sit Deactive
             else if (!setSitAni)
@@ -56,7 +60,6 @@ public class Chair : MonoBehaviour
         }
     }
 
-
     IEnumerator GetUpChair()
     {
         setSitAni = true;
@@ -64,6 +67,31 @@ public class Chair : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         playerCTR.enabled = true;
     }
+
+
+    // Sited to Saving Data
+    private void SaveData()
+    {
+        // Player Save
+        DataManager.Instance.nowPlayer.playerObj =
+            playerCTR.gameObject;
+        // Level Save
+        DataManager.Instance.nowPlayer.levelObj = 
+            transform.parent.gameObject;
+        // Present Aera Name Save
+        DataManager.Instance.nowPlayer.areaName =
+            thisareaName;
+        // Present Player Coin Save
+        DataManager.Instance.nowPlayer.coin =
+            playerCTR.GetPlayerPresentCoin();
+        // Player Pos Save
+        DataManager.Instance.nowPlayer.playerPos =
+            playerCTR.transform.position;
+
+        // File Save
+        DataManager.Instance.SaveData();
+    }
+
 
     //private void OnTriggerStay2D(Collider2D collision)
     //{
