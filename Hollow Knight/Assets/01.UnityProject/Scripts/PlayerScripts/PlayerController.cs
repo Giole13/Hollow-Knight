@@ -416,18 +416,13 @@ public class PlayerController : MonoBehaviour
     public void PlayerTalkNPC(bool setAni_)
     {
         playerAni.SetBool("LookUp", setAni_);
-        //if (setAni_)
-        //{
-        //    //  + y0.2 , rb.Type = Kenetic
-        //    rb.position += Vector2.up * 0.2f;
-        //    rb.bodyType = RigidbodyType2D.Kinematic;
-        //}
-        //else if (!setAni_)
-        //{
-        //    rb.bodyType = RigidbodyType2D.Dynamic;
-        //}
+        
     }
 
+    public void PlayerPickUpItem(bool setAni_)
+    {
+        playerAni.SetBool("PickUp", setAni_);
+    }
 
 
 }   // PlayerContorller()

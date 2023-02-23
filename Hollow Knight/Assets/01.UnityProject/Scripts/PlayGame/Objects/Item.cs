@@ -1,24 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
-public class Quirrel : MonoBehaviour
+public class Item : MonoBehaviour
 {
-    bool setTalkBool = true;
+    bool setPickUpBool = true;
     private bool roopSit = false;
 
     PlayerController playerCTR = default;
 
 
-    private void Awake()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Set Layer
-        this.gameObject.layer = 7;
+        Debug.Log("[Item] OnCollisionEnter2D : Collision On!");
     }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("[Item] OntriggerEnter2D : trigger On!");
         if (collision.transform.tag.Equals(GioleData.TAG_NAME_PLAYERBODY))
         {
             roopSit = true;
@@ -29,9 +28,11 @@ public class Quirrel : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("[Item] OntriggerEnter2D : trigger Off!");
         if (collision.transform.tag.Equals(GioleData.TAG_NAME_PLAYERBODY))
         {
             roopSit = false;
+            
         }
     }
 
@@ -39,30 +40,30 @@ public class Quirrel : MonoBehaviour
 
     private void Update()
     {
-        // Player in Sit Collider2D
+        // Player in Item Collider2D
         if (roopSit && Input.GetKeyDown(KeyCode.UpArrow))
         {
             playerCTR.PlayerVeloCityStop();
-            // talk Active
-            if (setTalkBool)
+            // Pick Up Active
+            if (setPickUpBool)
             {
-                setTalkBool = false;
-                playerCTR.PlayerTalkNPC(true);
+                setPickUpBool = false;
+                playerCTR.PlayerPickUpItem(true);
                 playerCTR.enabled = false;
             }
-            // talk Deactive
-            else if (!setTalkBool)
+            // Pick Up Deactive
+            else if (!setPickUpBool)
             {
-                StartCoroutine(TalkNPC());
+                StartCoroutine(PickUp());
             }
         }
     }
 
 
-    IEnumerator TalkNPC()
+    IEnumerator PickUp()
     {
-        setTalkBool = true;
-        playerCTR.PlayerTalkNPC(false);
+        setPickUpBool = true;
+        playerCTR.PlayerPickUpItem(false);
         yield return new WaitForSeconds(0.5f);
         playerCTR.enabled = true;
     }
