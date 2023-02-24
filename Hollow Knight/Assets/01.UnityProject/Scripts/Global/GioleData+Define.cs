@@ -9,6 +9,7 @@ public static partial class GioleData
     public const string OBJ_NAME_PLAYER = "Player";
     public const string OBJ_NAME_GAMEMANAGER = "GameManager";
     public const string OBJ_NAME_UIOBJS = "UIObjs";
+    public const string OBJ_NAME_INVENTORYUI = "UI_Inventory";
 
 
     public const string TAG_NAME_PLAYERATTACK = "PlayerAttack";

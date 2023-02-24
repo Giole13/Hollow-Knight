@@ -4,29 +4,90 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private GameObject _PlayerObj = default;
+    private GameObject playerObj = default;
+    private GameObject inventoryUI = default;
 
     public bool _DebugMode = false;
+
+
+    private bool activeWindow = false;
 
     private void Awake()
     {
         // 인스턴스 초기화
-        _PlayerObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_PLAYER);
+        playerObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_PLAYER);
+        inventoryUI = GioleFunc.GetRootObj(GioleData.OBJ_NAME_INVENTORYUI);
 
-        _PlayerObj.SetActive(false);
+
+        inventoryUI.SetActive(false);
+        playerObj.SetActive(false);
 
         if (_DebugMode)
         {
             GioleFunc.GetRootObj("Title_Main_Menu").FindChildObj("MenuCanvas").
-                GetComponent<MenuButtonManager>().OnClickLoadGame();
-
+                GetComponent<MenuButtonManager>().OnClickNewGame();
         }
+
+
     }
+
+    private void Update()
+    {
+
+        if (playerObj.activeSelf)
+        {
+            // 창이 꺼져있으면 켜줌
+            if (Input.GetKeyDown(KeyCode.Tab) && !activeWindow)
+            {
+                activeWindow = true;
+                inventoryUI.SetActive(true);
+                playerObj.GetComponent<PlayerController>().PlayerVeloCityStop();
+                playerObj.GetComponent<PlayerController>().enabled = false;
+            }
+            // 창이 켜져있으면 꺼줌
+            else if (Input.GetKeyDown(KeyCode.Escape) && activeWindow)
+            {
+                activeWindow = false;
+                inventoryUI.SetActive(false);
+                playerObj.GetComponent<PlayerController>().enabled = true;
+            }
+        }
+
+
+        // 인벤토리 창을 열었을 때
+        //if (activeWindow)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //    {
+
+        //    }
+
+        //    if (Input.GetKeyDown(KeyCode.RightArrow))
+        //    {
+
+        //    }
+
+        //    if (Input.GetKeyDown(KeyCode.UpArrow))
+        //    {
+
+        //    }
+
+        //    if (Input.GetKeyDown(KeyCode.DownArrow))
+        //    {
+
+        //    }
+        //}
+    }
+
+
+
+
+
 
     // 새로운 게임을 시작했을 때
     public void ActivePlayer()
     {
-        _PlayerObj.SetActive(true);
+        playerObj.SetActive(true);
         //_PlayerObj.transform.position = DataManager.Instance.nowPlayer.playerPos.position;
     }
 
@@ -35,13 +96,15 @@ public class GameManager : MonoBehaviour
     {
         if (player_ == null || player_ == default)
         {
-            _PlayerObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_PLAYER);
+            playerObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_PLAYER);
         }
         else
         {
-            _PlayerObj = player_;
+            playerObj = player_;
         }
-        _PlayerObj.SetActive(true);
-        _PlayerObj.transform.position = DataManager.Instance.nowPlayer.playerPos;
+        playerObj.SetActive(true);
+        playerObj.transform.position = DataManager.Instance.nowPlayer.playerPos;
     }
+
+
 }

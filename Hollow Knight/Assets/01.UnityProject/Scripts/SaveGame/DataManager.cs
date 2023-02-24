@@ -38,6 +38,7 @@ public class DataManager : GioleSingletone<DataManager>
 {
     public PlayerData nowPlayer = new PlayerData();
 
+    // 경로 변수
     public string path;
     string fileName = "save";
     public int nowSlot;
@@ -55,6 +56,7 @@ public class DataManager : GioleSingletone<DataManager>
     // 데이터 저장하기
     public void SaveData()
     {
+        // Json 파일로 변환 후 저장
         string data = JsonUtility.ToJson(nowPlayer);
         File.WriteAllText(path + nowSlot.ToString(), data);
     }
@@ -62,6 +64,7 @@ public class DataManager : GioleSingletone<DataManager>
     // 데이터 불러오기
     public void LoadData()
     {
+        // Json 파일로 불러온 후 Class로 변환
         string data = File.ReadAllText(path + nowSlot.ToString());
         nowPlayer = JsonUtility.FromJson<PlayerData>(data);
     }
@@ -69,6 +72,7 @@ public class DataManager : GioleSingletone<DataManager>
     // 데이터 초기화
     public void DataNewInit()
     {
+        // 다른 데이터를 불러오기 위해서 가상의 값으로 초기화
         nowSlot = -1;
         nowPlayer = new PlayerData();
     }
@@ -76,6 +80,7 @@ public class DataManager : GioleSingletone<DataManager>
     // 데이터 삭제
     public void RemoveData()
     {
+        // 해당 경로의 해당 파일을 삭제
         File.Delete(path + nowSlot.ToString());
     }
 }
