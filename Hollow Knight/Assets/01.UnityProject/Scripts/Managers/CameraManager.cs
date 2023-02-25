@@ -8,15 +8,13 @@ public class CameraManager : MonoBehaviour
 
     Transform playerTransform = default;
 
-    private const float CAMERA_MOVE_SPEED = 10f;
+    private const float CAMERA_MOVE_SPEED = 7f;
 
     private void Awake()
     {
         playerTransform = GioleFunc.GetRootObj("Player").transform;
         gameObject.SetActive(false);
     }
-
-
 
 
 

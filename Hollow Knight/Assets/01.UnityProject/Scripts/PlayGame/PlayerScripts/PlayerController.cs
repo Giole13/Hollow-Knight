@@ -11,7 +11,16 @@ public class PlayerController : MonoBehaviour
     private float yInput;
     private UIObjsManger uIObjsScript = default;
 
-    public float speed;
+    private float playerSpeed;
+
+    public float speed
+    {
+        get { return playerSpeed; }
+
+        private set { playerSpeed = value; }
+    }
+    
+
     public float jumpForce;
 
     [SerializeField]
@@ -74,7 +83,7 @@ public class PlayerController : MonoBehaviour
         playerbody = gameObject.FindChildObj("Body");
 
         // initialize variable
-        speed = 7f;
+        speed = 5f;
         jumpForce = 10f;
         checkRadius = 0.2f;
         jumpTime = 0.3f;

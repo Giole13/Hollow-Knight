@@ -13,6 +13,7 @@ public class DoorController : MonoBehaviour
 
     private const float ARRIVALTIME = 0.5f;
     private const float LERPDISTANCE = 1f;
+    private float speed;
 
 
     private void Awake()
@@ -41,6 +42,7 @@ public class DoorController : MonoBehaviour
     {
         Rigidbody2D rb_ = player_.GetComponent<Rigidbody2D>();
         PlayerController playerScript_ = player_.GetComponent<PlayerController>();
+        speed = playerScript_.speed;
         playerScript_.enabled = false;
 
         if (!vertical)
@@ -48,13 +50,13 @@ public class DoorController : MonoBehaviour
             if (reverse == false)
             {
                 player_.transform.position = new Vector2(nextDoor.transform.position.x + 1f, nextDoor.transform.position.y);
-                rb_.velocity = Vector2.right * 7f;
+                rb_.velocity = Vector2.right * speed;
                 yield return new WaitForSecondsRealtime(ARRIVALTIME);
             }
             else if (reverse == true)
             {
                 player_.transform.position = new Vector2(nextDoor.transform.position.x - 1f, nextDoor.transform.position.y);
-                rb_.velocity = Vector2.left * 7f;
+                rb_.velocity = Vector2.left * speed;
                 yield return new WaitForSecondsRealtime(ARRIVALTIME);
             }
         }

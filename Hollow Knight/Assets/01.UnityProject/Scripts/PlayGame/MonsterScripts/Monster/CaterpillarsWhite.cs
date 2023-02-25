@@ -37,8 +37,8 @@ public class CaterpillarsWhite : MonsterClass
         rb.velocity = new Vector2(-speed, rb.velocity.y);
         transform.localScale = new Vector3(-1f, 1f, 1f);
         moveDir = -1f;
-        transform.position = transform.parent.gameObject.FindChildObj("Caterpillars_White_StartPos").
-            transform.position;
+        //transform.position = transform.parent.gameObject.FindChildObj("Caterpillars_White_StartPos").
+        //    transform.position;
 
         // 몬스터 상태 변경
         //monState = MonsterState.ALIVE;
