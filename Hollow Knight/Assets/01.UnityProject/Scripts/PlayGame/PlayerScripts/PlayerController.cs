@@ -48,9 +48,10 @@ public class PlayerController : MonoBehaviour
         get { return playerViewHorizontal; }
     }
 
-
-    
-
+    //private void OnEnable()
+    //{
+    //    GioleFunc.GetRootObj("PlayerCamera").SetActive(true);
+    //}
 
     public void PlayerVeloCityStop()
     {
@@ -119,6 +120,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
     IEnumerator BallFire()
     {
         skillCool = false;
@@ -141,8 +143,11 @@ public class PlayerController : MonoBehaviour
         skillCool = true;
     }
 
+
+
     IEnumerator Dash()
     {
+        playerAni.SetBool("Dash", true);
         skillCool = false;
         switch (playerViewHorizontal)
         {
@@ -156,11 +161,13 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = 0f;
         enabled = false;
         yield return new WaitForSeconds(0.5f);
+        playerAni.SetBool("Dash", false);
         enabled = true;
         rb.gravityScale = 5f;
         rb.velocity = Vector2.zero;
         skillCool = true;
     }
+
 
     // Player Input Key
     private void InputKeyValue()
@@ -245,6 +252,7 @@ public class PlayerController : MonoBehaviour
         {
             //// Subtract JumpCount
             //--jumpCount;
+            playerAni.SetBool("Jump_Down", false);
             isJumping = true;
             jumpTimeCounter = jumpTime;
             rb.velocity = Vector2.up * jumpForce;
@@ -370,6 +378,42 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // Player Hit TimeDlay
+    IEnumerator TimeDelay()
+    {
+        // 맞으면 무적
+        enEnemy = false;
+        // 시간 정지
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(0.3f);
+        // 시간 정지 해제
+        Time.timeScale = 1f;
+        // 밀려나는 로직
+        switch (playerViewHorizontal)
+        {
+            // 왼쪽을 바라보면 오른쪽으로 밀려남
+            case PlayerViewDir.LEFT:
+                Debug.Log("[PlayerController] TimeDaly : Left to right push");
+                rb.AddForce(Vector2.right * 7f);
+                enabled = false;
+                break;
+
+            // 오른쪽을 바라모면 왼쪽으로 밀려남
+            case PlayerViewDir.RIGHT:
+                Debug.Log("[PlayerController] TimeDaly : Right to left push");
+                rb.AddForce(Vector2.left * 7f);
+                enabled = false;
+                break;
+        }
+        yield return new WaitForSecondsRealtime(0.3f);
+        rb.velocity = Vector2.zero;
+        enabled = true;
+
+        // 무적 시간
+        yield return new WaitForSeconds(2f);
+        // 무적 해제
+        enEnemy = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -386,16 +430,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Player Hit TimeDlay
-    IEnumerator TimeDelay()
-    {
-        enEnemy = false;
-        Time.timeScale = 0f;
-        yield return new WaitForSecondsRealtime(0.3f);
-        Time.timeScale = 1f;
-        yield return new WaitForSeconds(2f);
-        enEnemy = true;
-    }
 
 
     public void PlayerSitChair(bool setAni_)
@@ -417,7 +451,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerTalkNPC(bool setAni_)
     {
         playerAni.SetBool("LookUp", setAni_);
-        
+
     }
 
     public void PlayerPickUpItem(bool setAni_)

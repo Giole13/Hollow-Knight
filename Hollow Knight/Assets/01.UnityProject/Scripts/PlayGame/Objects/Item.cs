@@ -43,7 +43,6 @@ public class Item : MonoBehaviour
         // Player in Item Collider2D
         if (roopSit && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            playerCTR.PlayerVeloCityStop();
             // Pick Up Active
             if (setPickUpBool)
             {
@@ -56,14 +55,16 @@ public class Item : MonoBehaviour
             {
                 StartCoroutine(PickUp());
             }
+            playerCTR.PlayerVeloCityStop();
         }
     }
 
 
     IEnumerator PickUp()
     {
-        setPickUpBool = true;
         playerCTR.PlayerPickUpItem(false);
+        yield return new WaitForSeconds(0.5f);
+        setPickUpBool = true;
         yield return new WaitForSeconds(0.5f);
         playerCTR.enabled = true;
     }

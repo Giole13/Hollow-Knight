@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
+
         if (playerObj.activeSelf)
         {
             // 창이 꺼져있으면 켜줌
@@ -88,12 +89,15 @@ public class GameManager : MonoBehaviour
     public void ActivePlayer()
     {
         playerObj.SetActive(true);
+        GioleFunc.GetRootObj("PlayerCamera").SetActive(true);
+
         //_PlayerObj.transform.position = DataManager.Instance.nowPlayer.playerPos.position;
     }
 
     // 게임을 로드했을 때
     public void ActivePlayer(GameObject player_)
     {
+        GioleFunc.GetRootObj("PlayerCamera").SetActive(true);
         if (player_ == null || player_ == default)
         {
             playerObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_PLAYER);
