@@ -63,9 +63,9 @@ public class BrokenVessel : MonsterClass
         }
         else if (!xCheck)
         {
-            if( 0 < -rb.position.x + playerRb.position.x && -rb.position.x + playerRb.position.x < 1)
+            if (0 < -rb.position.x + playerRb.position.x && -rb.position.x + playerRb.position.x < 1)
             {
-                xCheck= true;
+                xCheck = true;
             }
         }
     }
@@ -125,7 +125,7 @@ public class BrokenVessel : MonsterClass
                 StartCoroutine(JumpDown());
                 break;
             case BrokenVesselPattoern.FIRESPHERE:
-                StartCoroutine(FireShpere());
+                StartCoroutine(FireSphere());
                 break;
         }
         RandomPT();
@@ -149,9 +149,12 @@ public class BrokenVessel : MonsterClass
 
     IEnumerator Jump()
     {
+        Debug.Log("[BrokenVessel] Jump : Active");
         float xpos = (playerRb.position - rb.position).x / 2f;
         float ypos = 13f;
         rb.velocity = new Vector2(xpos, ypos);
+        //yield return new WaitForSeconds(0.2f);
+        //rb.velocity = Vector2.zero;
 
         while (true)
         {
@@ -171,8 +174,9 @@ public class BrokenVessel : MonsterClass
 
     IEnumerator GroundDash()
     {
+        Debug.Log("[BrokenVessel] GroundDash : Active");
 
-        Vector2 dir = new Vector2((playerRb.position.x - rb.position.x), rb.position.y);
+        Vector2 dir = new Vector2((playerRb.position.x - rb.position.x), rb.velocity.y);
         rb.velocity = dir;
 
         yield return new WaitForSeconds(0.5f);
@@ -182,9 +186,11 @@ public class BrokenVessel : MonsterClass
     // 점프 후 대쉬공격
     IEnumerator JumpDash()
     {
+        Debug.Log("[BrokenVessel] JumpDash : Active");
+
         rb.velocity = Vector2.up * 10f;
         yield return new WaitForSeconds(0.5f);
-        Vector2 dir = new Vector2((playerRb.position.x - rb.position.x), rb.position.y);
+        Vector2 dir = new Vector2((playerRb.position.x - rb.position.x), 0f);
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.velocity = dir;
         yield return new WaitForSeconds(0.5f);
@@ -208,6 +214,8 @@ public class BrokenVessel : MonsterClass
         float xpos = (playerRb.position - rb.position).x;
         float ypos = 13f;
         rb.velocity = new Vector2(xpos, ypos);
+        //yield return new WaitForSeconds(0.2f);
+        //rb.velocity = Vector2.zero;
 
         while (true)
         {
@@ -218,19 +226,19 @@ public class BrokenVessel : MonsterClass
                 rb.velocity = Vector2.down * 10f;
                 break;
             }
-        }
-        while (true)
-        {
-            yield return new WaitForSeconds(0.2f);
-            if (isGrounded) break;
+            else if (isGrounded)
+            {
+                break;
+            }
         }
         xCheck = false;
         Actting();
     }
 
     // 멈춰서 구체 발사
-    IEnumerator FireShpere()
+    IEnumerator FireSphere()
     {
+        Debug.Log("[BrokenVessel] FireSphere : Active");
         yield return new WaitForSeconds(3f);
     }
 

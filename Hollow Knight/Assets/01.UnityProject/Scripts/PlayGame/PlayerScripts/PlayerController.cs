@@ -328,6 +328,7 @@ public class PlayerController : MonoBehaviour
     {
         slashAllow = false;
         obj_.SetActive(true);
+        playerAni.SetBool("Attack", true);
         switch (playerViewVertical)
         {
             case PlayerViewDir.UP:
@@ -347,6 +348,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(setTime);
         slashAllow = true;
         obj_.SetActive(false);
+        playerAni.SetBool("Attack", false);
     }
 
 
