@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
     private GameObject playerObj = default;
     private GameObject inventoryUI = default;
 
-    public bool _DebugMode = false;
-
+    public bool debugMode = false;
+    public GameObject debugLevel = default;
 
     private bool activeWindow = false;
 
@@ -22,10 +22,11 @@ public class GameManager : MonoBehaviour
         inventoryUI.SetActive(false);
         playerObj.SetActive(false);
 
-        if (_DebugMode)
+        if (debugMode)
         {
+            // 디버그 전용 함수
             GioleFunc.GetRootObj("Title_Main_Menu").FindChildObj("MenuCanvas").
-                GetComponent<MenuButtonManager>().OnClickNewGame();
+                GetComponent<MenuButtonManager>().DebugStart(debugLevel);
         }
 
 

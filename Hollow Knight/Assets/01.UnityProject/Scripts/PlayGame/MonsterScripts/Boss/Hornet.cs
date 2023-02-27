@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Hornet : MonsterClass
 {
     private LayerMask whatIsGround = default;
-
+    private LayerMask playerLayer = default;
 
     private Rigidbody2D playerRb = default;
     private Rigidbody2D rb = default;
     private Rigidbody2D neilRb = default;
 
+    private SpriteRenderer hnSR = default;
 
     private Transform feetPos = default;
 
@@ -18,8 +20,8 @@ public class Hornet : MonsterClass
     private float jumpForce;
     private float checkRadius = default;
 
-
-
+    private float nextTurnTime = 0.5f;
+    private GameObject sphereEffect = default;
 
     public bool isGrounded = false;
 
@@ -27,6 +29,7 @@ public class Hornet : MonsterClass
 
     //private HornetState hnState = default;
 
+    private Animator hnAni;
 
     void Awake()
     {
@@ -36,6 +39,11 @@ public class Hornet : MonsterClass
         feetPos = gameObject.FindChildObj("FeetPos").transform;
         whatIsGround = LayerMask.GetMask("Ground");
         neilRb = gameObject.FindChildObj("Neil").GetComponent<Rigidbody2D>();
+        hnAni = GetComponent<Animator>();
+        playerLayer = LayerMask.GetMask("Player");
+        sphereEffect = gameObject.FindChildObj("SphereEffect");
+        hnSR = GetComponent<SpriteRenderer>();
+
 
         // Init Var
         speed = 7f;
@@ -46,6 +54,7 @@ public class Hornet : MonsterClass
         // Instance Setting
         gameObject.SetActive(false);
         neilRb.gameObject.SetActive(false);
+        sphereEffect.SetActive(false);
     }
 
 
@@ -83,9 +92,21 @@ public class Hornet : MonsterClass
 
     private void Actting()
     {
+        Vector3 back_ = (rb.position - playerRb.position).normalized;
+
+        if (back_.x < 0)
+        {
+            hnSR.flipX = true;
+        }
+        else
+        {
+            hnSR.flipX = false;
+        }
+
         switch (hornetPT)
         {
             case HornetPattern.IDLE:
+
                 StartCoroutine(BackStep());
                 break;
             case HornetPattern.MOVE:
@@ -121,13 +142,33 @@ public class Hornet : MonsterClass
         hornetPT = (HornetPattern)i;
     }
 
+
     IEnumerator BackStep()
     {
+        if (hornetPT == HornetPattern.IDLE)
+        {
+            yield return new WaitForSeconds(2f);
+        }
         Vector2 back_ = new Vector2((rb.position.x - playerRb.position.x), 0f).normalized;
-        rb.velocity = back_ * 7f + new Vector2(0f, 5f);
+        // Back Step Start
+        rb.velocity = back_ * 7f + new Vector2(0f, 3f);
+        //transform.localScale = new Vector2(back_.x, 1f);
+        hnAni.SetBool("BackStep", true);
         yield return new WaitForSeconds(0.5f);
         rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(1f);
+        while (true)
+        {
+            if (isGrounded)
+            {
+                hnAni.SetBool("BackStep", false);
+                break;
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        yield return new WaitForSeconds(nextTurnTime);
         Actting();
     }
 
@@ -137,41 +178,62 @@ public class Hornet : MonsterClass
         switch (i)
         {
             case 0:
-                rb.velocity = Vector2.left * speed;
+                rb.velocity = Vector2.right * speed;
+                hnSR.flipX = true;
+                //transform.localScale = new Vector2(-1f, 1f);
                 break;
             case 1:
-                rb.velocity = Vector2.right * speed;
+                rb.velocity = Vector2.left * speed;
+                hnSR.flipX = false;
+                //transform.localScale = new Vector2(1f, 1f);
                 break;
         }
+        hnAni.SetBool("Run", true);
         yield return new WaitForSeconds(0.5f);
         rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(1f);
+        hnAni.SetBool("Run", false);
+        yield return new WaitForSeconds(nextTurnTime);
         Actting();
     }
 
+    // 플레이어를 향해 점프
     IEnumerator JumpMove()
     {
-        int i = Random.Range(0, 1 + 1);
-        switch (i)
+        //int i = Random.Range(0, 1 + 1);
+        // Jump Start
+        hnAni.SetBool("Jump", true);
+
+        Vector2 dir = (playerRb.position - rb.position).normalized;
+        rb.velocity = new Vector2(dir.x * speed, jumpForce);
+
+
+        //switch (i)
+        //{
+        //    case 0:
+        //        rb.velocity = Vector2.right * speed;
+        //        rb.velocity += Vector2.up * jumpForce;
+        //        transform.localScale = new Vector2(-1f, 1f);
+        //        break;
+        //    case 1:
+        //        rb.velocity = Vector2.left * speed;
+        //        rb.velocity += Vector2.up * jumpForce;
+        //        transform.localScale = new Vector2(1f, 1f);
+        //        break;
+        //}
+
+        while (true)
         {
-            case 0:
-                rb.velocity = Vector2.right * speed;
-                rb.velocity += Vector2.up * jumpForce;
+            yield return new WaitForSeconds(0.1f);
+            // Jump Stop
+            if (isGrounded)
+            {
+                rb.velocity = Vector2.zero;
+                hnAni.SetBool("Jump", false);
                 break;
-            case 1:
-                rb.velocity = Vector2.left * speed;
-                rb.velocity += Vector2.up * jumpForce;
-                break;
+            }
         }
 
-        yield return new WaitForSeconds(0.5f);
-        while (!isGrounded)
-        {
-            yield return new WaitForSeconds(0.5f);
-            if (isGrounded) break;
-        }
-        rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(nextTurnTime);
         Actting();
     }
 
@@ -179,76 +241,84 @@ public class Hornet : MonsterClass
     // 공중에서 360도 범위 공격
     IEnumerator JumpSphere()
     {
-        int i = Random.Range(0, 1 + 1);
-        switch (i)
+        // Jump Start
+
+        hnAni.SetBool("Jump", true);
+        Vector2 dir = (playerRb.position - rb.position).normalized;
+        rb.velocity = new Vector2(dir.x * speed, jumpForce);
+
+        while (true)
         {
-            case 0:
-                rb.velocity = Vector2.right * speed;
-                rb.velocity += Vector2.up * jumpForce;
+            yield return new WaitForSeconds(0.1f);
+            if (Physics2D.OverlapCircle(transform.position, 3f, playerLayer))
+            {
+                // 플레이어 식별 하면 에어공격
+                sphereEffect.SetActive(true);
+                hnAni.SetBool("SphereAttack", true);
+                rb.bodyType = RigidbodyType2D.Kinematic;
+                rb.velocity = Vector2.zero;
+                yield return new WaitForSeconds(2f);
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                hnAni.SetBool("SphereAttack", false);
+                sphereEffect.SetActive(false);
                 break;
-            case 1:
-                rb.velocity = Vector2.left * speed;
-                rb.velocity += Vector2.up * jumpForce;
+            }
+            // 땅에 도착하면 탈출
+            else if (isGrounded)
+            {
+                rb.velocity = Vector2.zero;
                 break;
+            }
         }
 
-        yield return new WaitForSeconds(1f);
-
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(2f);
-        rb.bodyType = RigidbodyType2D.Dynamic;
-
-        while (!isGrounded)
-        {
-            yield return new WaitForSeconds(0.5f);
-            if (isGrounded) break;
-        }
-        rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(1f);
+        hnAni.SetBool("Jump", false);
+        yield return new WaitForSeconds(nextTurnTime);
         Actting();
     }
 
     // 대쉬 패턴
     IEnumerator Dash()
     {
-
+        // Dash Start
+        hnAni.SetBool("GroundDash", true);
+        yield return new WaitForSeconds(1f);
         rb.velocity = new Vector2((playerRb.position.x - rb.position.x), 0f).normalized * speed * 2f;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
+        hnAni.SetBool("GroundDash", false);
         rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.6f);
         Actting();
     }
 
     // 점프후 플레이어에게 돌진
     IEnumerator JumpDash()
     {
-        int i = Random.Range(0, 1 + 1);
-        switch (i)
+        hnAni.SetBool("Jump", true);
+        Vector2 dir = (playerRb.position - rb.position).normalized;
+        rb.velocity = new Vector2(dir.x * speed, jumpForce);
+
+        // 1초 점프 후 공격
+        yield return new WaitForSeconds(1f);
+        rb.bodyType = RigidbodyType2D.Static;
+        hnAni.SetBool("AirDash", true);
+        yield return new WaitForSeconds(1f);
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.velocity = playerRb.position - rb.position;
+
+        while (true)
         {
-            case 0:
-                rb.velocity = Vector2.right * speed;
-                rb.velocity += Vector2.up * jumpForce;
-                yield return new WaitForSeconds(1f);
-                rb.velocity = playerRb.position - rb.position;
+            yield return new WaitForSeconds(0.1f);
+            if (isGrounded)
+            {
+                rb.velocity = Vector2.zero;
+                hnAni.SetBool("AirDash", false);
+                hnAni.SetBool("Jump", false);
                 break;
-            case 1:
-                rb.velocity = Vector2.left * speed;
-                rb.velocity += Vector2.up * jumpForce;
-                yield return new WaitForSeconds(1f);
-                rb.velocity = playerRb.position - rb.position;
-                break;
+            }
         }
 
-        yield return new WaitForSeconds(0.5f);
-        while (!isGrounded)
-        {
-            yield return new WaitForSeconds(0.5f);
-            if (isGrounded) break;
-        }
-        rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(nextTurnTime);
         Actting();
     }
 
@@ -256,12 +326,35 @@ public class Hornet : MonsterClass
     // 창 던지기
     IEnumerator Throw()
     {
-        Vector2 neilPoint = new Vector2(playerRb.position.x, transform.position.y);
+        if(10f > (playerRb.position - rb.position).magnitude)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.5f);
 
+        Vector3 back_ = (playerRb.position - rb.position).normalized;
+        //transform.localScale = new Vector3(-back_.x, 1f);
+
+        Vector2 neilPoint = new Vector2(playerRb.position.x, rb.position.y);
+        if (neilPoint.x >= 0)
+        {
+            // 양수
+            hnSR.flipX = true;
+            //transform.localScale = new Vector3(-1f, 1f);
+        }
+        else
+        {
+            hnSR.flipX = false;
+            //transform.localScale = new Vector3(1f, 1f);
+        }
 
         bool reverse = false;
         float index = 0.1f;
+        // Start Throw Neil
         neilRb.gameObject.SetActive(true);
+        hnAni.SetBool("Throw", true);
+        yield return new WaitForSeconds(1f);
+
         while (true)
         {
             yield return new WaitForSeconds(0.01f);
@@ -273,22 +366,24 @@ public class Hornet : MonsterClass
 
             if (reverse)
             {
-                index -= 0.01f;
+                index -= 0.03f;
             }
             else
             {
-                index += 0.01f;
+                index += 0.03f;
             }
 
-            if(0 > index)
+            if (0 > index)
             {
                 break;
             }
         }
+        // Stop Throw Neil
+        hnAni.SetBool("Throw", false);
         neilRb.gameObject.SetActive(false);
-        
-        Actting();
+        yield return new WaitForSeconds(0.8f);
 
+        Actting();
     }
 
     //private void ChangePT()

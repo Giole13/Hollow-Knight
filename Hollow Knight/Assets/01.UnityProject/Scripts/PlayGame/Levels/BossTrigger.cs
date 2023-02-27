@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class BossTrigger : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class BossTrigger : MonoBehaviour
         if (collision.transform.tag.Equals(GioleData.TAG_NAME_PLAYERBODY))
         {
             bossDoor.SetActive(true);
+            CameraManager cM_ = GioleFunc.GetRootObj("PlayerCamera").GetComponent<CameraManager>();
+            cM_.CSHandler = CameraState.BOSS;
+            cM_.BossFightView(gameObject.FindChildObj("Center"));
             // 박스 콜라이더 꺼주기
             GetComponent<BoxCollider2D>().enabled = false;
             StartCoroutine(BossAppearance());
@@ -40,8 +44,8 @@ public class BossTrigger : MonoBehaviour
         PlayerController player_ = GioleFunc.GetRootObj("Player").GetComponent<PlayerController>();
         player_.PlayerVeloCityStop();
         player_.enabled = false;
-        yield return new WaitForSecondsRealtime(2f);
         bossObj.SetActive(true);
+        yield return new WaitForSecondsRealtime(2f);
         player_.enabled = true;
     }
 
@@ -50,6 +54,8 @@ public class BossTrigger : MonoBehaviour
     {
         if (bossDoor != null)
         {
+            CameraManager cM_ = GioleFunc.GetRootObj("PlayerCamera").GetComponent<CameraManager>();
+            cM_.CSHandler = CameraState.NORMAL;
             bossDoor.SetActive(false);
         }
     }

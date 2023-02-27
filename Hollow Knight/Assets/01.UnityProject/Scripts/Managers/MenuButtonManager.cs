@@ -48,6 +48,19 @@ public class MenuButtonManager : MonoBehaviour
 
     }
 
+    public void DebugStart(GameObject level_)
+    {
+        // 디버그 모드
+        gameObject.transform.parent.gameObject.SetActive(false);
+        titleObj.SetActive(false);
+
+        currentLevel = DataManager.Instance.nowPlayer.levelObj;
+
+        level_.SetActive(true);
+        gameManager.ActivePlayer();
+        
+    }
+
     // 새로운 게임을 만들었을 때
     public void OnClickNewGame()
     {

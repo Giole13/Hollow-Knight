@@ -45,3 +45,8 @@ public enum MonsterState
 {
     ALIVE, DEAD
 }
+
+public enum CameraState
+{
+    NORMAL, BOSS
+}
