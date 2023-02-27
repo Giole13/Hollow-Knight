@@ -45,6 +45,7 @@ public class Hornet : MonsterClass
         effectObj = gameObject.FindChildObj("Effect");
         hnSR = GetComponent<SpriteRenderer>();
         effectAni = effectObj.GetComponent<Animator>();
+        effectObj.GetComponent<CircleCollider2D>().enabled = false;
 
         // Init Var
         speed = 7f;
@@ -256,6 +257,7 @@ public class Hornet : MonsterClass
             {
                 // 플레이어 식별 하면 에어공격
                 effectObj.SetActive(true);
+                effectObj.transform.localPosition= Vector2.zero;
                 effectAni.SetBool("Sphere", true);
                 hnAni.SetBool("SphereAttack", true);
                 rb.bodyType = RigidbodyType2D.Kinematic;
@@ -288,20 +290,24 @@ public class Hornet : MonsterClass
         yield return new WaitForSeconds(1f);
         // 여기서 돌진
         effectObj.SetActive(true);
-        if (dir_ > 0)
+        effectAni.SetTrigger("GroundDash");
+        if (dir_ < 0)
         {
             // 오른쪽에 적이 있다면
+            effectObj.GetComponent<SpriteRenderer>().flipX = true;
+            effectObj.transform.localPosition = new Vector2(-4.2f, 0.6f);
         }
         else
         {
             // 왼쪽에 적이 있다면
-            effectObj.transform.localPosition = new Vector2(transform.position.x+ 4.2f, transform.position.y + 0.5f);
+            effectObj.GetComponent<SpriteRenderer>().flipX = false;
+            effectObj.transform.localPosition = new Vector2(4.2f, 0.6f);
         }
         rb.velocity = new Vector2((playerRb.position.x - rb.position.x), 0f).normalized * speed * 2f;
 
         yield return new WaitForSeconds(0.8f);
         effectObj.SetActive(false);
-        effectObj.transform.localPosition = new Vector2(transform.position.x, transform.position.y);
+        effectObj.transform.localPosition = Vector2.zero;
         // 여기서 멈춤
         hnAni.SetBool("GroundDash", false);
         rb.velocity = Vector2.zero;
@@ -323,6 +329,20 @@ public class Hornet : MonsterClass
         hnAni.SetBool("AirDash", true);
         yield return new WaitForSeconds(1f);
         rb.bodyType = RigidbodyType2D.Dynamic;
+
+        // 플레이어에게 돌진
+        if(dir.x < 0f)
+        {
+            // 플레이어는 왼쪽에
+            hnSR.flipX = false;
+        }
+        else
+        {
+            hnSR.flipX = true;
+        }
+        
+
+
         rb.velocity = playerRb.position - rb.position;
 
         while (true)
@@ -425,7 +445,6 @@ public class Hornet : MonsterClass
             }
         }
         // Stop Throw Neil
-        effectObj.transform.position = new Vector2(rb.position.x, rb.position.y);
         hnAni.SetBool("Throw", false);
         neilRb.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.8f);
