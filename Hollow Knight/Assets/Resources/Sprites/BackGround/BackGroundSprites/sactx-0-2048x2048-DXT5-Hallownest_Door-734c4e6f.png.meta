@@ -1,0 +1,523 @@
+fileFormatVersion: 2
+guid: dccf1b39998e1dd4daf30b84cf92146a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_0
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1266
+        width: 264
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5dca5e44fe0cd446aa102377350d94b
+      internalID: 1358145137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_1
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 1542
+        width: 154
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 358fa2dbc3bf3834ca7e2526373f987e
+      internalID: -1827968972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_2
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1386
+        width: 162
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a2f4b4e37b53c645982175ab4974489
+      internalID: 690232244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_3
+      rect:
+        serializedVersion: 2
+        x: 1789
+        y: 1415
+        width: 259
+        height: 633
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08ed7b3e0dd158a4b9713c36bdfd0e29
+      internalID: -1852534188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_6
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 913
+        width: 269
+        height: 428
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1837a155b10c2144f99b12cb4fdeedf1
+      internalID: -620148231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_7
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 771
+        width: 237
+        height: 371
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 908af8ed175d7014fabd55fb7372f28b
+      internalID: 749057000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_8
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 1027
+        width: 189
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72b73645bca639342baac30e95614a04
+      internalID: 1815189251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_9
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 726
+        width: 146
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73687c3e361f35e4fbb81ed3d7a9f78b
+      internalID: 572078262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_10
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 3
+        width: 513
+        height: 914
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7015500f651de4f44ba2bbf1e156b6ea
+      internalID: -355986457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_11
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 874
+        width: 93
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d9be4e7a900d1144a8dba8c40a8d3d6
+      internalID: 226605943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_12
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 3
+        width: 513
+        height: 945
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6cfe4a9880146a46bb27c8abdcf0fbc
+      internalID: 1924695844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_13
+      rect:
+        serializedVersion: 2
+        x: 1071
+        y: 2
+        width: 514
+        height: 944
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e6fa6d8928be604988192abbc91ff2a
+      internalID: -838490350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_14
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 0
+        width: 346
+        height: 1009
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ea04dec7a036d041893403c1dfbde51
+      internalID: 1423826155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_15
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 499
+        width: 184
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf99f3800d148a4b9dea473223939aa
+      internalID: 34948096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 118
+        width: 112
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff5351e9cf47e794981b84fa88f4fea6
+      internalID: -1693722294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_17
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 122
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d9b82299bf16394c89841f2542f84cd
+      internalID: 971169408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_18
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 0
+        width: 98
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0275820be962bf45a98c2f989861c22
+      internalID: -1504260146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_1: -1827968972
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_3: -1852534188
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_13: -838490350
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_17: 971169408
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_11: 226605943
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_16: -1693722294
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_14: 1423826155
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_9: 572078262
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_0: 1358145137
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_18: -1504260146
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_6: -620148231
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_5: 1636814254
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_4: 153463458
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_7: 749057000
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_12: 1924695844
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_2: 690232244
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_15: 34948096
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_8: 1815189251
+      sactx-0-2048x2048-DXT5-Hallownest_Door-734c4e6f_10: -355986457
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

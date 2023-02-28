@@ -1,0 +1,785 @@
+fileFormatVersion: 2
+guid: e79e0b040a4e1fc49bb2827b3c72a991
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 621
+        width: 190
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b600db4f6ececbe44ac1847dd251e368
+      internalID: -2099620176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 605
+        width: 187
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aadf4f4ab4830447932402d2af349a3
+      internalID: 1086369557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_2
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 593
+        width: 144
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec2aadd0adb2ab640a4b3e9849effe3e
+      internalID: 219043320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_3
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 662
+        width: 187
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d96f74085e508484ba91092814d56f43
+      internalID: 1275041626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_4
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 539
+        width: 187
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 883877cd850864942bcac43a9b106876
+      internalID: 1080109795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_5
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 529
+        width: 178
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cecb9fa8175cdf8419082c9d17c96146
+      internalID: -1986848599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_6
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 609
+        width: 111
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f9e92d8970339e4a8d06f22ec47df9c
+      internalID: -744164355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_7
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 314
+        width: 187
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67e115ea043b9c241a5d4a631ad3c88c
+      internalID: -632280198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_8
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 302
+        width: 188
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30633d8a48d9ab24aab8c3512ac0b030
+      internalID: 1304200491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_9
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 288
+        width: 187
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89221a623ad053b4795fab4590920adb
+      internalID: -1390753119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_10
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 296
+        width: 181
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59e4d7864560ea14b88f6bdbc4a66860
+      internalID: 1250970190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_11
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 310
+        width: 175
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7acda12b79a13f444a70594e45f2258f
+      internalID: -674626132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_12
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 490
+        width: 78
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca549964866768e41a74af040947cc80
+      internalID: 516865585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_13
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 248
+        width: 103
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22f18b80800611444a2f81d02480eff8
+      internalID: -1251283308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_14
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 391
+        width: 62
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6ff47e6e4914f44aaf7b906f16c3b5e
+      internalID: -1879512636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_15
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 2
+        width: 192
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4924c75e29982064cbc37f02866b9ef7
+      internalID: -1803153070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_16
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 2
+        width: 188
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6510f0ad64455794f80735d4a9478410
+      internalID: -1732577711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_17
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 2
+        width: 187
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 001681ba0744bf34a9344264b735d6ab
+      internalID: 952081753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_18
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 2
+        width: 187
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f194924f06e4d4ca5cb6d6ebe0f3b8
+      internalID: 1467687068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_19
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 2
+        width: 188
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5dcdd2362aa82d40b8ff8185df6a2a4
+      internalID: -342427260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_20
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 2
+        width: 179
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e07f512ec893b840a6e340d24abd488
+      internalID: 154456113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_21
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 147
+        width: 82
+        height: 236
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42ecdd39b9f937248a1e1266c54f1f4b
+      internalID: -1377921037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_22
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 233
+        width: 87
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00b5855b6b926f44ca4a5b2807f7e3da
+      internalID: -2080812774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_23
+      rect:
+        serializedVersion: 2
+        x: 1390
+        y: 241
+        width: 82
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb60084f93a89b54883275b37181b8f7
+      internalID: -1635965838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_24
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 51
+        width: 89
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81c593508032cb24e874990284aaffeb
+      internalID: -1305449810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_25
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 2
+        width: 213
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3090a26b756ce6f4e9c3c2bdc42a00dd
+      internalID: 1016483482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_26
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 2
+        width: 106
+        height: 231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85e6e911c3fa0e044b7c90ac650b4be2
+      internalID: 353822358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_27
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 0
+        width: 195
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01d0d4001e6c569478211e9ff431f400
+      internalID: 428929661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-DXT5-Health Plants-43c08692_28
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 1
+        width: 68
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95e1e814341f93847a5c4ec56575224a
+      internalID: 962165955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_14: -1879512636
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_26: 353822358
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_10: 1250970190
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_9: -1390753119
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_16: -1732577711
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_25: 1016483482
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_7: -632280198
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_23: -1635965838
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_4: 1080109795
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_18: 1467687068
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_20: 154456113
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_28: 962165955
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_15: -1803153070
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_1: 1086369557
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_2: 219043320
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_11: -674626132
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_17: 952081753
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_0: -2099620176
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_19: -342427260
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_24: -1305449810
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_5: -1986848599
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_13: -1251283308
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_12: 516865585
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_3: 1275041626
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_21: -1377921037
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_27: 428929661
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_6: -744164355
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_8: 1304200491
+      sactx-0-2048x1024-DXT5-Health Plants-43c08692_22: -2080812774
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

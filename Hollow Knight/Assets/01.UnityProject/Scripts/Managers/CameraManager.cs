@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    Vector3 cameraPosition = new Vector3(0, 3, -10);
+    Vector3 cameraPosition = new Vector3(0, 2, -10);
 
     Transform playerTransform = default;
 
