@@ -11,7 +11,7 @@ public class DirtMouth : MonoBehaviour
     }
 
     
-    public void PopUpTitle()
+    public void OnTriggerEnter2D()
     {
         gameObject.SetActive(true);
         gameObject.SetTmpText("사라져 가는 흙의 마을");
