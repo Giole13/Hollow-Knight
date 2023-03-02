@@ -36,7 +36,12 @@ public class MonsterClass : MonoBehaviour
 
     private void Update()
     {
-        if(currentHp <= 0)
+        if ((currentHp <= 0) && (this.gameObject.name == "Hornet"))
+        {
+            GameManager gm_ = GioleFunc.GetRootObj("GameManager").GetComponent<GameManager>();
+            gm_.GameEnding();
+        }
+        else if(currentHp <= 0)
         {
             CoinDrop();
             gameObject.SetActive(false);

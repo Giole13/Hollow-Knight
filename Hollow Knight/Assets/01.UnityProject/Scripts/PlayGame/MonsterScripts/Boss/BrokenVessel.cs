@@ -20,7 +20,6 @@ public class BrokenVessel : MonsterClass
 
     private Transform feetPos = default;
 
-    private float speed;
     private float checkRadius = default;
 
     private bool xCheck = false;
@@ -38,7 +37,6 @@ public class BrokenVessel : MonsterClass
         neilObj = gameObject.FindChildObj("Neil");
 
         // Init Var
-        speed = 7f;
         jumpForce = 15f;
         checkRadius = 0.2f;
         brokenPT = BrokenVesselPattoern.IDLE;

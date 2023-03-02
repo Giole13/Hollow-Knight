@@ -14,8 +14,6 @@ public class PlayerBallController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("[PlayerBallController] OntriggerEnter2D : I'm Hit!");
-        Debug.Log($"[PlayerBallController] {collision.name}");
         switch (collision.transform.tag)
         {
             case GioleData.TAG_NAME_MONSTER:        // Attack Monster

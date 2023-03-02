@@ -152,8 +152,6 @@ public class PlayerController : MonoBehaviour
         skillCool = true;
     }
 
-
-
     IEnumerator Dash()
     {
         playerAni.SetBool("Dash", true);
@@ -176,7 +174,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.zero;
         skillCool = true;
     }
-
 
     // Player Input Key
     private void InputKeyValue()
@@ -369,7 +366,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Hit Player
@@ -430,7 +426,7 @@ public class PlayerController : MonoBehaviour
         switch (collision.transform.tag)
         {
             case GioleData.TAG_NAME_MONSTER:        // Attack Monster
-                collision.gameObject.GetComponent<MonsterClass>().HitMonster(attackPower);
+                collision.gameObject.GetComponent<MonsterClass>().HitMonster(attackPower);z
                 break;
             case GioleData.TAG_NAME_COIN:
                 uIObjsScript.CoinNumPlus("Small");
@@ -439,8 +435,6 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-
-
 
     public void PlayerSitChair(bool setAni_)
     {
@@ -457,7 +451,6 @@ public class PlayerController : MonoBehaviour
         }
     }   // PlayerSitChair()
 
-
     public void PlayerTalkNPC(bool setAni_)
     {
         playerAni.SetBool("LookUp", setAni_);
@@ -468,7 +461,6 @@ public class PlayerController : MonoBehaviour
     {
         playerAni.SetBool("PickUp", setAni_);
     }
-
 
     public int GetPlayerPresentCoin()
     {

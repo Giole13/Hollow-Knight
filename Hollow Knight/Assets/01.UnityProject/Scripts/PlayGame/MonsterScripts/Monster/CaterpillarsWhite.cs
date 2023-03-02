@@ -45,17 +45,6 @@ public class CaterpillarsWhite : MonsterClass
     }
 
 
-    //private void Update()
-    //{
-    //    //if(monState == MonsterState.DEAD)
-    //    //{
-    //    //SingletonManager.Instance.CoinPop(transform.position, 2);
-
-    //    //}
-    //}
-
-
-    
 
 
     IEnumerator MonsterMove()
@@ -72,17 +61,16 @@ public class CaterpillarsWhite : MonsterClass
     private void CheckCliff()
     {
         //Ray2D ray_ = new Ray2D(rb.position)
-        frontCheckLineStart = rb.position + new Vector2(moveDir, 1f);
+        frontCheckLineStart = rb.position + new Vector2(moveDir, 0.3f);
         RaycastHit2D checkCliffLineHit =
             Physics2D.Raycast(frontCheckLineStart, Vector2.down, rayDistance);
 
         if (!checkCliffLineHit)
-        {
+        {   
             ChangeDir();
         }
 
 
-        Debug.DrawRay(frontCheckLineStart, Vector2.down * rayDistance, Color.green);
 
     }
 

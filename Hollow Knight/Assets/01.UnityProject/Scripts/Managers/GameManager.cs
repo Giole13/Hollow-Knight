@@ -55,35 +55,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-
-        // 인벤토리 창을 열었을 때
-        //if (activeWindow)
-        //{
-        //    if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //    {
-
-        //    }
-
-        //    if (Input.GetKeyDown(KeyCode.RightArrow))
-        //    {
-
-        //    }
-
-        //    if (Input.GetKeyDown(KeyCode.UpArrow))
-        //    {
-
-        //    }
-
-        //    if (Input.GetKeyDown(KeyCode.DownArrow))
-        //    {
-
-        //    }
-        //}
     }
-
-
-
-
 
 
     // 새로운 게임을 시작했을 때
@@ -111,5 +83,17 @@ public class GameManager : MonoBehaviour
         playerObj.transform.position = DataManager.Instance.nowPlayer.playerPos;
     }
 
+    // 보스를 물리치고 엔딩을 볼때
+    public void GameEnding()
+    {
+        // 엔딩영상을 보고 메인메뉴로 돌아간다.
+        GioleFunc.GetRootObj("PlayerCamera").SetActive(false);
+        playerObj.SetActive(false);
+        
+
+        GameObject title = GioleFunc.GetRootObj("Title_Main_Menu");
+        title.SetActive(true);
+
+    }
 
 }

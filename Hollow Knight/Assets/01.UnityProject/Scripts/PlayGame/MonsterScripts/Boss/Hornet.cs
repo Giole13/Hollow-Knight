@@ -32,6 +32,8 @@ public class Hornet : MonsterClass
     private Animator hnAni;
     private Animator effectAni;
 
+    private bool ending = true;
+
     void Awake()
     {
         // Init Instance
@@ -60,37 +62,31 @@ public class Hornet : MonsterClass
     }
 
 
-    //public HornetState HNStateHanle
-    //{
-    //    get
-    //    {
-    //        return hnState;
-    //    }
-    //    set
-    //    {
-    //        hnState = value;
-    //    }
-    //}
-
     private void OnEnable()
     {
         //StartCoroutine(Pattern());
         //hnState = new HNIdleState(this);
         //hnState.Action(this);
         Actting();
-        Debug.Log("[Hornet] OnEnable : 호넷 등장!");
     }
 
+    // Boss Kill
     private void OnDisable()
     {
         BossTrigger bt = transform.parent.gameObject.FindChildObj("BossTrigger").GetComponent<BossTrigger>();
         bt.BossKill();
+        //GameManager gm_ = GioleFunc.GetRootObj("GameManager").GetComponent<GameManager>();
+        //gm_.GameEnding();
     }
 
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+        
     }
+
+
+
 
     private void Actting()
     {
@@ -240,7 +236,6 @@ public class Hornet : MonsterClass
         Actting();
     }
 
-
     // 공중에서 360도 범위 공격
     IEnumerator JumpSphere()
     {
@@ -257,7 +252,7 @@ public class Hornet : MonsterClass
             {
                 // 플레이어 식별 하면 에어공격
                 effectObj.SetActive(true);
-                effectObj.transform.localPosition= Vector2.zero;
+                effectObj.transform.localPosition = Vector2.zero;
                 effectAni.SetBool("Sphere", true);
                 hnAni.SetBool("SphereAttack", true);
                 rb.bodyType = RigidbodyType2D.Kinematic;
@@ -331,7 +326,7 @@ public class Hornet : MonsterClass
         rb.bodyType = RigidbodyType2D.Dynamic;
 
         // 플레이어에게 돌진
-        if(dir.x < 0f)
+        if (dir.x < 0f)
         {
             // 플레이어는 왼쪽에
             hnSR.flipX = false;
@@ -340,7 +335,7 @@ public class Hornet : MonsterClass
         {
             hnSR.flipX = true;
         }
-        
+
 
 
         rb.velocity = playerRb.position - rb.position;
@@ -361,7 +356,6 @@ public class Hornet : MonsterClass
         yield return new WaitForSeconds(nextTurnTime);
         Actting();
     }
-
 
     // 창 던지기
     IEnumerator Throw()
@@ -451,38 +445,5 @@ public class Hornet : MonsterClass
 
         Actting();
     }
-
-    //private void ChangePT()
-    //{
-    //    hornetPT = (HornetPattern)Random.Range(1, 6 + 1);
-    //}
-
-    //IEnumerator Pattern()
-    //{
-    //    while (true)
-    //    {
-
-    //        switch (hornetPT)
-    //        {
-    //            case HornetPattern.IDLE:
-    //                StartCoroutine(BackStep());
-    //                break;
-    //            case HornetPattern.DEATH:
-
-    //                break;
-    //        }
-    //        break;
-
-    //    }
-    //}
-
-
-    //IEnumerator BackStep()
-    //{
-    //    Vector2 back_ = (playerRb.position - rb.position).normalized;
-    //    rb.velocity = back_ * 7f;
-    //    ChangePT();
-    //    yield return null;
-    //}
 
 }

@@ -37,7 +37,12 @@ public class OrangeFly : MonsterClass
     }
 
 
-  
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawWireSphere(transform.position, radius);
+    //}
+
 
     IEnumerator PlayerTrace()
     {
