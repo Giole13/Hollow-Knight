@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    private Vector3 offset = new Vector3(0f, 2f, -10f);
+    private float smoothTime = 0.25f;
+    private Vector3 velocity = Vector3.zero;
+
+    [SerializeField] private Transform target;
+
+
     Vector3 cameraPosition = new Vector3(0, 2, -10);
 
     Transform playerTransform = default;
@@ -37,18 +44,21 @@ public class CameraManager : MonoBehaviour
 
 
 
-    void FixedUpdate()
+    void Update()
     {
 
         switch (cS)
         {
-            // ÀÏ¹Ý »óÅÂ
+            // ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½
             case CameraState.NORMAL:
-                transform.position = Vector3.Lerp(
-                    transform.position, playerTransform.position + cameraPosition,
-                    Time.deltaTime * CAMERA_MOVE_SPEED);
+                Vector3 targetPosition = target.position + offset;
+                transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+                // transform.position = playerTransform.position + cameraPosition;
+                // transform.position = Vector3.Lerp(
+                //     transform.position, playerTransform.position + cameraPosition,
+                //     Time.deltaTime * CAMERA_MOVE_SPEED);
                 break;
-            // º¸½º »óÅÂ
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             case CameraState.BOSS:
                 /* Do Nothing */
                 break;
@@ -58,7 +68,7 @@ public class CameraManager : MonoBehaviour
     }
 
 
-    // º¸½ºÀüÀÏ ¶§ Ä«¸Þ¶ó »óÅÂ º¯°æ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void BossFightView(GameObject centerObj_)
     {
         transform.position = new Vector3(

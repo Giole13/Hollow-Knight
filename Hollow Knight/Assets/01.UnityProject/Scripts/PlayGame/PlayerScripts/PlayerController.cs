@@ -101,8 +101,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        InputKeyValue();
 
+        InputKeyValue();
     }
 
     private void Update()
