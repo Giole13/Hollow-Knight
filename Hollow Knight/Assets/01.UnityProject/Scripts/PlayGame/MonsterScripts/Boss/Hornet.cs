@@ -82,7 +82,7 @@ public class Hornet : MonsterClass
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
-        
+
     }
 
 
@@ -94,12 +94,12 @@ public class Hornet : MonsterClass
 
         if (back_.x < 0)
         {
-            // ¿À¸¥ÂÊ¿¡ ÀûÀÌ ÀÖÀ½
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             hnSR.flipX = true;
         }
         else
         {
-            // ¿ÞÂÊ¿¡ ÀûÀÌ ÀÖÀ½
+            // ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             hnSR.flipX = false;
         }
 
@@ -136,7 +136,7 @@ public class Hornet : MonsterClass
 
     private void RandomPT()
     {
-        // ÆÐÅÏÀÇ °¡Áþ¼ö ¸¸Å­ ¼ýÀÚ Ãß°¡
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
         int i = Random.Range(1, 7 + 1);
         hornetPT = (HornetPattern)i;
     }
@@ -195,7 +195,7 @@ public class Hornet : MonsterClass
         Actting();
     }
 
-    // ÇÃ·¹ÀÌ¾î¸¦ ÇâÇØ Á¡ÇÁ
+    // ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     IEnumerator JumpMove()
     {
         //int i = Random.Range(0, 1 + 1);
@@ -236,7 +236,7 @@ public class Hornet : MonsterClass
         Actting();
     }
 
-    // °øÁß¿¡¼­ 360µµ ¹üÀ§ °ø°Ý
+    // ï¿½ï¿½ï¿½ß¿ï¿½ï¿½ï¿½ 360ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     IEnumerator JumpSphere()
     {
         // Jump Start
@@ -250,7 +250,7 @@ public class Hornet : MonsterClass
             yield return new WaitForSeconds(0.1f);
             if (Physics2D.OverlapCircle(transform.position, 3f, playerLayer))
             {
-                // ÇÃ·¹ÀÌ¾î ½Äº° ÇÏ¸é ¿¡¾î°ø°Ý
+                // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Äºï¿½ ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 effectObj.SetActive(true);
                 effectObj.transform.localPosition = Vector2.zero;
                 effectAni.SetBool("Sphere", true);
@@ -264,7 +264,7 @@ public class Hornet : MonsterClass
                 effectObj.SetActive(false);
                 break;
             }
-            // ¶¥¿¡ µµÂøÇÏ¸é Å»Ãâ
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ Å»ï¿½ï¿½
             else if (isGrounded)
             {
                 rb.velocity = Vector2.zero;
@@ -277,24 +277,24 @@ public class Hornet : MonsterClass
         Actting();
     }
 
-    // Ground ´ë½¬ ÆÐÅÏ
+    // Ground ï¿½ë½¬ ï¿½ï¿½ï¿½ï¿½
     IEnumerator Dash(float dir_)
     {
         // Dash Start
         hnAni.SetBool("GroundDash", true);
         yield return new WaitForSeconds(1f);
-        // ¿©±â¼­ µ¹Áø
+        // ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½
         effectObj.SetActive(true);
         effectAni.SetTrigger("GroundDash");
         if (dir_ < 0)
         {
-            // ¿À¸¥ÂÊ¿¡ ÀûÀÌ ÀÖ´Ù¸é
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½
             effectObj.GetComponent<SpriteRenderer>().flipX = true;
             effectObj.transform.localPosition = new Vector2(-4.2f, 0.6f);
         }
         else
         {
-            // ¿ÞÂÊ¿¡ ÀûÀÌ ÀÖ´Ù¸é
+            // ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½
             effectObj.GetComponent<SpriteRenderer>().flipX = false;
             effectObj.transform.localPosition = new Vector2(4.2f, 0.6f);
         }
@@ -303,37 +303,37 @@ public class Hornet : MonsterClass
         yield return new WaitForSeconds(0.8f);
         effectObj.SetActive(false);
         effectObj.transform.localPosition = Vector2.zero;
-        // ¿©±â¼­ ¸ØÃã
+        // ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½
         hnAni.SetBool("GroundDash", false);
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.8f);
         Actting();
     }
 
-    // Á¡ÇÁÈÄ ÇÃ·¹ÀÌ¾î¿¡°Ô µ¹Áø
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     IEnumerator JumpDash()
     {
-        // ´ë½¬ ·£µå°¡ 0.6 ÃÊ
+        // ï¿½ë½¬ ï¿½ï¿½ï¿½å°¡ 0.6 ï¿½ï¿½
         hnAni.SetBool("Jump", true);
         Vector2 dir = (playerRb.position - rb.position).normalized;
         rb.velocity = new Vector2(dir.x * speed, jumpForce);
 
-        // 1ÃÊ Á¡ÇÁ ÈÄ °ø°Ý
+        // 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(1f);
         rb.bodyType = RigidbodyType2D.Static;
         hnAni.SetBool("AirDash", true);
         yield return new WaitForSeconds(1f);
         rb.bodyType = RigidbodyType2D.Dynamic;
 
-        // ÇÃ·¹ÀÌ¾î¿¡°Ô µ¹Áø
-        if (dir.x < 0f)
+        // í˜¸ë„·ì´ ì™¼ìª½ì— ìžˆìœ¼ë©´ 
+        if (rb.position.x < playerRb.position.x)
         {
-            // ÇÃ·¹ÀÌ¾î´Â ¿ÞÂÊ¿¡
-            hnSR.flipX = false;
+            // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½Ê¿ï¿½
+            hnSR.flipX = true;
         }
         else
         {
-            hnSR.flipX = true;
+            hnSR.flipX = false;
         }
 
 
@@ -357,10 +357,10 @@ public class Hornet : MonsterClass
         Actting();
     }
 
-    // Ã¢ ´øÁö±â
+    // Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     IEnumerator Throw()
     {
-        // ½Ç ÀÌÆåÆ®°¡ 0.6ÃÊ
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 0.6ï¿½ï¿½
         if (9f > (playerRb.position - rb.position).magnitude)
         {
             RandomPT();
@@ -376,7 +376,7 @@ public class Hornet : MonsterClass
         //transform.localScale = new Vector3(-back_.x, 1f);
         if (back_.x > 0)
         {
-            // ¾ç¼ö¶ó¸é ¿À¸¥ÂÊ ¿¡ ÇÃ·¹ÀÌ¾î ÀÖÀ½
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
             neilPoint = new Vector2(rb.position.x + 9f, rb.position.y);
             hnSR.flipX = true;
             neilRb.GetComponent<SpriteRenderer>().flipX = true;
@@ -385,7 +385,7 @@ public class Hornet : MonsterClass
         }
         else
         {
-            // À½¼ö¶ó¸é ¿ÞÂÊ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             neilPoint = new Vector2(rb.position.x - 9f, rb.position.y);
             hnSR.flipX = false;
             neilRb.GetComponent<SpriteRenderer>().flipX = false;
@@ -413,14 +413,14 @@ public class Hornet : MonsterClass
 
             if (reverse)
             {
-                // ¸ñÇ¥ÂÊ¿¡¼­ µ¹¾Æ¿À´Â ·ÎÁ÷
+                // ï¿½ï¿½Ç¥ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 index -= 0.02f;
             }
             else
             {
-                // ¸ñÇ¥ÂÊÀ¸·Î °¡´Â ·ÎÁ÷
+                // ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 index += 0.02f;
-                // ³¡±îÁö °¬´Ù°¡ Àá±ñ ±â´Ù¸®´Â ·ÎÁ÷
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 if (index > 0.98f && stopNeil)
                 {
                     stopNeil = false;
