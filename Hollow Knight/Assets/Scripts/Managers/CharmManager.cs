@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class CharmManager : MonoBehaviour
 {
-    // º¸À¯ÇÑ ºÎÀû ¸®½ºÆ®
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
     public List<GameObject> charmList;
-    // ÀåÂøÇÑ ºÎÀû ¸®½ºÆ®
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
     public List<GameObject> equipList;
-    // ÄÚ½ºÆ® ¸®½ºÆ®
+    // ï¿½Ú½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ®
     public List<GameObject> costList;
 
 
-    private int maxCost;
     private int currentCost;
 
     private GameObject cursor = default;
@@ -35,7 +34,6 @@ public class CharmManager : MonoBehaviour
         //}
 
         currentCost = 0;
-        maxCost = 3;
         charmNum = 0;
     }
 
@@ -62,11 +60,11 @@ public class CharmManager : MonoBehaviour
             cursor.transform.position = charmList[charmNum].transform.position;
         }
 
-        // ºÎÀû ÀåÂø, ÇØÁ¦
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return))
         {
             nowCharm = charmList[charmNum].GetComponent<Charm>();
-            // ÀåÂøÁßÀÌ ¾Æ´Ñ°æ¿ì
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ñ°ï¿½ï¿½
             if (!nowCharm.equip)
             {
                 nowCharm.equip = true;
@@ -74,13 +72,13 @@ public class CharmManager : MonoBehaviour
 
                 equipList.Add(charmList[charmNum]);
 
-                // ¿©ºÐÀÇ Àåºñ Ä­ À§Ä¡ º¯°æ
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
                 charmList[charmNum].FindChildObj("Image").transform.position =
                     equipObj.transform.position;
 
                 equipObj.transform.position += Vector3.right * 15f;
             }
-            // ÀåÂø ÁßÀÎ °æ¿ì
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             else if (nowCharm.equip)
             {
                 nowCharm.equip = false;
@@ -88,7 +86,7 @@ public class CharmManager : MonoBehaviour
 
                 equipList.Remove(charmList[charmNum]);
 
-                // ¿©ºÐÀÇ Àåºñ Ä­ À§Ä¡ º¯°æ
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
                 charmList[charmNum].FindChildObj("Image").transform.position =
                     charmList[charmNum].transform.position;
                 equipObj.transform.position += Vector3.left * 15f;
@@ -108,20 +106,20 @@ public class CharmManager : MonoBehaviour
     //}
 
 
-    // ºÎÀûÀÇ Àåºñ ¿©ºÎ¿¡ µû¶ó ÄÚ½ºÆ® º¯°æ
-    // changes = true ÀåÂø, false Àåºñ ÇØÁ¦
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+    // changes = true ï¿½ï¿½ï¿½ï¿½, false ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private void CostChange(Charm charm_, bool changes_)
     {
         for (int i = 0; i < charm_.cost; ++i)
         {
-            // ÀåÂø
+            // ï¿½ï¿½ï¿½ï¿½
             if (changes_)
             {
                 ++currentCost;
                 costList[currentCost - 1].FindChildObj("Full").SetActive(true);
                 //costList[i].FindChildObj("Full").SetActive(true);
             }
-            // ÇØÁ¦
+            // ï¿½ï¿½ï¿½ï¿½
             else if (!changes_)
             {
                 --currentCost;

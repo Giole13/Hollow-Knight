@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Select : MonoBehaviour
 {
-    public GameObject[] slotObjText;        // ½½¸©ÀÇ Á¤º¸ Text ¿ÀºêÁ§Æ®
+    public GameObject[] slotObjText;        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Text ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     public GameObject[] removeSaveData;
 
     private bool[] saveFileArray = new bool[4];
@@ -22,7 +22,6 @@ public class Select : MonoBehaviour
     {
         for (int i = 0; i < 4; ++i)
         {
-            // i ¹øÂ°¿¡ ½½¸©ÀÌ ÀÖ´Ù¸é
             if (File.Exists(DataManager.Instance.path + i))
             {
                 saveFileArray[i] = true;
@@ -31,10 +30,9 @@ public class Select : MonoBehaviour
                 string areaName_ = DataManager.Instance.nowPlayer.areaName;
                 slotObjText[i].SetTmpText($"\t    {areaName_}");
             }
-            // i ¹øÂ°¿¡ ½½¸©ÀÌ ºñ¾îÀÖ´Ù¸é
             else
             {
-                slotObjText[i].SetTmpText($"\t    »õ °ÔÀÓ");
+                slotObjText[i].SetTmpText($"\t    ìƒˆ ê²Œìž„");
                 removeSaveData[i].SetActive(false);
             }
             DataManager.Instance.DataNewInit();
@@ -42,22 +40,22 @@ public class Select : MonoBehaviour
     }
 
 
-    // ½½·ÔÀÌ 3°³ÀÎµ¥ ¾î¶»°Ô ¾Ë¸Â°Ô ºÒ·¯¿À´Â°¡?
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ï¿½Îµï¿½ ï¿½î¶»ï¿½ï¿½ ï¿½Ë¸Â°ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½Â°ï¿½?
     public void Slot(int number)
     {
-        // ÇöÀç ¹øÈ£ ÀúÀå
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½
         DataManager.Instance.nowSlot = number;
 
-        // ÇöÀç ¹øÈ£¿¡ µ¥ÀÌÅÍ ÆÄÀÏÀÌ true ¶ó¸é
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ true ï¿½ï¿½ï¿½
         if (saveFileArray[number])
         {
-            // 2. ÀúÀåµÈ µ¥ÀÌÅÍ°¡ ÀÖÀ» ¶§ => ºÒ·¯¿À±â ÇØ¼­ °ÔÀÓ¾ÀÀ¸·Î ³Ñ¾î°¨.
+            // 2. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ => ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½Ó¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¨.
             DataManager.Instance.LoadData();
             GoGame();
         }
         else
         {
-            // 1. ÀúÀåµÈ µ¥ÀÌÅÍ°¡ ¾øÀ» ¶§
+            // 1. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
             Create();
         }
     }
@@ -77,7 +75,7 @@ public class Select : MonoBehaviour
     }
 
     /// <summary>
-    /// ÀÎ °ÔÀÓÀ¸·Î ³Ñ¾î°¡´Â ÇÔ¼ö
+    /// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½Ô¼ï¿½
     /// </summary>
     public void GoGame()
     {
