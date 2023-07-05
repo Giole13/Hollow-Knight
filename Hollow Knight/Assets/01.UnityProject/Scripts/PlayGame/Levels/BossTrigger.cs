@@ -24,21 +24,21 @@ public class BossTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // ÇÃ·¹ÀÌ¾î°¡ ¿©±â¿¡ ´êÀ¸¸é ¹ßµ¿
+        // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ßµï¿½
         if (collision.transform.tag.Equals(GioleData.TAG_NAME_PLAYERBODY))
         {
             bossDoor.SetActive(true);
             CameraManager cM_ = GioleFunc.GetRootObj("PlayerCamera").GetComponent<CameraManager>();
             cM_.CSHandler = CameraState.BOSS;
             cM_.BossFightView(gameObject.FindChildObj("Center"));
-            // ¹Ú½º ÄÝ¶óÀÌ´õ ²¨ÁÖ±â
+            // ï¿½Ú½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½Ö±ï¿½
             GetComponent<BoxCollider2D>().enabled = false;
             StartCoroutine(BossAppearance());
         }
     }
 
 
-    // º¸½º µîÀå ÄÚ·çÆ¾
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾
     IEnumerator BossAppearance()
     {
         PlayerController player_ = GioleFunc.GetRootObj("Player").GetComponent<PlayerController>();
@@ -49,7 +49,7 @@ public class BossTrigger : MonoBehaviour
         player_.enabled = true;
     }
 
-    // º¸½º ¹æ ¹® ²¨ÁÖ´Â ÇÔ¼ö ¸¸µé±â public À¸·Î
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ public ï¿½ï¿½ï¿½ï¿½
     public void BossKill()
     {
         if (bossDoor != null)

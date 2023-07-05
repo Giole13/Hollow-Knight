@@ -310,7 +310,6 @@ public class Hornet : MonsterClass
         Actting();
     }
 
-    // ������ �÷��̾�� ����
     IEnumerator JumpDash()
     {
         // �뽬 ���尡 0.6 ��
@@ -336,13 +335,11 @@ public class Hornet : MonsterClass
             hnSR.flipX = false;
         }
 
-
-
         rb.velocity = playerRb.position - rb.position;
 
         while (true)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
             if (isGrounded)
             {
                 rb.velocity = Vector2.zero;
