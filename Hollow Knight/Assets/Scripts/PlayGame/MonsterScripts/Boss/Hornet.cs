@@ -32,7 +32,6 @@ public class Hornet : MonsterClass
     private Animator hnAni;
     private Animator effectAni;
 
-    private bool ending = true;
 
     void Awake()
     {

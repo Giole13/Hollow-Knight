@@ -6,7 +6,6 @@ public class Inventory : MonoBehaviour
 {
 
     private GameObject playerObj = default;
-    private bool activeWindow = false;
 
     private void Awake()
     {
@@ -21,13 +20,13 @@ public class Inventory : MonoBehaviour
         //if (playerObj.activeSelf)
         //{
         //    Debug.Log("[Inventory] Update : KeyDown Tab");
-        //    // Ã¢ÀÌ ²¨Á®ÀÖÀ¸¸é ÄÑÁÜ
+        //    // Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //    if (Input.GetKeyDown(KeyCode.Tab) && !activeWindow)
         //    {
         //        activeWindow = true;
         //        gameObject.SetActive(true);
         //    }
-        //    // Ã¢ÀÌ ÄÑÁ®ÀÖÀ¸¸é ²¨ÁÜ
+        //    // Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //    else if (Input.GetKeyDown(KeyCode.Tab) && activeWindow)
         //    {
         //        activeWindow = false;

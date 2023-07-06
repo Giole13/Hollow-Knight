@@ -40,22 +40,17 @@ public class Select : MonoBehaviour
     }
 
 
-    // ������ 3���ε� ��� �˸°� �ҷ����°�?
     public void Slot(int number)
     {
-        // ���� ��ȣ ����
         DataManager.Instance.nowSlot = number;
 
-        // ���� ��ȣ�� ������ ������ true ���
         if (saveFileArray[number])
         {
-            // 2. ����� �����Ͱ� ���� �� => �ҷ����� �ؼ� ���Ӿ����� �Ѿ.
             DataManager.Instance.LoadData();
             GoGame();
         }
         else
         {
-            // 1. ����� �����Ͱ� ���� ��
             Create();
         }
     }
