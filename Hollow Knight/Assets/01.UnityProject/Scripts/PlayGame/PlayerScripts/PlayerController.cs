@@ -292,7 +292,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // ÇÏ°­¼Óµµ Á¦ÇÑ
+        // ï¿½Ï°ï¿½ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
         if (-15f > rb.velocity.y)
         {
             rb.velocity = Vector2.down * 15f;
@@ -387,24 +387,24 @@ public class PlayerController : MonoBehaviour
     // Player Hit TimeDlay
     IEnumerator TimeDelay()
     {
-        // ¸ÂÀ¸¸é ¹«Àû
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         enEnemy = false;
-        // ½Ã°£ Á¤Áö
+        // ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(0.3f);
-        // ½Ã°£ Á¤Áö ÇØÁ¦
+        // ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Time.timeScale = 1f;
-        // ¹Ð·Á³ª´Â ·ÎÁ÷
+        // ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         switch (playerViewHorizontal)
         {
-            // ¿ÞÂÊÀ» ¹Ù¶óº¸¸é ¿À¸¥ÂÊÀ¸·Î ¹Ð·Á³²
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶óº¸¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð·ï¿½ï¿½ï¿½
             case PlayerViewDir.LEFT:
                 Debug.Log("[PlayerController] TimeDaly : Left to right push");
                 rb.AddForce(Vector2.right * 7f);
                 enabled = false;
                 break;
 
-            // ¿À¸¥ÂÊÀ» ¹Ù¶ó¸ð¸é ¿ÞÂÊÀ¸·Î ¹Ð·Á³²
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð·ï¿½ï¿½ï¿½
             case PlayerViewDir.RIGHT:
                 Debug.Log("[PlayerController] TimeDaly : Right to left push");
                 rb.AddForce(Vector2.left * 7f);
@@ -415,9 +415,9 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.zero;
         enabled = true;
 
-        // ¹«Àû ½Ã°£
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
         yield return new WaitForSeconds(2f);
-        // ¹«Àû ÇØÁ¦
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         enEnemy = true;
     }
 
@@ -426,7 +426,7 @@ public class PlayerController : MonoBehaviour
         switch (collision.transform.tag)
         {
             case GioleData.TAG_NAME_MONSTER:        // Attack Monster
-                collision.gameObject.GetComponent<MonsterClass>().HitMonster(attackPower);z
+                collision.gameObject.GetComponent<MonsterClass>().HitMonster(attackPower);
                 break;
             case GioleData.TAG_NAME_COIN:
                 uIObjsScript.CoinNumPlus("Small");
