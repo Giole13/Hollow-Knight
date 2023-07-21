@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
         private set { playerSpeed = value; }
     }
-    
+
 
     public float jumpForce;
 
@@ -387,26 +387,19 @@ public class PlayerController : MonoBehaviour
     // Player Hit TimeDlay
     IEnumerator TimeDelay()
     {
-        // ������ ����
         enEnemy = false;
-        // �ð� ����
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(0.3f);
-        // �ð� ���� ����
         Time.timeScale = 1f;
-        // �з����� ����
         switch (playerViewHorizontal)
         {
-            // ������ �ٶ󺸸� ���������� �з���
             case PlayerViewDir.LEFT:
-                Debug.Log("[PlayerController] TimeDaly : Left to right push");
+                // Debug.Log("[PlayerController] TimeDaly : Left to right push");
                 rb.AddForce(Vector2.right * 7f);
                 enabled = false;
                 break;
-
-            // �������� �ٶ��� �������� �з���
             case PlayerViewDir.RIGHT:
-                Debug.Log("[PlayerController] TimeDaly : Right to left push");
+                // Debug.Log("[PlayerController] TimeDaly : Right to left push");
                 rb.AddForce(Vector2.left * 7f);
                 enabled = false;
                 break;
@@ -415,9 +408,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.zero;
         enabled = true;
 
-        // ���� �ð�
         yield return new WaitForSeconds(2f);
-        // ���� ����
         enEnemy = true;
     }
 

@@ -6,13 +6,11 @@ public class BrokenVessel : MonsterClass
 {
     public bool isGrounded = false;
 
-    private float jumpForce;
 
 
     private LayerMask whatIsGround = default;
 
     private GameObject neilObj = default;
-    private GameObject shpere = default;
 
     private Rigidbody2D playerRb = default;
     private Rigidbody2D rb = default;
@@ -37,7 +35,6 @@ public class BrokenVessel : MonsterClass
         neilObj = gameObject.FindChildObj("Neil");
 
         // Init Var
-        jumpForce = 15f;
         checkRadius = 0.2f;
         brokenPT = BrokenVesselPattoern.IDLE;
 
@@ -74,7 +71,7 @@ public class BrokenVessel : MonsterClass
         //hnState = new HNIdleState(this);
         //hnState.Action(this);
         Actting();
-        //Debug.Log("[BrokenVessel] OnEnable : ºÎ . ¼­ . Áø . ±× . ¸© µîÀå!");
+        //Debug.Log("[BrokenVessel] OnEnable : ï¿½ï¿½ . ï¿½ï¿½ . ï¿½ï¿½ . ï¿½ï¿½ . ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -131,7 +128,7 @@ public class BrokenVessel : MonsterClass
 
     private void RandomPT()
     {
-        // ÆÐÅÏÀÇ °¡Áþ¼ö ¸¸Å­ ¼ýÀÚ Ãß°¡
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
         int i = Random.Range(1, 6 + 1);
         brokenPT = (BrokenVesselPattoern)i;
     }
@@ -181,7 +178,7 @@ public class BrokenVessel : MonsterClass
         Actting();
     }
 
-    // Á¡ÇÁ ÈÄ ´ë½¬°ø°Ý
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ë½¬ï¿½ï¿½ï¿½ï¿½
     IEnumerator JumpDash()
     {
         Debug.Log("[BrokenVessel] JumpDash : Active");
@@ -202,7 +199,7 @@ public class BrokenVessel : MonsterClass
     }
 
 
-    // Á¡ÇÁ ÈÄ ÇÃ·¹ÀÌ¾î¸¦ ÇâÇØ ¾Æ·¡°ø°Ý ¹× ±¸Ã¼ ¹ß»ç
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ß»ï¿½
     IEnumerator JumpDown()
     {
         Debug.Log("[BrokenVessel] JumpDown : Active");
@@ -232,7 +229,7 @@ public class BrokenVessel : MonsterClass
         Actting();
     }
 
-    // ¸ØÃç¼­ ±¸Ã¼ ¹ß»ç
+    // ï¿½ï¿½ï¿½ç¼­ ï¿½ï¿½Ã¼ ï¿½ß»ï¿½
     IEnumerator FireSphere()
     {
         Debug.Log("[BrokenVessel] FireSphere : Active");
