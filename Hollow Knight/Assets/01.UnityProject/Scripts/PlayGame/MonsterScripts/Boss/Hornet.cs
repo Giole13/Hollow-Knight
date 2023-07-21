@@ -70,12 +70,21 @@ public class Hornet : MonsterClass
     }
 
     // Boss Kill
-    private void OnDisable()
+    private void Endding()
     {
+        Debug.Log("여기는 엔딩 함수");
         BossTrigger bt = transform.parent.gameObject.FindChildObj("BossTrigger").GetComponent<BossTrigger>();
         bt.BossKill();
-        //GameManager gm_ = GioleFunc.GetRootObj("GameManager").GetComponent<GameManager>();
-        //gm_.GameEnding();
+        gameObject.SetActive(false);
+    }
+
+    public override void HitMonster(int i)
+    {
+        currentHp -= i;
+        if (currentHp <= 0)
+        {
+            Endding();
+        }
     }
 
     private void FixedUpdate()
@@ -83,10 +92,6 @@ public class Hornet : MonsterClass
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
     }
-
-
-
-
     private void Actting()
     {
         Vector3 back_ = (rb.position - playerRb.position).normalized;

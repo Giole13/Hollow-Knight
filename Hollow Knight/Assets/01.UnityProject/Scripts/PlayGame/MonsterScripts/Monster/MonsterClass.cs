@@ -29,20 +29,21 @@ public class MonsterClass : MonoBehaviour
         SingletonManager.Instance.CoinPop(transform.position, coinNum);
     }
 
-    public void HitMonster(int i)
+    public virtual void HitMonster(int i)
     {
         currentHp -= i;
     }
 
     private void Update()
     {
-        if ((currentHp <= 0) && (this.gameObject.name == "Hornet"))
+        // if ((currentHp <= 0) && (this.gameObject.name == "Hornet"))
+        // {
+        //     GameManager gm_ = GioleFunc.GetRootObj("GameManager").GetComponent<GameManager>();
+        //     gm_.GameEnding();
+        // }
+        if (currentHp <= 0)
         {
-            GameManager gm_ = GioleFunc.GetRootObj("GameManager").GetComponent<GameManager>();
-            gm_.GameEnding();
-        }
-        else if(currentHp <= 0)
-        {
+            if (this.gameObject.name == "Hornet") { return; }
             CoinDrop();
             gameObject.SetActive(false);
             //this.enabled = false;
