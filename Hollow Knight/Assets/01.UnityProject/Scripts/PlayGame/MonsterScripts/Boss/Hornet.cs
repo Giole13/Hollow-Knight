@@ -322,7 +322,7 @@ public class Hornet : MonsterClass
         yield return new WaitForSeconds(1f);
         rb.bodyType = RigidbodyType2D.Dynamic;
 
-        if (dir.x < 0f)
+        if (rb.position.x < playerRb.position.x)
         {
             hnSR.flipX = false;
         }
