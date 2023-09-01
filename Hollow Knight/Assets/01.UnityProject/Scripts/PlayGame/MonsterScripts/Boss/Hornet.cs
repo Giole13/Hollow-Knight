@@ -63,9 +63,6 @@ public class Hornet : MonsterClass
 
     private void OnEnable()
     {
-        //StartCoroutine(Pattern());
-        //hnState = new HNIdleState(this);
-        //hnState.Action(this);
         Actting();
     }
 
@@ -98,12 +95,10 @@ public class Hornet : MonsterClass
 
         if (back_.x < 0)
         {
-            // �����ʿ� ���� ����
             hnSR.flipX = true;
         }
         else
         {
-            // ���ʿ� ���� ����
             hnSR.flipX = false;
         }
 
@@ -133,18 +128,15 @@ public class Hornet : MonsterClass
             case HornetPattern.THROW:
                 StartCoroutine(Throw());
                 break;
-
         }
         RandomPT();
     }
 
     private void RandomPT()
     {
-        // ������ ������ ��ŭ ���� �߰�
         int i = Random.Range(1, 7 + 1);
         hornetPT = (HornetPattern)i;
     }
-
 
     IEnumerator BackStep()
     {
@@ -199,7 +191,6 @@ public class Hornet : MonsterClass
         Actting();
     }
 
-    // �÷��̾ ���� ����
     IEnumerator JumpMove()
     {
         //int i = Random.Range(0, 1 + 1);
@@ -208,21 +199,6 @@ public class Hornet : MonsterClass
 
         Vector2 dir = (playerRb.position - rb.position).normalized;
         rb.velocity = new Vector2(dir.x * speed, jumpForce);
-
-
-        //switch (i)
-        //{
-        //    case 0:
-        //        rb.velocity = Vector2.right * speed;
-        //        rb.velocity += Vector2.up * jumpForce;
-        //        transform.localScale = new Vector2(-1f, 1f);
-        //        break;
-        //    case 1:
-        //        rb.velocity = Vector2.left * speed;
-        //        rb.velocity += Vector2.up * jumpForce;
-        //        transform.localScale = new Vector2(1f, 1f);
-        //        break;
-        //}
 
         while (true)
         {
@@ -240,7 +216,6 @@ public class Hornet : MonsterClass
         Actting();
     }
 
-    // ���߿��� 360�� ���� ����
     IEnumerator JumpSphere()
     {
         // Jump Start
@@ -254,7 +229,6 @@ public class Hornet : MonsterClass
             yield return new WaitForSeconds(0.1f);
             if (Physics2D.OverlapCircle(transform.position, 3f, playerLayer))
             {
-                // �÷��̾� �ĺ� �ϸ� �������
                 effectObj.SetActive(true);
                 effectObj.transform.localPosition = Vector2.zero;
                 effectAni.SetBool("Sphere", true);
@@ -268,7 +242,6 @@ public class Hornet : MonsterClass
                 effectObj.SetActive(false);
                 break;
             }
-            // ���� �����ϸ� Ż��
             else if (isGrounded)
             {
                 rb.velocity = Vector2.zero;
@@ -281,24 +254,20 @@ public class Hornet : MonsterClass
         Actting();
     }
 
-    // Ground �뽬 ����
     IEnumerator Dash(float dir_)
     {
         // Dash Start
         hnAni.SetBool("GroundDash", true);
         yield return new WaitForSeconds(1f);
-        // ���⼭ ����
         effectObj.SetActive(true);
         effectAni.SetTrigger("GroundDash");
         if (dir_ < 0)
         {
-            // �����ʿ� ���� �ִٸ�
             effectObj.GetComponent<SpriteRenderer>().flipX = true;
             effectObj.transform.localPosition = new Vector2(-4.2f, 0.6f);
         }
         else
         {
-            // ���ʿ� ���� �ִٸ�
             effectObj.GetComponent<SpriteRenderer>().flipX = false;
             effectObj.transform.localPosition = new Vector2(4.2f, 0.6f);
         }
@@ -307,14 +276,12 @@ public class Hornet : MonsterClass
         yield return new WaitForSeconds(0.8f);
         effectObj.SetActive(false);
         effectObj.transform.localPosition = Vector2.zero;
-        // ���⼭ ����
         hnAni.SetBool("GroundDash", false);
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.8f);
         Actting();
     }
 
-    // ������ �÷��̾�� ����
     IEnumerator JumpDash()
     {
         hnAni.SetBool("Jump", true);
@@ -423,7 +390,6 @@ public class Hornet : MonsterClass
                     yield return new WaitForSeconds(0.6f);
                     effectAni.SetBool("Neil", false);
                     effectObj.SetActive(false);
-
                 }
             }
 
@@ -436,8 +402,6 @@ public class Hornet : MonsterClass
         hnAni.SetBool("Throw", false);
         neilRb.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.8f);
-
         Actting();
     }
-
 }

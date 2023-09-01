@@ -15,14 +15,10 @@ public class DoorController : MonoBehaviour
     private const float LERPDISTANCE = 1f;
     private float speed;
 
-
     private void Awake()
     {
         this.gameObject.layer = 7;
     }
-
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,12 +26,9 @@ public class DoorController : MonoBehaviour
         {
             // 다음 문의 부모 오브젝트 켜주기
             nextDoor.transform.parent.gameObject.SetActive(true);
-
             StartCoroutine(MovePlayer(collision));
         }
     }
-
-
 
     // 플레이어 이동 로직
     IEnumerator MovePlayer(Collider2D player_)
@@ -87,7 +80,6 @@ public class DoorController : MonoBehaviour
                 yield return new WaitForSecondsRealtime(ARRIVALTIME);
             }
         }
-
 
         playerScript_.enabled = true;
         transform.parent.gameObject.SetActive(false);

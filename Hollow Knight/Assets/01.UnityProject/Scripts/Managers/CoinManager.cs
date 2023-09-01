@@ -6,14 +6,11 @@ using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
-    // 여기선 코인을 미리 오브젝트 풀링 해놓는 곳
-
     private List<GameObject> coinList = new List<GameObject>();
 
     private Rigidbody2D coinRB = default;
 
-
-    public int coinNum;
+    public int poolSize;
 
     void Awake()
     {
@@ -21,22 +18,15 @@ public class CoinManager : MonoBehaviour
         GameObject PrefapCoin = gameObject.FindChildObj("Small_Coin");
         GameObject coin_ = default;
 
-
         PrefapCoin.SetActive(false);
-
-
-        for (int i = 1; i < coinNum + 1; ++i)
+        for (int i = 1; i < poolSize + 1; ++i)
         {
             coin_ = Instantiate(PrefapCoin, transform);
             coin_.name = "Coin " + i;
             coinList.Add(coin_);
         }
-
-
     }
 
-
-    // 코인 꺼내는 함수
     public void DropCoin(Vector2 centerPos_, int coinNum_)
     {
         int i = 0;
@@ -44,38 +34,31 @@ public class CoinManager : MonoBehaviour
         {
             if (!coin.activeSelf)
             {
+                ++i;
                 coin.SetActive(true);
                 coinRB = coin.GetComponent<Rigidbody2D>();
-                ++i;
                 coin.transform.position = centerPos_;
                 StartCoroutine(CoinVelocity(coinRB));
             }
-            else
-            {
-                /* Do nothing */
-            }
-            if (i == coinNum_) break;
 
+            if (i == coinNum_) { break; }
         }
     }
 
-
-    // 코인에게 힘을 준다.
     IEnumerator CoinVelocity(Rigidbody2D coinRB_)
     {
         int i = Random.Range(-2, 2);
         float i2 = Random.Range(0f, 1f);
         int i3 = Random.Range(3, 6);
-        coinRB.velocity = Vector2.up * (i3+i2) + Vector2.right * (i + i2);
+        coinRB.velocity = Vector2.up * (i3 + i2) + Vector2.right * (i + i2);
         yield return new WaitForSeconds(0.1f);
         coinRB.velocity = Vector2.zero;
         yield return null;
     }
 
-
     public void AllCoinSetActive(bool set_)
     {
-        foreach(GameObject coin in coinList)
+        foreach (GameObject coin in coinList)
         {
             if (coin.activeSelf)
             {

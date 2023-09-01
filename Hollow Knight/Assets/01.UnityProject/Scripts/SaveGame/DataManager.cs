@@ -6,28 +6,28 @@ using System.IO;
 
 
 
-// ÀúÀåÇÏ´Â ¹æ¹ı
-// 1. ÀúÀåÇÒ µ¥ÀÌÅÍ Á¸Àç
-// 2. µ¥ÀÌÅÍ¸¦ Á¦ÀÌ½¼À¸·Î º¯È¯
-// 3. Á¦ÀÌ½¼À» ¿ÜºÎ¿¡ ÀúÀå
+// ì €ì¥í•˜ëŠ” ë°©ë²•
+// 1. ì €ì¥í•  ë°ì´í„° ì¡´ì¬
+// 2. ë°ì´í„°ë¥¼ ì œì´ìŠ¨ìœ¼ë¡œ ë³€í™˜
+// 3. ì œì´ìŠ¨ì„ ì™¸ë¶€ì— ì €ì¥
 
-// ºÒ·¯¿À´Â ¹æ¹ı
-// 1. ¿ÜºÎ¿¡ ÀúÀåµÈ Á¦ÀÌ½¼À» °¡Á®¿È
-// 2. Á¦ÀÌ½¼À» µ¥ÀÌÅÍÇüÅÂ·Î º¯È¯
-// 3. ºÒ·¯¿Â µ¥ÀÌÅÍ¸¦ »ç¿ë
+// ë¶ˆëŸ¬ì˜¤ëŠ” ë°©ë²•
+// 1. ì™¸ë¶€ì— ì €ì¥ëœ ì œì´ìŠ¨ì„ ê°€ì ¸ì˜´
+// 2. ì œì´ìŠ¨ì„ ë°ì´í„°í˜•íƒœë¡œ ë³€í™˜
+// 3. ë¶ˆëŸ¬ì˜¨ ë°ì´í„°ë¥¼ ì‚¬ìš©
 
-// ½½¸©º°·Î ´Ù¸£°Ô ÀúÀå
+// ìŠ¬ë¦‡ë³„ë¡œ ë‹¤ë¥´ê²Œ ì €ì¥
 
 
 
 public class PlayerData
 {
-    // Áö¿ª ÀÌ¸§, µ·
+    // ì§€ì—­ ì´ë¦„, ëˆ
     public string areaName;
     public int coin;
 
-    // ÇÃ·¹ÀÌ¾î °ÔÀÓ ¿ÀºêÁ§Æ®,
-    // ÇöÀç ¼Ò¼Ó ·¹º§ ¿ÀºêÁ§Æ®
+    // í”Œë ˆì´ì–´ ê²Œì„ ì˜¤ë¸Œì íŠ¸,
+    // í˜„ì¬ ì†Œì† ë ˆë²¨ ì˜¤ë¸Œì íŠ¸
     public GameObject playerObj;
     public GameObject levelObj;
     public Vector3 playerPos;
@@ -38,7 +38,7 @@ public class DataManager : GioleSingletone<DataManager>
 {
     public PlayerData nowPlayer = new PlayerData();
 
-    // °æ·Î º¯¼ö
+    // ê²½ë¡œ ë³€ìˆ˜
     public string path;
     string fileName = "save";
     public int nowSlot;
@@ -53,34 +53,34 @@ public class DataManager : GioleSingletone<DataManager>
 
 
 
-    // µ¥ÀÌÅÍ ÀúÀåÇÏ±â
+    // ë°ì´í„° ì €ì¥í•˜ê¸°
     public void SaveData()
     {
-        // Json ÆÄÀÏ·Î º¯È¯ ÈÄ ÀúÀå
+        // Json íŒŒì¼ë¡œ ë³€í™˜ í›„ ì €ì¥
         string data = JsonUtility.ToJson(nowPlayer);
         File.WriteAllText(path + nowSlot.ToString(), data);
     }
 
-    // µ¥ÀÌÅÍ ºÒ·¯¿À±â
+    // ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
     public void LoadData()
     {
-        // Json ÆÄÀÏ·Î ºÒ·¯¿Â ÈÄ Class·Î º¯È¯
+        // Json íŒŒì¼ë¡œ ë¶ˆëŸ¬ì˜¨ í›„ Classë¡œ ë³€í™˜
         string data = File.ReadAllText(path + nowSlot.ToString());
         nowPlayer = JsonUtility.FromJson<PlayerData>(data);
     }
 
-    // µ¥ÀÌÅÍ ÃÊ±âÈ­
+    // ë°ì´í„° ì´ˆê¸°í™”
     public void DataNewInit()
     {
-        // ´Ù¸¥ µ¥ÀÌÅÍ¸¦ ºÒ·¯¿À±â À§ÇØ¼­ °¡»óÀÇ °ªÀ¸·Î ÃÊ±âÈ­
+        // ë‹¤ë¥¸ ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜¤ê¸° ìœ„í•´ì„œ ê°€ìƒì˜ ê°’ìœ¼ë¡œ ì´ˆê¸°í™”
         nowSlot = -1;
         nowPlayer = new PlayerData();
     }
-    
-    // µ¥ÀÌÅÍ »èÁ¦
+
+    // ë°ì´í„° ì‚­ì œ
     public void RemoveData()
     {
-        // ÇØ´ç °æ·ÎÀÇ ÇØ´ç ÆÄÀÏÀ» »èÁ¦
+        // í•´ë‹¹ ê²½ë¡œì˜ í•´ë‹¹ íŒŒì¼ì„ ì‚­ì œ
         File.Delete(path + nowSlot.ToString());
     }
 }
