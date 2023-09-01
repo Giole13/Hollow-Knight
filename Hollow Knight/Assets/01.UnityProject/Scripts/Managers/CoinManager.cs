@@ -10,17 +10,18 @@ public class CoinManager : MonoBehaviour
 
     private Rigidbody2D coinRB = default;
 
-    public int poolSize;
+    private int poolSize = 100;
 
     void Awake()
     {
         // Initailize Instance
         GameObject PrefapCoin = gameObject.FindChildObj("Small_Coin");
-        GameObject coin_ = default;
+        GameObject coin_;
 
         PrefapCoin.SetActive(false);
         for (int i = 1; i < poolSize + 1; ++i)
         {
+            Debug.Log("코인생성");
             coin_ = Instantiate(PrefapCoin, transform);
             coin_.name = "Coin " + i;
             coinList.Add(coin_);

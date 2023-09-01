@@ -32,7 +32,7 @@ public class Select : MonoBehaviour
             }
             else
             {
-                slotObjText[i].SetTmpText($"\t    �� ����");
+                slotObjText[i].SetTmpText($"\t    새 게임");
                 removeSaveData[i].SetActive(false);
             }
             DataManager.Instance.DataNewInit();
