@@ -7,7 +7,6 @@ using UnityEngine.UIElements;
 public class DoorController : MonoBehaviour
 {
     public GameObject nextDoor = default;
-
     public bool reverse = false;
     public bool vertical = false;
 

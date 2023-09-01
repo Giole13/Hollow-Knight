@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class PlayerBallController : MonoBehaviour
 {
-    //private void OnEnable()
-    //{
-    //    transform.GetComponent<Rigidbody2D>().velocity = Vector3.right * 10f;
-
-    //}
-
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.transform.tag)
@@ -23,9 +15,4 @@ public class PlayerBallController : MonoBehaviour
                 break;
         }
     }
-
-    //IEnumerator Move()
-    //{
-    //    yield return null;
-    //}
 }

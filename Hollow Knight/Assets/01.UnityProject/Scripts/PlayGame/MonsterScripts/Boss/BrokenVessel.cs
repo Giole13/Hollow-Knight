@@ -6,23 +6,13 @@ public class BrokenVessel : MonsterClass
 {
     public bool isGrounded = false;
 
-
-
     private LayerMask whatIsGround = default;
-
     private GameObject neilObj = default;
-
     private Rigidbody2D playerRb = default;
     private Rigidbody2D rb = default;
-
-
     private Transform feetPos = default;
-
     private float checkRadius = default;
-
     private bool xCheck = false;
-
-
     private BrokenVesselPattoern brokenPT;
 
     private void Awake()
@@ -42,21 +32,13 @@ public class BrokenVessel : MonsterClass
         // Instance Setting
         gameObject.SetActive(false);
         neilObj.SetActive(false);
-
-        // Script Setting
-        //this.enabled = true;
-
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
-        if (xCheck)
-        {
-            /* Do nothing */
-        }
-        else if (!xCheck)
+        if (xCheck == false)
         {
             if (0 < -rb.position.x + playerRb.position.x && -rb.position.x + playerRb.position.x < 1)
             {
@@ -67,11 +49,7 @@ public class BrokenVessel : MonsterClass
 
     private void OnEnable()
     {
-        //StartCoroutine(Pattern());
-        //hnState = new HNIdleState(this);
-        //hnState.Action(this);
         Actting();
-        //Debug.Log("[BrokenVessel] OnEnable : �� . �� . �� . �� . �� ����!");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -128,7 +106,6 @@ public class BrokenVessel : MonsterClass
 
     private void RandomPT()
     {
-        // ������ ������ ��ŭ ���� �߰�
         int i = Random.Range(1, 6 + 1);
         brokenPT = (BrokenVesselPattoern)i;
     }
@@ -148,8 +125,6 @@ public class BrokenVessel : MonsterClass
         float xpos = (playerRb.position - rb.position).x / 2f;
         float ypos = 13f;
         rb.velocity = new Vector2(xpos, ypos);
-        //yield return new WaitForSeconds(0.2f);
-        //rb.velocity = Vector2.zero;
 
         while (true)
         {
@@ -178,7 +153,6 @@ public class BrokenVessel : MonsterClass
         Actting();
     }
 
-    // ���� �� �뽬����
     IEnumerator JumpDash()
     {
         Debug.Log("[BrokenVessel] JumpDash : Active");
@@ -198,8 +172,6 @@ public class BrokenVessel : MonsterClass
         Actting();
     }
 
-
-    // ���� �� �÷��̾ ���� �Ʒ����� �� ��ü �߻�
     IEnumerator JumpDown()
     {
         Debug.Log("[BrokenVessel] JumpDown : Active");
@@ -208,8 +180,6 @@ public class BrokenVessel : MonsterClass
         float xpos = (playerRb.position - rb.position).x;
         float ypos = 13f;
         rb.velocity = new Vector2(xpos, ypos);
-        //yield return new WaitForSeconds(0.2f);
-        //rb.velocity = Vector2.zero;
 
         while (true)
         {
@@ -229,7 +199,6 @@ public class BrokenVessel : MonsterClass
         Actting();
     }
 
-    // ���缭 ��ü �߻�
     IEnumerator FireSphere()
     {
         Debug.Log("[BrokenVessel] FireSphere : Active");

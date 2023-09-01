@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
         private set { playerSpeed = value; }
     }
 
-
     public float jumpForce;
 
     [SerializeField]
@@ -29,7 +28,6 @@ public class PlayerController : MonoBehaviour
     private Transform feetPos;
     public float checkRadius;
     public LayerMask whatIsGround;
-
 
     private float jumpTimeCounter;
     private bool isJumping;
@@ -56,11 +54,6 @@ public class PlayerController : MonoBehaviour
     {
         get { return playerViewHorizontal; }
     }
-
-    //private void OnEnable()
-    //{
-    //    GioleFunc.GetRootObj("PlayerCamera").SetActive(true);
-    //}
 
     public void PlayerVeloCityStop()
     {
@@ -125,10 +118,7 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(BallFire());
         }
-
     }
-
-
 
     IEnumerator BallFire()
     {
@@ -251,8 +241,6 @@ public class PlayerController : MonoBehaviour
             playerViewHorizontal = PlayerViewDir.LEFT;
         }
 
-
-
         // GroundJump and Second Jump
         if ((isGrounded == true || jumpCount == 1) && Input.GetKeyDown(KeyCode.Z))
         {
@@ -283,16 +271,10 @@ public class PlayerController : MonoBehaviour
 
         if (-1 > rb.velocity.y)
         {
-            if (isGrounded)
-            {
-                //rb.velocity = new Vector2(rb.velocity.x, 0f);
-            }
             playerAni.SetBool("Jump", false);
             playerAni.SetBool("Jump_Down", true);
         }
 
-
-        // �ϰ��ӵ� ����
         if (-15f > rb.velocity.y)
         {
             rb.velocity = Vector2.down * 15f;
@@ -365,7 +347,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Hit Player
@@ -394,12 +375,10 @@ public class PlayerController : MonoBehaviour
         switch (playerViewHorizontal)
         {
             case PlayerViewDir.LEFT:
-                // Debug.Log("[PlayerController] TimeDaly : Left to right push");
                 rb.AddForce(Vector2.right * 7f);
                 enabled = false;
                 break;
             case PlayerViewDir.RIGHT:
-                // Debug.Log("[PlayerController] TimeDaly : Right to left push");
                 rb.AddForce(Vector2.left * 7f);
                 enabled = false;
                 break;

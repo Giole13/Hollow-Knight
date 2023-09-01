@@ -5,33 +5,24 @@ using UnityEngine.XR;
 
 public class Hornet : MonsterClass
 {
+    [SerializeField] private HornetPattern hornetPT;
+
+    public bool isGrounded = false;
+
     private LayerMask whatIsGround = default;
     private LayerMask playerLayer = default;
-
     private Rigidbody2D playerRb = default;
     private Rigidbody2D rb = default;
     private Rigidbody2D neilRb = default;
-
     private SpriteRenderer hnSR = default;
-
     private Transform feetPos = default;
-
     private float speed;
     private float jumpForce;
     private float checkRadius = default;
-
     private float nextTurnTime = 0.5f;
     private GameObject effectObj = default;
-
-    public bool isGrounded = false;
-    [SerializeField]
-    private HornetPattern hornetPT;
-
-    //private HornetState hnState = default;
-
     private Animator hnAni;
     private Animator effectAni;
-
 
     void Awake()
     {
@@ -69,7 +60,6 @@ public class Hornet : MonsterClass
     // Boss Kill
     private void Endding()
     {
-        Debug.Log("여기는 엔딩 함수");
         BossTrigger bt = transform.parent.gameObject.FindChildObj("BossTrigger").GetComponent<BossTrigger>();
         bt.BossKill();
         gameObject.SetActive(false);
@@ -93,14 +83,8 @@ public class Hornet : MonsterClass
     {
         Vector3 back_ = (rb.position - playerRb.position).normalized;
 
-        if (back_.x < 0)
-        {
-            hnSR.flipX = true;
-        }
-        else
-        {
-            hnSR.flipX = false;
-        }
+        if (back_.x < 0) { hnSR.flipX = true; }
+        else { hnSR.flipX = false; }
 
         switch (hornetPT)
         {
@@ -147,7 +131,6 @@ public class Hornet : MonsterClass
         Vector2 back_ = new Vector2((rb.position.x - playerRb.position.x), 0f).normalized;
         // Back Step Start
         rb.velocity = back_ * 7f + new Vector2(0f, 3f);
-        //transform.localScale = new Vector2(back_.x, 1f);
         hnAni.SetBool("BackStep", true);
         yield return new WaitForSeconds(0.5f);
         rb.velocity = Vector2.zero;
@@ -175,12 +158,10 @@ public class Hornet : MonsterClass
             case 0:
                 rb.velocity = Vector2.right * speed;
                 hnSR.flipX = true;
-                //transform.localScale = new Vector2(-1f, 1f);
                 break;
             case 1:
                 rb.velocity = Vector2.left * speed;
                 hnSR.flipX = false;
-                //transform.localScale = new Vector2(1f, 1f);
                 break;
         }
         hnAni.SetBool("Run", true);
@@ -193,7 +174,6 @@ public class Hornet : MonsterClass
 
     IEnumerator JumpMove()
     {
-        //int i = Random.Range(0, 1 + 1);
         // Jump Start
         hnAni.SetBool("Jump", true);
 
@@ -219,7 +199,6 @@ public class Hornet : MonsterClass
     IEnumerator JumpSphere()
     {
         // Jump Start
-
         hnAni.SetBool("Jump", true);
         Vector2 dir = (playerRb.position - rb.position).normalized;
         rb.velocity = new Vector2(dir.x * speed, jumpForce);
@@ -303,8 +282,6 @@ public class Hornet : MonsterClass
             hnSR.flipX = true;
         }
 
-
-
         rb.velocity = playerRb.position - rb.position;
 
         while (true)
@@ -315,7 +292,6 @@ public class Hornet : MonsterClass
                 rb.velocity = Vector2.zero;
                 hnAni.SetBool("AirDash", false);
                 hnAni.SetBool("Jump", false);
-                //yield return new WaitForSeconds(0.8f);
                 break;
             }
         }
@@ -324,7 +300,6 @@ public class Hornet : MonsterClass
         Actting();
     }
 
-    // â ������
     IEnumerator Throw()
     {
         if (9f > (playerRb.position - rb.position).magnitude)
@@ -335,11 +310,8 @@ public class Hornet : MonsterClass
         }
         yield return new WaitForSeconds(0.5f);
 
-
-        Vector2 neilPoint = default;
-
+        Vector2 neilPoint;
         Vector3 back_ = (playerRb.position - rb.position).normalized;
-        //transform.localScale = new Vector3(-back_.x, 1f);
         if (back_.x > 0)
         {
             neilPoint = new Vector2(rb.position.x + 9f, rb.position.y);
@@ -357,9 +329,9 @@ public class Hornet : MonsterClass
             effectObj.GetComponent<SpriteRenderer>().flipX = false;
         }
 
-
         bool reverse = false;
         float index = 0.1f;
+
         // Start Throw Neil
         hnAni.SetBool("Throw", true);
         yield return new WaitForSeconds(1f);
@@ -370,15 +342,9 @@ public class Hornet : MonsterClass
         {
             yield return new WaitForSeconds(0.01f);
             neilRb.position = Vector2.Lerp(transform.position, neilPoint, index);
-            if (1 < index)
-            {
-                reverse = true;
-            }
+            if (1 < index) { reverse = true; }
 
-            if (reverse)
-            {
-                index -= 0.02f;
-            }
+            if (reverse) { index -= 0.02f; }
             else
             {
                 index += 0.02f;
@@ -393,10 +359,7 @@ public class Hornet : MonsterClass
                 }
             }
 
-            if (0 > index)
-            {
-                break;
-            }
+            if (0 > index) { break; }
         }
         // Stop Throw Neil
         hnAni.SetBool("Throw", false);

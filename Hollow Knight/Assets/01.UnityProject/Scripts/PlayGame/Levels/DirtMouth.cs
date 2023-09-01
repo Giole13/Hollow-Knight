@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class DirtMouth : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         gameObject.SetActive(false);
     }
 
-    
     public void OnTriggerEnter2D()
     {
         gameObject.SetActive(true);
-        gameObject.SetTmpText("»ç¶óÁ® °¡´Â ÈëÀÇ ¸¶À»");
+        gameObject.SetTmpText("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         StartCoroutine(TitleFade());
     }
-
 
     IEnumerator TitleFade()
     {

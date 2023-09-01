@@ -4,37 +4,26 @@ using UnityEngine;
 
 public class OrangeFly : MonsterClass
 {
-    private Collider2D targetInfo;
-
-    [SerializeField]
-    private float radius;
-
-    [SerializeField]
-
-    public LayerMask playerLayer;
-    public LayerMask obstaclesLayer;
+    [SerializeField] private float radius;
 
     public float speed;
+    public LayerMask obstaclesLayer;
+    public LayerMask playerLayer;
+
+
 
     private Rigidbody2D rb;
-    private Collider2D playerCd;
+    private Collider2D targetInfo;
 
-    void OnEnable()
+    private void OnEnable()
     {
-        // ?��???? ????
         rb = GetComponent<Rigidbody2D>();
-
-        // ???? ????
         StartCoroutine(PlayerTrace());
-
-        if (speed == 0f)
-        {
-            speed = 1f;
-        }
+        if (speed == 0f) { speed = 1f; }
 
     }
 
-    IEnumerator PlayerTrace()
+    private IEnumerator PlayerTrace()
     {
         while (true)
         {
@@ -56,10 +45,6 @@ public class OrangeFly : MonsterClass
         if (hitData.collider == targetInfo)
         {
             rb.velocity = dir_.normalized * speed;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
         }
     }
 }

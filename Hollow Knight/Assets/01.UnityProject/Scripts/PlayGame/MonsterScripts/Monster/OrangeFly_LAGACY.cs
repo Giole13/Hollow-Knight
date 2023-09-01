@@ -13,33 +13,23 @@ public class OrangeFly_LAGACY : MonoBehaviour
 
     [Header("View Config")]
     [Range(0f, 360f)]
-    [SerializeField] private float horizontalViewAngle = 0f;    // ½Ã¾ß°¢
-    [SerializeField] private float viewRadius = 1f;             // ±âÁî¸ð ¿øÀÇ Å©±â -> Å½»öÇÒ °Å¸®  
+    [SerializeField] private float horizontalViewAngle = 0f;    // ï¿½Ã¾ß°ï¿½
+    [SerializeField] private float viewRadius = 1f;             // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ -> Å½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½  
     [Range(-180f, 180f)]
-    [SerializeField] private float viewRotateZ = 0f;        // È¸Àü°¢
+    [SerializeField] private float viewRotateZ = 0f;        // È¸ï¿½ï¿½ï¿½ï¿½
 
 
-    [SerializeField] private LayerMask viewTargetMask;      // Àû ·¹ÀÌ¾î -> ÇÃ·¹ÀÌ¾î
-    [SerializeField] private LayerMask viewObstacleMask;    // Àå¾Ö¹° ·¹ÀÌ¾î
+    [SerializeField] private LayerMask viewTargetMask;      // ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ -> ï¿½Ã·ï¿½ï¿½Ì¾ï¿½
+    [SerializeField] private LayerMask viewObstacleMask;    // ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½
 
     private List<Collider2D> hitedTargetContainer = new List<Collider2D>();
 
-    private float horizontalViewHalfAngle = 0f;     // ½Ã¾ß°¢¿¡¼­ Á¤È®È÷ °¡¿îµ¥ ¶óÀÎ
+    private float horizontalViewHalfAngle = 0f;     // ï¿½Ã¾ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½ï¿½ï¿½
 
-
-
-
-    
-    
-
-
-
-    // ÀÔ·ÂÇÑ -180~180ÀÇ °ªÀ» Up Vector ±âÁØ Local DirectionÀ¸·Î º¯È¯½ÃÄÑÁÜ.
-    // È¸Àü°¢ÀÌ ¸Å°³º¯¼öÀÓ   
     private Vector3 AngleToDirZ(float angleInDegree)
     {
         float radian = (angleInDegree - transform.eulerAngles.z) * Mathf.Deg2Rad;
-        
+
         return new Vector3(Mathf.Sin(radian), Mathf.Cos(radian), 0f);
     }
 
@@ -49,25 +39,24 @@ public class OrangeFly_LAGACY : MonoBehaviour
         {
             horizontalViewHalfAngle = horizontalViewAngle * 0.5f;
 
-            Vector3 originPos = transform.position;     // ³» À§Ä¡
+            Vector3 originPos = transform.position;     // ï¿½ï¿½ ï¿½ï¿½Ä¡
 
-            Gizmos.DrawWireSphere(originPos, viewRadius);   // ±âÁî¸ðÀÇ ¿øÀ» ±×·ÁÁÖ´Â ÇÔ¼ö
+            Gizmos.DrawWireSphere(originPos, viewRadius);   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
 
-            // ¿À¸¥ÂÊ ±¤¼± ¹æÇâ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Vector3 horizontalRightDir = AngleToDirZ(-horizontalViewHalfAngle + viewRotateZ);
-            // ¿ÞÂÊ ±¤¼± ¹æÇâ
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Vector3 horizontalLeftDir = AngleToDirZ(horizontalViewHalfAngle + viewRotateZ);
-            // °¡¿îµ¥ ±¤¼± ¹æÇâ
+            // ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Vector3 lookDir = AngleToDirZ(viewRotateZ);
 
-            Debug.DrawRay(originPos, horizontalLeftDir * viewRadius, Color.cyan);   // ¿ÞÂÊ ¶óÀÎ
-            Debug.DrawRay(originPos, lookDir * viewRadius, Color.green);            // Á¤ °¡¿îµ¥
-            Debug.DrawRay(originPos, horizontalRightDir * viewRadius, Color.cyan);  // ¿À¸¥ÂÊ ¶óÀÎ
+            Debug.DrawRay(originPos, horizontalLeftDir * viewRadius, Color.cyan);   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            Debug.DrawRay(originPos, lookDir * viewRadius, Color.green);            // ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥
+            Debug.DrawRay(originPos, horizontalRightDir * viewRadius, Color.cyan);  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
             FindViewTargets();
         }
     }
-
 
     public Collider2D[] FindViewTargets()
     {
@@ -82,8 +71,6 @@ public class OrangeFly_LAGACY : MonoBehaviour
             Vector2 dir = (targetPos - originPos).normalized;
             Vector2 lookDir = AngleToDirZ(viewRotateZ);
 
-            // float angle = Vector3.Angle(lookDir, dir)
-            // ¾Æ·¡ µÎ ÁÙÀº À§ÀÇ ÄÚµå¿Í µ¿ÀÏÇÏ°Ô µ¿ÀÛÇÔ. ³»ºÎ ±¸Çöµµ µ¿ÀÏ
             float dot = Vector2.Dot(lookDir, dir);
             float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
@@ -111,33 +98,17 @@ public class OrangeFly_LAGACY : MonoBehaviour
             return null;
     }
 
-
-
-
-
     private void Awake()
     {
-        horizontalViewHalfAngle = horizontalViewAngle * 0.5f; // ½Ã¾ß°¢¿¡¼­ °¡¿îµ¥ ¶óÀÎ
+        horizontalViewHalfAngle = horizontalViewAngle * 0.5f;
     }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //rb.velocity = Vector2.up * 1.2f;
-        //StartCoroutine(Flying());
-
     }
 
-    // Update is called once per frames
-    void Update()
-    {
-        
-    }
-
-
-
-
-    IEnumerator Flying()
+    private IEnumerator Flying()
     {
         while (die == false)
         {
