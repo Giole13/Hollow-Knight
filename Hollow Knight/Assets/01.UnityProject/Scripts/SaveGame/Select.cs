@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Select : MonoBehaviour
 {
-    public GameObject[] slotObjText;        // 슬릇의 정보 Text 오브젝트
+    public GameObject[] slotObjText;
     public GameObject[] removeSaveData;
 
     private bool[] saveFileArray = new bool[4];
@@ -22,7 +22,6 @@ public class Select : MonoBehaviour
     {
         for (int i = 0; i < 4; ++i)
         {
-            // i 번째에 슬릇이 있다면
             if (File.Exists(DataManager.Instance.path + i))
             {
                 saveFileArray[i] = true;
@@ -31,33 +30,26 @@ public class Select : MonoBehaviour
                 string areaName_ = DataManager.Instance.nowPlayer.areaName;
                 slotObjText[i].SetTmpText($"\t    {areaName_}");
             }
-            // i 번째에 슬릇이 비어있다면
             else
             {
-                slotObjText[i].SetTmpText($"\t    새 게임");
+                slotObjText[i].SetTmpText($"\t    占쏙옙 占쏙옙占쏙옙");
                 removeSaveData[i].SetActive(false);
             }
             DataManager.Instance.DataNewInit();
         }
     }
 
-
-    // 슬롯이 3개인데 어떻게 알맞게 불러오는가?
     public void Slot(int number)
     {
-        // 현재 번호 저장
         DataManager.Instance.nowSlot = number;
 
-        // 현재 번호에 데이터 파일이 true 라면
         if (saveFileArray[number])
         {
-            // 2. 저장된 데이터가 있을 때 => 불러오기 해서 게임씬으로 넘어감.
             DataManager.Instance.LoadData();
             GoGame();
         }
         else
         {
-            // 1. 저장된 데이터가 없을 때
             Create();
         }
     }
@@ -76,9 +68,6 @@ public class Select : MonoBehaviour
         menuBTManager.OnClickNewGame();
     }
 
-    /// <summary>
-    /// 인 게임으로 넘어가는 함수
-    /// </summary>
     public void GoGame()
     {
         menuBTManager.OnClickLoadGame();

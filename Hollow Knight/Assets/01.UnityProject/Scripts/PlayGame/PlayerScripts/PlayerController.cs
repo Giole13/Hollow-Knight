@@ -85,25 +85,20 @@ public class PlayerController : MonoBehaviour
         attackPower = 10;
         skillCool = true;
 
-
         // instance Setting
         slashEffect.SetActive(false);
         ballEffect.SetActive(false);
     }
 
-
     private void FixedUpdate()
     {
         InputKeyValue();
-
     }
 
     private void Update()
     {
         PlayerMoveAndJumpBehavior();
-
         PlayerSlashwork();
-
         SkillActive();
     }
 
@@ -291,7 +286,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     // Player Attack Fun -> Dev
     private void PlayerSlashwork()
     {
@@ -300,7 +294,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(PlayerAttackCoroutine(slashEffect, 0.5f));
         }
     }
-
 
     // Player Attack IEnumerator
     IEnumerator PlayerAttackCoroutine(GameObject obj_, float setTime)
@@ -328,7 +321,6 @@ public class PlayerController : MonoBehaviour
         slashAllow = true;
         obj_.SetActive(false);
     }
-
 
     private void VerticalIdleAttack(GameObject obj_)
     {
@@ -411,7 +403,6 @@ public class PlayerController : MonoBehaviour
         playerAni.SetBool("Sit", setAni_);
         if (setAni_)
         {
-            //  + y0.2 , rb.Type = Kenetic
             rb.position += Vector2.up * 0.2f;
             rb.bodyType = RigidbodyType2D.Kinematic;
         }
@@ -436,5 +427,4 @@ public class PlayerController : MonoBehaviour
     {
         return uIObjsScript.GetCoin();
     }
-
 }   // PlayerContorller()

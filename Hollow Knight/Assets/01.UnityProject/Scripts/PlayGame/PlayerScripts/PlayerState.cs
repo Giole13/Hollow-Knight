@@ -5,26 +5,15 @@ using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 
-// ÇÃ·¹ÀÌ¾î »óÅÂ¸¦ °ü¸®ÇÏ´Â ÀÎÅÍÆäÀÌ½º
 public interface PlayerState
 {
-    // ¹Ù²ð¶§ ½ÇÇàÇÏ´Â ÇÔ¼ö
     public void Action(PlayerController_v2 player_);
 }
 
-
-// ¾ÆÀÌµé »óÅÂ
 public class IdleState : PlayerState
 {
-
-    public IdleState()
-    {
-        Debug.Log("³­ ¾ÆÀÌµé »óÅÂ!");
-    }
-    // ¾ÆÀÌµé »óÅÂ¿¡¼­?
     public void Action(PlayerController_v2 player_)
     {
-        // °ø°Ý ÀüÈ¯
         if (Input.GetKeyDown(KeyCode.X))
         {
             player_.PSHanDle = new AttackState();
@@ -44,26 +33,15 @@ public class IdleState : PlayerState
         {
             player_.PSHanDle = new MoveState();
         }
-
-        //if(Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    player_.PSHanDle = new UpViewState();
-        //}
-        
-        //if(Input.GetKeyDown(KeyCode.DownArrow))
-        //{
-        //    player_.PSHanDle = new DownViewState();
-        //}
     }
 
 }
 
-// °ø°Ý »óÅÂ
 public class AttackState : PlayerState
 {
     public AttackState()
     {
-        Debug.Log("³­ °ø°Ý »óÅÂ!");
+        Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
     }
     public void Action(PlayerController_v2 player_)
     {
@@ -73,12 +51,12 @@ public class AttackState : PlayerState
     }
 }
 
-// Á¡ÇÁ »óÅÂ
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 public class JumpState : PlayerState
 {
     public JumpState()
     {
-        Debug.Log("³­ Á¡ÇÁ »óÅÂ!");
+        Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
     }
     public void Action(PlayerController_v2 player_)
     {
@@ -87,12 +65,12 @@ public class JumpState : PlayerState
 }
 
 
-// ¿òÁ÷ÀÌ´Â »óÅÂ 
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 public class MoveState : PlayerState
 {
     public MoveState()
     {
-        Debug.Log("³­ ¿òÁ÷ÀÌ´Â »óÅÂ!");
+        Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½!");
     }
 
     public void Action(PlayerController_v2 player_)
@@ -109,19 +87,19 @@ public class MoveState : PlayerState
 }
 
 
-//// À§ º¸´Â »óÅÂ
+//// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //public class UpViewState : PlayerState
 //{
 //    public UpViewState()
 //    {
-//        Debug.Log("³­ À§¸¦ º¸´Â »óÅÂ!");
+//        Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
 //    }
 
 //    public void Action(PlayerController_v2 player_)
 //    {
 //        if (Input.GetKeyUp(KeyCode.X))
 //        {
-//            Debug.Log("³­ À§ °ø°Ý ÁßÀÌ¾ß!");
+//            Debug.Log("ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½!");
 //        }
 //        else if (Input.GetKeyUp(KeyCode.UpArrow))
 //        {
@@ -130,19 +108,19 @@ public class MoveState : PlayerState
 //    }
 //}
 
-//// ¾Æ·¡ º¸´Â »óÅÂ
+//// ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //public class DownViewState : PlayerState
 //{
 //    public DownViewState()
 //    {
-//        Debug.Log("³­ ¾Æ·¡¸¦ º¸´Â »óÅÂ!");
+//        Debug.Log("ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
 //    }
 
 //    public void Action(PlayerController_v2 player_)
 //    {
 //        if (Input.GetKeyUp(KeyCode.X))
 //        {
-//            Debug.Log("³­ ¾Æ·¡ °ø°Ý ÁßÀÌ¾ß!");
+//            Debug.Log("ï¿½ï¿½ ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½!");
 //        }
 //        else if(Input.GetKeyUp(KeyCode.DownArrow))
 //        {
@@ -158,12 +136,12 @@ public class MoveState : PlayerState
 
 
 
-// ¾Æ¹«·± Çàµ¿À» ÇÏÁö ¾ÊÀ» ¶§
+// ï¿½Æ¹ï¿½ï¿½ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 //public class IdleState : PlayerState
 //{
 //    public void Switching(PlayerController player_)
 //    {
-//        // ¿À¸¥ÂÊ ¹æÇâÅ°¸¦ ´©¸¦°æ¿ì
+//        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //        if (Input.GetKeyDown(KeyCode.RightArrow))
 //        {
 //            player_.PlayerStateController = new PlayerRightMove();
@@ -186,7 +164,7 @@ public class MoveState : PlayerState
 //    public void Switching(PlayerController player_)
 //    {
 //        player_.RightArrow();
-//        // ¿À¸¥ÂÊ ¹æÇâÅ°¸¦ ¿Ã¸±°æ¿ì
+//        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½
 //        if (Input.GetKeyUp(KeyCode.RightArrow))
 //        {
 //            player_.PlayerStateController = new IdleState();
@@ -205,7 +183,7 @@ public class MoveState : PlayerState
 //    public void Switching(PlayerController player_)
 //    {
 //        player_.LeftArrow();
-//        // ¿ÞÂÊ ¹æÇâÅ°¸¦ ¿Ã¸±°æ¿ì
+//        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½
 //        if (Input.GetKeyUp(KeyCode.LeftArrow))
 //        {
 //            player_.PlayerStateController = new IdleState();
@@ -218,7 +196,7 @@ public class MoveState : PlayerState
 //    public void Switching(PlayerController player_)
 //    {
 //        player_.ClickOnZ();
-//        // ZÅ°¸¦ ¶ª °æ¿ì
+//        // ZÅ°ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 //        if (Input.GetKeyUp(KeyCode.Z))
 //        {
 //            player_.PlayerStateController = new IdleState();
